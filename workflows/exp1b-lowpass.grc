@@ -1,0 +1,752 @@
+# experiment 2: the same drum, the shakers on — the microphones first (the input switch: the simulation, whose
+# shakers are band-passed 500 Hz – 8 kHz noise swelling and fading every 2 s), now through a
+# 4th-order band-pass on every channel: drag the shaded band's upper edge down onto the drum — the hiss leaves
+# the traces, the trigger fires on the drum again: Tucker's hot-wire microphone in software
+blocks:
+  - id: gr::basic::ClockSource
+    parameters:
+      name: clock # paces the simulation
+      sample_rate: 96000
+      chunk_size: 1024
+      n_samples_max: 0
+  - id: opendigitizer::localisation::PointSourceAudio
+    parameters:
+      name: simulatedMicrophones # a source moving in front of the line
+      element_positions: !!float64 [[-1.5, 0.0, 0.0], [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], [1.5, 0.0, 0.0]]
+      sample_rate: 96000
+      tag_interval: 600.0
+      source_position: [0.4, 2.0, 0.0]
+      source_motion: ellipse
+      motion_extent: [1.2, 0.6]
+      motion_period: 20.0
+      period: 0.6
+      pulse_width: 0.001
+      tone_frequency: 0.0
+      amplitude: 0.8
+      noise: 0.02
+  - id: opendigitizer::video::BrowserMicrophonePairs
+    parameters:
+      name: soundcard # four microphones from two browser stereo sources (devtools/four-mics-browser-pairs.sh)
+      pair_a: BEAMS_PAIR_A
+      pair_b: BEAMS_PAIR_B
+      sample_rate: 96000.0
+      align: once
+  - id: gr::basic::Switch<float32>
+    parameters:
+      name: source # simulation (group 0) or microphones (group 1)
+      n_groups: 2
+      n_channels: 4
+      group: !!uint32 1
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: input
+      label: input
+      value: BEAMS_PAIR_A
+      choices: ["simulation"]
+      target_map: "soundcard:pair_a"
+      choice_values:
+        simulation:
+          "source:group": !!uint32 0
+      device_values:
+        "source:group": !!uint32 1
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: pairB
+      label: pair B
+      target_map: "soundcard:pair_b"
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: shakerSwell # the shakers' swell: level · (1 + sin), one for all four
+      signal_type: Sin
+      frequency: 0.5
+      amplitude: 0.1
+      offset: 0.1
+      sample_rate: 96000
+      chunk_size: 480
+  - id: DigitizerUi::ImControlNumber
+    parameters:
+      name: shakers
+      label: sim. noise
+      unit: FS
+      value: 0.1
+      min: 0
+      max: 0.5
+      step: 0.01
+      style: slider
+      target_map: "shakerSwell:amplitude;shakerSwell:offset"
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: hiss0 # mic 1's own noise
+      signal_type: GaussianNoise
+      amplitude: 1.0
+      seed: !!uint64 1918
+      sample_rate: 96000
+      chunk_size: 480
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: hissBand0
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 500.0
+      f_high: 8000.0
+      sample_rate: 96000
+  - id: gr::blocks::math::Multiply<float32, std::multiplies<float32>>
+    parameters:
+      name: shaken0
+      n_inputs: 2
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: withShakers0
+      n_inputs: 2
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: hiss1 # mic 2's own noise
+      signal_type: GaussianNoise
+      amplitude: 1.0
+      seed: !!uint64 1919
+      sample_rate: 96000
+      chunk_size: 480
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: hissBand1
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 500.0
+      f_high: 8000.0
+      sample_rate: 96000
+  - id: gr::blocks::math::Multiply<float32, std::multiplies<float32>>
+    parameters:
+      name: shaken1
+      n_inputs: 2
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: withShakers1
+      n_inputs: 2
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: hiss2 # mic 3's own noise
+      signal_type: GaussianNoise
+      amplitude: 1.0
+      seed: !!uint64 1920
+      sample_rate: 96000
+      chunk_size: 480
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: hissBand2
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 500.0
+      f_high: 8000.0
+      sample_rate: 96000
+  - id: gr::blocks::math::Multiply<float32, std::multiplies<float32>>
+    parameters:
+      name: shaken2
+      n_inputs: 2
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: withShakers2
+      n_inputs: 2
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: hiss3 # mic 4's own noise
+      signal_type: GaussianNoise
+      amplitude: 1.0
+      seed: !!uint64 1921
+      sample_rate: 96000
+      chunk_size: 480
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: hissBand3
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 500.0
+      f_high: 8000.0
+      sample_rate: 96000
+  - id: gr::blocks::math::Multiply<float32, std::multiplies<float32>>
+    parameters:
+      name: shaken3
+      n_inputs: 2
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: withShakers3
+      n_inputs: 2
+  - id: DigitizerUi::ImControlChoice
+    parameters:
+      name: spacing
+      label: spacing
+      value: "1 m"
+      choices: ["1 m", "0.2 m"]
+      choice_values:
+        "1 m":
+          "simulatedMicrophones,locator,ranging:element_positions": !!float64 [[-1.5, 0.0, 0.0], [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], [1.5, 0.0, 0.0]]
+          "locator,ranging:roi": [-2.5, 2.5, -0.1, 5.0]
+          "correlation,delays:max_lag": !!uint32 900
+          "simulatedMicrophones:source_position": [0.4, 2.0, 0.0]
+          "simulatedMicrophones:motion_extent": [1.2, 0.6]
+        "0.2 m":
+          "simulatedMicrophones,locator,ranging:element_positions": !!float64 [[-0.3, 0.0, 0.0], [-0.1, 0.0, 0.0], [0.1, 0.0, 0.0], [0.3, 0.0, 0.0]]
+          "locator,ranging:roi": [-1.0, 1.0, -0.05, 1.3]
+          "correlation,delays:max_lag": !!uint32 192
+          "simulatedMicrophones:source_position": [0.2, 0.7, 0.0]
+          "simulatedMicrophones:motion_extent": [0.35, 0.15]
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp0
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 30
+      f_high: 5500
+      sample_rate: 96000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp1
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 30
+      f_high: 5500
+      sample_rate: 96000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp2
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 30
+      f_high: 5500
+      sample_rate: 96000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp3
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 30
+      f_high: 5500
+      sample_rate: 96000
+  - id: gr::blocks::type::converter::Abs<float32>
+    parameters:
+      name: rect0 # |mic 1| for the triggers
+  - id: gr::blocks::type::converter::Abs<float32>
+    parameters:
+      name: rect1 # |mic 2| for the triggers
+  - id: gr::blocks::type::converter::Abs<float32>
+    parameters:
+      name: rect2 # |mic 3| for the triggers
+  - id: gr::blocks::type::converter::Abs<float32>
+    parameters:
+      name: rect3 # |mic 4| for the triggers
+  - id: gr::blocks::math::Max<float32, gr::blocks::math::Maximum<float32>>
+    parameters:
+      name: firstHit # the four |x|: whichever crosses first
+      n_inputs: 4
+  - id: opendigitizer::Arithmetic<float32>
+    parameters:
+      name: mark0 # zero, carrying mic 1's own trigger tag
+      operation: "-"
+  - id: opendigitizer::Arithmetic<float32>
+    parameters:
+      name: mark1 # zero, carrying mic 2's own trigger tag
+      operation: "-"
+  - id: opendigitizer::Arithmetic<float32>
+    parameters:
+      name: mark2 # zero, carrying mic 3's own trigger tag
+      operation: "-"
+  - id: opendigitizer::Arithmetic<float32>
+    parameters:
+      name: mark3 # zero, carrying mic 4's own trigger tag
+      operation: "-"
+  - id: gr::blocks::trigger::SchmittTriggerNoInterpolation<float32>
+    parameters:
+      name: trigger # on the first microphone to cross
+      threshold: 0.5
+      hysteresis: 0.004
+      edge: rising
+      dead_time: 48000
+      trigger_name_rising: RISING
+      sample_rate: 96000
+  - id: opendigitizer::Arithmetic<float32>
+    parameters:
+      name: tagOnly # zero, carrying the trigger tag
+      operation: "-"
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: tagged0
+      n_inputs: 3
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: tagged1
+      n_inputs: 3
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: tagged2
+      n_inputs: 3
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: tagged3
+      n_inputs: 3
+  - id: gr::blocks::math::AddConst<float32, std::plus<float32>>
+    parameters:
+      name: lifted0 # the trace's lift
+      value: 0.9
+  - id: gr::blocks::math::AddConst<float32, std::plus<float32>>
+    parameters:
+      name: lifted1 # the trace's lift
+      value: 0.3
+  - id: gr::blocks::math::AddConst<float32, std::plus<float32>>
+    parameters:
+      name: lifted2 # the trace's lift
+      value: -0.3
+  - id: gr::blocks::math::AddConst<float32, std::plus<float32>>
+    parameters:
+      name: lifted3 # the trace's lift
+      value: -0.9
+  - id: gr::basic::StreamToDataSet<float32>
+    parameters:
+      name: snapshot0
+      filter: RISING
+      n_pre: 960
+      n_post: 4800
+      holdoff_samples: 48000
+  - id: opendigitizer::ImPlotSink<gr::DataSet<float32>>
+    parameters:
+      name: mic1
+      signal_name: mic 1
+      dataset_index: 0
+      signal_unit: FS
+      n_history: 1
+      color: 15921906
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: run1
+      signal_name: mic 1
+      signal_unit: FS
+      n_history: 192000
+      color: 15921906
+  - id: gr::basic::StreamToDataSet<float32>
+    parameters:
+      name: snapshot1
+      filter: RISING
+      n_pre: 960
+      n_post: 4800
+      holdoff_samples: 48000
+  - id: opendigitizer::ImPlotSink<gr::DataSet<float32>>
+    parameters:
+      name: mic2
+      signal_name: mic 2
+      dataset_index: 0
+      signal_unit: FS
+      n_history: 1
+      color: 16626498
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: run2
+      signal_name: mic 2
+      signal_unit: FS
+      n_history: 192000
+      color: 16626498
+  - id: gr::basic::StreamToDataSet<float32>
+    parameters:
+      name: snapshot2
+      filter: RISING
+      n_pre: 960
+      n_post: 4800
+      holdoff_samples: 48000
+  - id: opendigitizer::ImPlotSink<gr::DataSet<float32>>
+    parameters:
+      name: mic3
+      signal_name: mic 3
+      dataset_index: 0
+      signal_unit: FS
+      n_history: 1
+      color: 2526162
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: run3
+      signal_name: mic 3
+      signal_unit: FS
+      n_history: 192000
+      color: 2526162
+  - id: gr::basic::StreamToDataSet<float32>
+    parameters:
+      name: snapshot3
+      filter: RISING
+      n_pre: 960
+      n_post: 4800
+      holdoff_samples: 48000
+  - id: opendigitizer::ImPlotSink<gr::DataSet<float32>>
+    parameters:
+      name: mic4
+      signal_name: mic 4
+      dataset_index: 0
+      signal_unit: FS
+      n_history: 1
+      color: 8755456
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: run4
+      signal_name: mic 4
+      signal_unit: FS
+      n_history: 192000
+      color: 8755456
+  - id: gr::blocks::trigger::LevelTrigger<float32>
+    parameters:
+      name: onset0 # mic 1's hits
+      trigger_name: mic 1
+      threshold: 0.5
+      hysteresis: 0.004
+      edge: rising
+      dead_time: 48000.0
+      dead_time_unit: samples
+  - id: gr::blocks::trigger::LevelTrigger<float32>
+    parameters:
+      name: onset1 # mic 2's hits
+      trigger_name: mic 2
+      threshold: 0.5
+      hysteresis: 0.004
+      edge: rising
+      dead_time: 48000.0
+      dead_time_unit: samples
+  - id: gr::blocks::trigger::LevelTrigger<float32>
+    parameters:
+      name: onset2 # mic 3's hits
+      trigger_name: mic 3
+      threshold: 0.5
+      hysteresis: 0.004
+      edge: rising
+      dead_time: 48000.0
+      dead_time_unit: samples
+  - id: gr::blocks::trigger::LevelTrigger<float32>
+    parameters:
+      name: onset3 # mic 4's hits
+      trigger_name: mic 4
+      threshold: 0.5
+      hysteresis: 0.004
+      edge: rising
+      dead_time: 48000.0
+      dead_time_unit: samples
+  - id: gr::blocks::trigger::MultiChannelRecorder<float32>
+    parameters:
+      name: window # all four channels around a hit
+      n_inputs: 4
+      n_pre: 960
+      n_post: 4800
+      retrigger: ignore
+      holdoff: 0.5
+      emit_partial: false
+      history: 0.5
+  - id: opendigitizer::localisation::DataSetToTensor<float32>
+    parameters:
+      name: frames
+  - id: gr::localisation::PairCrossCorrelation<float32>
+    parameters:
+      name: correlation
+      max_lag: 900
+      weighting: none
+      f_min: 100.0
+      f_max: 10000.0
+  - id: gr::localisation::PairDelay<float32>
+    parameters:
+      name: delays
+      max_lag: 900
+  - id: opendigitizer::localisation::PairDelayArrivals<float32>
+    parameters:
+      name: arrivals
+      receiver_names: ["mic 1", "mic 2", "mic 3", "mic 4"]
+      min_confidence: 2.0
+  - id: opendigitizer::localisation::DelayLocator
+    parameters:
+      name: locator # the delays of one hit, solved for the drum
+      receiver_names: ["mic 1", "mic 2", "mic 3", "mic 4"]
+      element_positions: !!float64 [[-1.5, 0.0, 0.0], [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], [1.5, 0.0, 0.0]]
+      roi: [-2.5, 2.5, -0.1, 5.0]
+  - id: opendigitizer::ImPlotSink<gr::pmt::ValueMap>
+    parameters:
+      name: ranged
+      signal_name: ranging
+      color: 15921906
+  - id: DigitizerUi::ImControlNumber
+    parameters:
+      name: threshold
+      label: threshold
+      unit: FS
+      value: 0.5
+      min: 0.01
+      max: 1.0
+      step: 0.005
+      style: slider
+      target_map: "trigger:threshold;onset0,onset1,onset2,onset3:threshold"
+  - id: DigitizerUi::ImControlNumber
+    parameters:
+      name: deadTime
+      label: dead time
+      unit: samples
+      value: 48000
+      min: 9600
+      max: 192000
+      step: 4800
+      style: slider
+      target_map: "trigger:dead_time;onset0,onset1,onset2,onset3:dead_time;snapshot0,snapshot1,snapshot2,snapshot3:holdoff_samples"
+  - id: gr::blocks::fft::FFT<float32, gr::DataSet<float32>>
+    parameters:
+      name: FFT
+      fft_size: 8192
+      sample_rate: 96000
+      output_in_db: true
+      signal_name: "mic 1, unfiltered"
+  - id: opendigitizer::ImPlotSink<gr::DataSet<float32>>
+    parameters:
+      name: spectrum
+      signal_name: "mic 1, unfiltered"
+      dataset_index: 0
+      abscissa_quantity: frequency
+      abscissa_unit: Hz
+      signal_quantity: magnitude
+      signal_unit: dB
+connections:
+  - [ clock, 0, simulatedMicrophones, 0 ]
+  - [ soundcard, [0, 0], source, [0, 4] ]
+  - [ soundcard, [0, 1], source, [0, 5] ]
+  - [ soundcard, [0, 2], source, [0, 6] ]
+  - [ soundcard, [0, 3], source, [0, 7] ]
+  - [ hiss0, 0, hissBand0, 0 ]
+  - [ hissBand0, 0, shaken0, [0, 0] ]
+  - [ shakerSwell, 0, shaken0, [0, 1] ]
+  - [ simulatedMicrophones, [0, 0], withShakers0, [0, 0] ]
+  - [ shaken0, 0, withShakers0, [0, 1] ]
+  - [ withShakers0, 0, source, [0, 0] ]
+  - [ hiss1, 0, hissBand1, 0 ]
+  - [ hissBand1, 0, shaken1, [0, 0] ]
+  - [ shakerSwell, 0, shaken1, [0, 1] ]
+  - [ simulatedMicrophones, [0, 1], withShakers1, [0, 0] ]
+  - [ shaken1, 0, withShakers1, [0, 1] ]
+  - [ withShakers1, 0, source, [0, 1] ]
+  - [ hiss2, 0, hissBand2, 0 ]
+  - [ hissBand2, 0, shaken2, [0, 0] ]
+  - [ shakerSwell, 0, shaken2, [0, 1] ]
+  - [ simulatedMicrophones, [0, 2], withShakers2, [0, 0] ]
+  - [ shaken2, 0, withShakers2, [0, 1] ]
+  - [ withShakers2, 0, source, [0, 2] ]
+  - [ hiss3, 0, hissBand3, 0 ]
+  - [ hissBand3, 0, shaken3, [0, 0] ]
+  - [ shakerSwell, 0, shaken3, [0, 1] ]
+  - [ simulatedMicrophones, [0, 3], withShakers3, [0, 0] ]
+  - [ shaken3, 0, withShakers3, [0, 1] ]
+  - [ withShakers3, 0, source, [0, 3] ]
+  - [ source, [0, 0], bp0, 0 ]
+  - [ source, [0, 1], bp1, 0 ]
+  - [ source, [0, 2], bp2, 0 ]
+  - [ source, [0, 3], bp3, 0 ]
+  - [ bp0, 0, rect0, 0 ]
+  - [ bp1, 0, rect1, 0 ]
+  - [ bp2, 0, rect2, 0 ]
+  - [ bp3, 0, rect3, 0 ]
+  - [ rect0, 0, firstHit, [0, 0] ]
+  - [ rect1, 0, firstHit, [0, 1] ]
+  - [ rect2, 0, firstHit, [0, 2] ]
+  - [ rect3, 0, firstHit, [0, 3] ]
+  - [ onset0, out, mark0, 0 ]
+  - [ rect0, 0, mark0, 1 ]
+  - [ onset1, out, mark1, 0 ]
+  - [ rect1, 0, mark1, 1 ]
+  - [ onset2, out, mark2, 0 ]
+  - [ rect2, 0, mark2, 1 ]
+  - [ onset3, out, mark3, 0 ]
+  - [ rect3, 0, mark3, 1 ]
+  - [ firstHit, 0, trigger, in ]
+  - [ trigger, out, tagOnly, 0 ]
+  - [ firstHit, 0, tagOnly, 1 ]
+  - [ bp0, 0, tagged0, [0, 0] ]
+  - [ tagOnly, 0, tagged0, [0, 1] ]
+  - [ mark0, 0, tagged0, [0, 2] ]
+  - [ bp1, 0, tagged1, [0, 0] ]
+  - [ tagOnly, 0, tagged1, [0, 1] ]
+  - [ mark1, 0, tagged1, [0, 2] ]
+  - [ bp2, 0, tagged2, [0, 0] ]
+  - [ tagOnly, 0, tagged2, [0, 1] ]
+  - [ mark2, 0, tagged2, [0, 2] ]
+  - [ bp3, 0, tagged3, [0, 0] ]
+  - [ tagOnly, 0, tagged3, [0, 1] ]
+  - [ mark3, 0, tagged3, [0, 2] ]
+  - [ tagged0, 0, lifted0, 0 ]
+  - [ tagged1, 0, lifted1, 0 ]
+  - [ tagged2, 0, lifted2, 0 ]
+  - [ tagged3, 0, lifted3, 0 ]
+  - [ lifted0, 0, snapshot0, in ]
+  - [ snapshot0, out, mic1, in ]
+  - [ lifted0, 0, run1, 0 ]
+  - [ lifted1, 0, snapshot1, in ]
+  - [ snapshot1, out, mic2, in ]
+  - [ lifted1, 0, run2, 0 ]
+  - [ lifted2, 0, snapshot2, in ]
+  - [ snapshot2, out, mic3, in ]
+  - [ lifted2, 0, run3, 0 ]
+  - [ lifted3, 0, snapshot3, in ]
+  - [ snapshot3, out, mic4, in ]
+  - [ lifted3, 0, run4, 0 ]
+  - [ rect0, 0, onset0, 0 ]
+  - [ onset0, 0, window, 0 ]
+  - [ bp0, 0, window, [1, 0] ]
+  - [ rect1, 0, onset1, 0 ]
+  - [ onset1, 0, window, 0 ]
+  - [ bp1, 0, window, [1, 1] ]
+  - [ rect2, 0, onset2, 0 ]
+  - [ onset2, 0, window, 0 ]
+  - [ bp2, 0, window, [1, 2] ]
+  - [ rect3, 0, onset3, 0 ]
+  - [ onset3, 0, window, 0 ]
+  - [ bp3, 0, window, [1, 3] ]
+  - [ window, 1, frames, 0 ]
+  - [ frames, 0, correlation, 0 ]
+  - [ correlation, 0, delays, 0 ]
+  - [ delays, 0, arrivals, 0 ]
+  - [ arrivals, 0, locator, 0 ]
+  - [ arrivals, 0, ranged, 0 ]
+  - [ locator, 0, ranged, 0 ]
+  - [ source, [0, 0], FFT, 0 ]
+  - [ FFT, 0, spectrum, 0 ]
+dashboard:
+  layout: Free
+  windowLayout:
+    floatingWindows: { }
+    dockSpace:
+      hsplit:
+        first:
+          vsplit:
+            first: "Ranging"
+            second: "Under the picture"
+            ratio: !!float32 0.44
+        second:
+          vsplit:
+            first: "Four microphones, running"
+            second:
+              vsplit:
+                first: "Four microphones, triggered on the first"
+                second: "Waterfall, mic 1 unfiltered"
+                ratio: !!float32 0.5
+            ratio: !!float32 0.6667
+        ratio: !!float32 0.3385
+  sources:
+    - name: mic1
+      block: mic1
+    - name: run1
+      block: run1
+    - name: mic2
+      block: mic2
+    - name: run2
+      block: run2
+    - name: mic3
+      block: mic3
+    - name: run3
+      block: run3
+    - name: mic4
+      block: mic4
+    - name: run4
+      block: run4
+    - name: ranged
+      block: ranged
+    - name: spectrum
+      block: spectrum
+  plots:
+    - name: Ranging
+      type: opendigitizer::charts::LocalisationChart
+      parameters:
+        name: ranging # the `spacing` choice's target
+        receiver_names: ["mic 1", "mic 2", "mic 3", "mic 4"]
+        element_positions: !!float64 [[-1.5, 0.0, 0.0], [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], [1.5, 0.0, 0.0]]
+        roi: [-2.5, 2.5, -0.1, 5.0]
+        show_legend: false
+        show_grid: false
+        show_curve_labels: false # the drawn map beside it writes the delays
+        show_status: true
+      sources:
+        - ranged
+    - name: Under the picture
+      type: XYChart
+      parameters:
+        show_legend: false
+      axes:
+        - axis: X
+          min: 0
+          max: 1
+        - axis: Y
+          min: 0
+          max: 1
+      sources: []
+    - name: Four microphones, running
+      type: XYChart
+      parameters:
+        show_legend: false
+        show_tags: true
+        n_history: 192000
+        max_history_count: 1
+      axes:
+        - axis: X
+          min: NaN
+          max: NaN
+        - axis: Y
+          min: -2.0
+          max: 2.0
+      sources:
+        - run1
+        - run2
+        - run3
+        - run4
+    - name: Four microphones, triggered on the first
+      type: XYChart
+      parameters:
+        show_legend: false
+        show_tags: true
+        tags_of_every_signal: true # each signal's tags in its colour: where each microphone triggered
+        n_history: 5760
+        max_history_count: 1
+      axes:
+        - axis: X
+          min: NaN
+          max: NaN
+        - axis: Y
+          min: -2.0
+          max: 2.0
+      sources:
+        - mic1
+        - mic2
+        - mic3
+        - mic4
+    - name: Waterfall, mic 1 unfiltered
+      type: opendigitizer::charts::WaterfallPlot
+      parameters:
+        show_legend: false
+        n_history: 59 # spectra: 5 s at 11.7 a second
+        colormap: ImPlotColormap_Viridis
+        range_style: both
+        range_min: 30
+        range_max: 5500
+        range_min_width: 50
+        show_range_labels: false # its f₋/f₊ glyphs are missing from the chart font: 'f?'
+        range_color: 16747146 # 0xFF8A8A, the drum's red on the map
+        range_min_targets: "bp0,bp1,bp2,bp3:f_low"
+        range_max_targets: "bp0,bp1,bp2,bp3:f_high"
+      axes:
+        - axis: X
+          min: 0
+          max: 6300
+          scale: Linear
+          format: MetricInline
+        - axis: Z
+          min: -110
+          max: -30
+      sources:
+        - spectrum

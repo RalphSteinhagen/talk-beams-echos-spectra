@@ -1,0 +1,632 @@
+# experiment 3 (slide `exp2`): the tuning fork — simulated (a struck 160 Hz tone, circling; 440 Hz or a 24 kHz
+# emitter with the tone choice) or the microphones;
+# the ranging chart shows both estimates: the continuous correlation (white, every 0.107 s) and the phase layer
+# (gold, on each strike, its level the threshold slider); right the four microphones as they run (the last 30 ms,
+# coloured, stacked), beneath them each one's correlation with mic 1, continuously (in the same hue: a cosine, its
+# peaks one period apart), and microphone 1's waterfall with the band-pass handles
+blocks:
+  - id: gr::basic::ClockSource
+    parameters:
+      name: clock # paces the simulation
+      sample_rate: 96000
+      chunk_size: 1024
+      n_samples_max: 0
+  - id: opendigitizer::localisation::PointSourceAudio
+    parameters:
+      name: simulatedMicrophones # a source moving in front of the line
+      element_positions: !!float64 [[-1.5, 0.0, 0.0], [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], [1.5, 0.0, 0.0]]
+      sample_rate: 96000
+      tag_interval: 600.0
+      source_position: [0.0, 2.0, 0.0]
+      source_motion: ellipse
+      motion_extent: [0.8, 0.4]
+      motion_period: 20.0
+      period: 1.0
+      pulse_width: 1.0
+      tone_frequency: 160.0
+      amplitude: 0.6
+      noise: 0.02
+  - id: opendigitizer::video::BrowserMicrophonePairs
+    parameters:
+      name: soundcard # four microphones from two browser stereo sources (devtools/four-mics-browser-pairs.sh)
+      pair_a: BEAMS_PAIR_A
+      pair_b: BEAMS_PAIR_B
+      sample_rate: 96000.0
+      align: once
+  - id: gr::basic::Switch<float32>
+    parameters:
+      name: source # simulation (group 0) or microphones (group 1)
+      n_groups: 2
+      n_channels: 4
+      group: !!uint32 0
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: input
+      label: input
+      value: simulation
+      choices: ["simulation"]
+      target_map: "soundcard:pair_a"
+      choice_values:
+        simulation:
+          "source:group": !!uint32 0
+      device_values:
+        "source:group": !!uint32 1
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: pairB
+      label: pair B
+      target_map: "soundcard:pair_b"
+  - id: DigitizerUi::ImControlChoice
+    parameters:
+      name: tone
+      label: tone
+      value: "160 Hz"
+      choices: ["160 Hz", "440 Hz", "24 kHz"]
+      choice_values:
+        "160 Hz":
+          "simulatedMicrophones:tone_frequency": 160.0
+          "band0,band1,band2,band3:f_low": !!float32 120.0
+          "band0,band1,band2,band3:f_high": !!float32 200.0
+          "phaseSlope:f_min": !!float32 155.0
+          "phaseSlope:f_max": !!float32 165.0
+          "correlation,correlation13,correlation12,correlation14:f_min": !!float32 120.0
+          "correlation,correlation13,correlation12,correlation14:f_max": !!float32 200.0
+          "correlation,correlation13,correlation12,correlation14:weighting": phat
+          "bp0,bp1,bp2,bp3:f_low": !!float32 30.0
+          "bp0,bp1,bp2,bp3:f_high": !!float32 2400.0
+          "waterfall:x_auto_scale": false
+          "waterfall:x_min": 0.0
+          "waterfall:x_max": 2450.0
+          "waterfall:range_min": 30.0
+          "waterfall:range_max": 2400.0
+          "running:n_history": !!uint32 2880
+          "correlation13,correlation12,correlation14:max_lag": !!uint32 900
+        "440 Hz":
+          "simulatedMicrophones:tone_frequency": 440.0
+          "band0,band1,band2,band3:f_low": !!float32 400.0
+          "band0,band1,band2,band3:f_high": !!float32 480.0
+          "phaseSlope:f_min": !!float32 435.0
+          "phaseSlope:f_max": !!float32 445.0
+          "correlation,correlation13,correlation12,correlation14:f_min": !!float32 400.0
+          "correlation,correlation13,correlation12,correlation14:f_max": !!float32 480.0
+          "correlation,correlation13,correlation12,correlation14:weighting": phat
+          "bp0,bp1,bp2,bp3:f_low": !!float32 30.0
+          "bp0,bp1,bp2,bp3:f_high": !!float32 2400.0
+          "waterfall:x_auto_scale": false
+          "waterfall:x_min": 0.0
+          "waterfall:x_max": 2450.0
+          "waterfall:range_min": 30.0
+          "waterfall:range_max": 2400.0
+          "running:n_history": !!uint32 2880
+          "correlation13,correlation12,correlation14:max_lag": !!uint32 900
+        "24 kHz":
+          "simulatedMicrophones:tone_frequency": 24000.0
+          "band0,band1,band2,band3:f_low": !!float32 23000.0
+          "band0,band1,band2,band3:f_high": !!float32 25000.0
+          "phaseSlope:f_min": !!float32 23500.0
+          "phaseSlope:f_max": !!float32 24500.0
+          "correlation,correlation13,correlation12,correlation14:f_min": !!float32 22000.0
+          "correlation,correlation13,correlation12,correlation14:f_max": !!float32 26000.0
+          "correlation,correlation13,correlation12,correlation14:weighting": none
+          "bp0,bp1,bp2,bp3:f_low": !!float32 22500.0
+          "bp0,bp1,bp2,bp3:f_high": !!float32 25500.0
+          "waterfall:x_auto_scale": false
+          "waterfall:x_min": 22000.0
+          "waterfall:x_max": 25900.0
+          "waterfall:range_min": 22500.0
+          "waterfall:range_max": 25500.0
+          "running:n_history": !!uint32 48
+          "correlation13,correlation12,correlation14:max_lag": !!uint32 53
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp0
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 30
+      f_high: 2400
+      sample_rate: 96000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp1
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 30
+      f_high: 2400
+      sample_rate: 96000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp2
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 30
+      f_high: 2400
+      sample_rate: 96000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp3
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 30
+      f_high: 2400
+      sample_rate: 96000
+  - id: gr::blocks::math::AddConst<float32, std::plus<float32>>
+    parameters:
+      name: lifted0 # the trace's lift
+      value: 0.9
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: run1
+      signal_name: mic 1
+      signal_unit: FS
+      n_history: 2880
+      color: 15921906
+  - id: gr::blocks::math::AddConst<float32, std::plus<float32>>
+    parameters:
+      name: lifted1 # the trace's lift
+      value: 0.3
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: run2
+      signal_name: mic 2
+      signal_unit: FS
+      n_history: 2880
+      color: 16626498
+  - id: gr::blocks::math::AddConst<float32, std::plus<float32>>
+    parameters:
+      name: lifted2 # the trace's lift
+      value: -0.3
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: run3
+      signal_name: mic 3
+      signal_unit: FS
+      n_history: 2880
+      color: 2526162
+  - id: gr::blocks::math::AddConst<float32, std::plus<float32>>
+    parameters:
+      name: lifted3 # the trace's lift
+      value: -0.9
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: run4
+      signal_name: mic 4
+      signal_unit: FS
+      n_history: 2880
+      color: 8755456
+  - id: gr::basic::StreamsToTensor<float32>
+    parameters:
+      name: frames # all four channels, every 10240 samples
+      n_ports: 4
+      size: 10240
+  - id: gr::localisation::PairCrossCorrelation<float32>
+    parameters:
+      name: correlation
+      max_lag: 900
+      weighting: phat
+      f_min: 120.0
+      f_max: 200.0
+  - id: gr::localisation::PairDelay<float32>
+    parameters:
+      name: delays
+      max_lag: 900
+  - id: opendigitizer::localisation::PairDelayArrivals<float32>
+    parameters:
+      name: arrivals
+      receiver_names: ["mic 1", "mic 2", "mic 3", "mic 4"]
+      min_confidence: 1.0
+      frame_period: 0.106667
+  - id: opendigitizer::localisation::DelayLocator
+    parameters:
+      name: locator # every frame's delays, solved
+      receiver_names: ["mic 1", "mic 2", "mic 3", "mic 4"]
+      element_positions: !!float64 [[-1.5, 0.0, 0.0], [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], [1.5, 0.0, 0.0]]
+      roi: [-2.5, 2.5, -0.1, 5.0]
+  - id: opendigitizer::ImPlotSink<gr::pmt::ValueMap>
+    parameters:
+      name: ranged
+      signal_name: ranging
+      color: 15921906
+  - id: gr::basic::StreamsToTensor<float32>
+    parameters:
+      name: frames13 # mic 1 and mic 3, every 10240 samples
+      n_ports: 2
+      size: 10240
+  - id: gr::localisation::PairCrossCorrelation<float32>
+    parameters:
+      name: correlation13
+      max_lag: 900
+      weighting: phat
+      f_min: 120.0
+      f_max: 200.0
+  - id: opendigitizer::ImPlotSink<gr::Tensor<float32>>
+    parameters:
+      name: lags13
+      signal_name: mic 1 · mic 3
+  - id: gr::basic::StreamsToTensor<float32>
+    parameters:
+      name: frames12 # mic 1 and mic 2, every 10240 samples
+      n_ports: 2
+      size: 10240
+  - id: gr::localisation::PairCrossCorrelation<float32>
+    parameters:
+      name: correlation12
+      max_lag: 900
+      weighting: phat
+      f_min: 120.0
+      f_max: 200.0
+  - id: opendigitizer::ImPlotSink<gr::Tensor<float32>>
+    parameters:
+      name: lags12
+      signal_name: mic 1 · mic 2
+  - id: gr::basic::StreamsToTensor<float32>
+    parameters:
+      name: frames14 # mic 1 and mic 4, every 10240 samples
+      n_ports: 2
+      size: 10240
+  - id: gr::localisation::PairCrossCorrelation<float32>
+    parameters:
+      name: correlation14
+      max_lag: 900
+      weighting: phat
+      f_min: 120.0
+      f_max: 200.0
+  - id: opendigitizer::ImPlotSink<gr::Tensor<float32>>
+    parameters:
+      name: lags14
+      signal_name: mic 1 · mic 4
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: band0
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 2
+      f_low: 120.0
+      f_high: 200.0
+      sample_rate: 96000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: band1
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 2
+      f_low: 120.0
+      f_high: 200.0
+      sample_rate: 96000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: band2
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 2
+      f_low: 120.0
+      f_high: 200.0
+      sample_rate: 96000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: band3
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 2
+      f_low: 120.0
+      f_high: 200.0
+      sample_rate: 96000
+  - id: gr::blocks::type::converter::Abs<float32>
+    parameters:
+      name: rectify0
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: smooth0
+      filter_type: IIR
+      filter_response: LOWPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 2
+      f_low: 50.0
+      sample_rate: 96000
+  - id: gr::blocks::trigger::LevelTrigger<float32>
+    parameters:
+      name: envelopeTrigger0 # the strike, on microphone 1's envelope
+      trigger_name: mic 1
+      threshold: 0.1
+      hysteresis: 0.05
+      edge: rising
+      dead_time: 38400.0
+      dead_time_unit: samples
+  - id: gr::basic::StreamsToTensor<float32>
+    parameters:
+      name: phaseFrames
+      n_ports: 4
+      size: 4800
+      n_pre: 2536
+      holdoff_samples: 38400
+      filter: ""
+  - id: gr::blocks::fft::STFT<float32>
+    parameters:
+      name: phaseSpectra
+  - id: gr::localisation::PairCrossSpectra<float32>
+    parameters:
+      name: phaseCross
+  - id: gr::localisation::PhaseSlopeDelay<float32>
+    parameters:
+      name: phaseSlope
+      f_min: 155.0
+      f_max: 165.0
+      sample_rate: 96000.0
+  - id: opendigitizer::localisation::PairDelayArrivals<float32>
+    parameters:
+      name: phaseArrivals
+      receiver_names: ["mic 1", "mic 2", "mic 3", "mic 4"]
+  - id: opendigitizer::localisation::DelayLocator
+    parameters:
+      name: phaseLocator
+      receiver_names: ["mic 1", "mic 2", "mic 3", "mic 4"]
+      element_positions: !!float64 [[-1.5, 0.0, 0.0], [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], [1.5, 0.0, 0.0]]
+      roi: [-2.5, 2.5, -0.1, 5.0]
+  - id: opendigitizer::ImPlotSink<gr::pmt::ValueMap>
+    parameters:
+      name: phase
+      signal_name: phase
+      color: 16763213
+  - id: DigitizerUi::ImControlChoice
+    parameters:
+      name: spacing
+      label: spacing
+      value: "1 m"
+      choices: ["1 m", "0.2 m"]
+      choice_values:
+        "1 m":
+          "simulatedMicrophones,locator,phaseLocator,ranging:element_positions": !!float64 [[-1.5, 0.0, 0.0], [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], [1.5, 0.0, 0.0]]
+          "locator,phaseLocator,ranging:roi": [-2.5, 2.5, -0.1, 5.0]
+          "correlation,delays:max_lag": !!uint32 900
+          "simulatedMicrophones:source_position": [0.0, 2.0, 0.0]
+          "simulatedMicrophones:motion_extent": [0.8, 0.4]
+        "0.2 m":
+          "simulatedMicrophones,locator,phaseLocator,ranging:element_positions": !!float64 [[-0.3, 0.0, 0.0], [-0.1, 0.0, 0.0], [0.1, 0.0, 0.0], [0.3, 0.0, 0.0]]
+          "locator,phaseLocator,ranging:roi": [-1.0, 1.0, -0.05, 1.3]
+          "correlation,delays:max_lag": !!uint32 192
+          "simulatedMicrophones:source_position": [0.15, 0.7, 0.0]
+          "simulatedMicrophones:motion_extent": [0.3, 0.15]
+  - id: DigitizerUi::ImControlNumber
+    parameters:
+      name: threshold
+      label: threshold
+      unit: FS
+      value: 0.1
+      min: 0
+      max: 1
+      step: 0.01
+      style: slider
+      target_map: "envelopeTrigger0:threshold"
+  - id: DigitizerUi::ImControlChoice
+    parameters:
+      name: averaging
+      label: averaging
+      value: "off"
+      choices: ["off", "×4", "×10"]
+      choice_values:
+        "off":
+          "correlation,correlation13,correlation12,correlation14:averages": !!uint32 1
+          "arrivals:frame_period": 0.106667
+        "×4":
+          "correlation,correlation13,correlation12,correlation14:averages": !!uint32 4
+          "arrivals:frame_period": 0.426667
+        "×10":
+          "correlation,correlation13,correlation12,correlation14:averages": !!uint32 10
+          "arrivals:frame_period": 1.066667
+  - id: gr::blocks::fft::FFT<float32, gr::DataSet<float32>>
+    parameters:
+      name: FFT
+      fft_size: 8192
+      sample_rate: 96000
+      output_in_db: true
+      signal_name: "mic 1, unfiltered"
+  - id: opendigitizer::ImPlotSink<gr::DataSet<float32>>
+    parameters:
+      name: spectrum
+      signal_name: "mic 1, unfiltered"
+      dataset_index: 0
+      abscissa_quantity: frequency
+      abscissa_unit: Hz
+      signal_quantity: magnitude
+      signal_unit: dB
+connections:
+  - [ clock, 0, simulatedMicrophones, 0 ]
+  - [ soundcard, [0, 0], source, [0, 4] ]
+  - [ simulatedMicrophones, [0, 0], source, [0, 0] ]
+  - [ soundcard, [0, 1], source, [0, 5] ]
+  - [ simulatedMicrophones, [0, 1], source, [0, 1] ]
+  - [ soundcard, [0, 2], source, [0, 6] ]
+  - [ simulatedMicrophones, [0, 2], source, [0, 2] ]
+  - [ soundcard, [0, 3], source, [0, 7] ]
+  - [ simulatedMicrophones, [0, 3], source, [0, 3] ]
+  - [ source, [0, 0], bp0, 0 ]
+  - [ source, [0, 1], bp1, 0 ]
+  - [ source, [0, 2], bp2, 0 ]
+  - [ source, [0, 3], bp3, 0 ]
+  - [ bp0, 0, lifted0, 0 ]
+  - [ lifted0, 0, run1, 0 ]
+  - [ bp1, 0, lifted1, 0 ]
+  - [ lifted1, 0, run2, 0 ]
+  - [ bp2, 0, lifted2, 0 ]
+  - [ lifted2, 0, run3, 0 ]
+  - [ bp3, 0, lifted3, 0 ]
+  - [ lifted3, 0, run4, 0 ]
+  - [ bp0, 0, frames, [1, 0] ]
+  - [ bp1, 0, frames, [1, 1] ]
+  - [ bp2, 0, frames, [1, 2] ]
+  - [ bp3, 0, frames, [1, 3] ]
+  - [ frames, 0, correlation, 0 ]
+  - [ correlation, 0, delays, 0 ]
+  - [ delays, 0, arrivals, 0 ]
+  - [ arrivals, 0, locator, 0 ]
+  - [ arrivals, 0, ranged, 0 ]
+  - [ locator, 0, ranged, 0 ]
+  - [ bp0, 0, frames13, [1, 0] ]
+  - [ bp2, 0, frames13, [1, 1] ]
+  - [ frames13, 0, correlation13, 0 ]
+  - [ correlation13, 0, lags13, 0 ]
+  - [ bp0, 0, frames12, [1, 0] ]
+  - [ bp1, 0, frames12, [1, 1] ]
+  - [ frames12, 0, correlation12, 0 ]
+  - [ correlation12, 0, lags12, 0 ]
+  - [ bp0, 0, frames14, [1, 0] ]
+  - [ bp3, 0, frames14, [1, 1] ]
+  - [ frames14, 0, correlation14, 0 ]
+  - [ correlation14, 0, lags14, 0 ]
+  - [ source, [0, 0], band0, 0 ]
+  - [ band0, 0, phaseFrames, [1, 0] ]
+  - [ source, [0, 1], band1, 0 ]
+  - [ band1, 0, phaseFrames, [1, 1] ]
+  - [ source, [0, 2], band2, 0 ]
+  - [ band2, 0, phaseFrames, [1, 2] ]
+  - [ source, [0, 3], band3, 0 ]
+  - [ band3, 0, phaseFrames, [1, 3] ]
+  - [ band0, 0, rectify0, 0 ]
+  - [ rectify0, 0, smooth0, 0 ]
+  - [ smooth0, 0, envelopeTrigger0, 0 ]
+  - [ envelopeTrigger0, 0, phaseFrames, 0 ]
+  - [ phaseFrames, 0, phaseSpectra, 0 ]
+  - [ phaseSpectra, 0, phaseCross, 0 ]
+  - [ phaseCross, 0, phaseSlope, 0 ]
+  - [ phaseSlope, 0, phaseArrivals, 0 ]
+  - [ phaseArrivals, 0, phaseLocator, 0 ]
+  - [ phaseArrivals, 0, phase, 0 ]
+  - [ phaseLocator, 0, phase, 0 ]
+  - [ source, [0, 0], FFT, 0 ]
+  - [ FFT, 0, spectrum, 0 ]
+dashboard:
+  layout: Free
+  windowLayout:
+    floatingWindows: { }
+    dockSpace:
+      hsplit:
+        first:
+          vsplit:
+            first: "Ranging"
+            second: "Under the picture"
+            ratio: !!float32 0.44
+        second:
+          vsplit:
+            first: "Four microphones, running"
+            second:
+              vsplit:
+                first: "Correlation with mic 1"
+                second: "Waterfall, mic 1 unfiltered"
+                ratio: !!float32 0.5
+            ratio: !!float32 0.6667
+        ratio: !!float32 0.3385
+  sources:
+    - name: run1
+      block: run1
+    - name: run2
+      block: run2
+    - name: run3
+      block: run3
+    - name: run4
+      block: run4
+    - name: ranged
+      block: ranged
+    - name: lags13
+      block: lags13
+    - name: lags12
+      block: lags12
+    - name: lags14
+      block: lags14
+    - name: phase
+      block: phase
+    - name: spectrum
+      block: spectrum
+  plots:
+    - name: Ranging
+      type: opendigitizer::charts::LocalisationChart
+      parameters:
+        name: ranging # the `spacing` choice's target
+        receiver_names: ["mic 1", "mic 2", "mic 3", "mic 4"]
+        element_positions: !!float64 [[-1.5, 0.0, 0.0], [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], [1.5, 0.0, 0.0]]
+        roi: [-2.5, 2.5, -0.1, 5.0]
+        show_legend: false
+        show_grid: false
+        show_curve_labels: false # the drawn map beside it writes the delays
+        show_status: true
+      sources:
+        - ranged
+        - phase
+    - name: Under the picture
+      type: XYChart
+      parameters:
+        show_legend: false
+      axes:
+        - axis: X
+          min: 0
+          max: 1
+        - axis: Y
+          min: 0
+          max: 1
+      sources: []
+    - name: Four microphones, running
+      type: XYChart
+      parameters:
+        name: running
+        show_legend: false
+        show_tags: false
+        n_history: 2880
+        max_history_count: 1
+      axes:
+        - axis: X
+          min: NaN
+          max: NaN
+        - axis: Y
+          min: -1.4
+          max: 1.4
+      sources:
+        - run1
+        - run2
+        - run3
+        - run4
+    - name: Correlation with mic 1
+      type: opendigitizer::charts::TensorRowsChart
+      parameters:
+        lag_columns: true
+        show_legend: false
+        show_grid: false
+      sources:
+        - lags13
+        - lags12
+        - lags14
+    - name: Waterfall, mic 1 unfiltered
+      type: opendigitizer::charts::WaterfallPlot
+      parameters:
+        name: waterfall
+        show_legend: false
+        n_history: 59 # spectra: 5 s at 11.7 a second
+        colormap: ImPlotColormap_Viridis
+        range_style: both
+        range_min: 30
+        range_max: 2400
+        range_min_width: 50
+        show_range_labels: false # its f₋/f₊ glyphs are missing from the chart font: 'f?'
+        range_color: 16747146 # 0xFF8A8A, the drum's red on the map
+        range_min_targets: "bp0,bp1,bp2,bp3:f_low"
+        range_max_targets: "bp0,bp1,bp2,bp3:f_high"
+      axes:
+        - axis: X
+          min: 0
+          max: 2450
+          scale: Linear
+          format: MetricInline
+        - axis: Z
+          min: -110
+          max: -30
+      sources:
+        - spectrum

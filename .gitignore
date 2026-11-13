@@ -1,0 +1,7 @@
+# build / scratch
+*.tar.gz
+.DS_Store
+*.swp
+__pycache__/
+.scratch/
+.claude/

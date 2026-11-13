@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="95 80 1120 560" width="1120" height="560" font-family="Liberation Sans, Arial, sans-serif">
+  <title>the demonstration set-up</title>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f2f2f2"/></marker><marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7cc4ff"/></marker></defs>
+  <rect x="188.99999999999997" y="337.5" width="462.00000000000006" height="105.0" fill="#2e2e2e" stroke="none" rx="20"/>
+  <circle cx="231.0" cy="390.0" r="14" fill="#7cc4ff" stroke="#f2f2f2" stroke-width="2"/>
+  <text x="231.0" y="432.0" font-size="20" text-anchor="middle" fill="#7cc4ff" font-weight="normal" font-style="normal">mic 1</text>
+  <path d="M 577.5 117.2 L 231.0 390.0" stroke="#ffd866" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+  <circle cx="357.0" cy="390.0" r="14" fill="#7cc4ff" stroke="#f2f2f2" stroke-width="2"/>
+  <text x="357.0" y="432.0" font-size="20" text-anchor="middle" fill="#7cc4ff" font-weight="normal" font-style="normal">mic 2</text>
+  <path d="M 577.5 117.2 L 357.0 390.0" stroke="#ffd866" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+  <circle cx="483.0" cy="390.0" r="14" fill="#7cc4ff" stroke="#f2f2f2" stroke-width="2"/>
+  <text x="483.0" y="432.0" font-size="20" text-anchor="middle" fill="#7cc4ff" font-weight="normal" font-style="normal">mic 3</text>
+  <path d="M 577.5 117.2 L 483.0 390.0" stroke="#ffd866" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+  <circle cx="609.0" cy="390.0" r="14" fill="#7cc4ff" stroke="#f2f2f2" stroke-width="2"/>
+  <text x="609.0" y="432.0" font-size="20" text-anchor="middle" fill="#7cc4ff" font-weight="normal" font-style="normal">mic 4</text>
+  <path d="M 577.5 117.2 L 609.0 390.0" stroke="#ffd866" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+  <polygon points="559.5,95.20199780790182 595.5,95.20199780790182 577.5,135.20199780790182" fill="#ff8a8a" stroke="#f2f2f2" stroke-width="2"/>
+  <text x="549.5" y="123.2" font-size="20" text-anchor="end" fill="#ff8a8a" font-weight="normal" font-style="normal">source: drum · tuning fork · speaker (chirp)</text>
+  <text x="420.0" y="482.5" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">four microphones on a line, 0.6 m apart: a 1.8 m base</text>
+  <rect x="940.0" y="150.0" width="220.0" height="110.0" rx="10" fill="#2e2e2e" stroke="#9ecbff" stroke-width="2.5"/>
+  <text x="1050.0" y="195.0" font-size="22" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">4-channel USB</text>
+  <text x="1050.0" y="222.5" font-size="22" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">audio interface</text>
+  <text x="1050.0" y="245.0" font-size="17" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">48 kS/s, coherent</text>
+  <path d="M 651.0 390.0 C 771.0 390.0 860 205 940 205" stroke="#c4c4c4" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <text x="713.0" y="420.0" font-size="17" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">4 cables</text>
+  <line x1="1050.0" y1="262.0" x2="1050.0" y2="318.0" stroke="#f2f2f2" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="900.0" y="320.0" width="300.0" height="150.0" rx="10" fill="#4a3f1f" stroke="#ffd866" stroke-width="2.5"/>
+  <text x="1050.0" y="365.0" font-size="22" text-anchor="middle" fill="#ffd866" font-weight="bold" font-style="normal">laptop: one flow-graph</text>
+  <text x="1050.0" y="392.5" font-size="22" text-anchor="middle" fill="#ffd866" font-weight="bold" font-style="normal">running in the slide</text>
+  <text x="1050.0" y="420.0" font-size="17" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">trigger · filter · FFT · phase ·</text>
+  <text x="1050.0" y="441.2" font-size="17" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">correlation · localise</text>
+  <path d="M 900 440 C 800 440 760 560 700 580" stroke="#c4c4c4" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="6 6"/>
+  <rect x="520.0" y="560.0" width="180.0" height="70.0" rx="10" fill="#2e2e2e" stroke="#ff8a8a" stroke-width="2.5"/>
+  <text x="610.0" y="590.0" font-size="18" text-anchor="middle" fill="#ff8a8a" font-weight="normal" font-style="normal">speaker</text>
+  <text x="610.0" y="612.5" font-size="18" text-anchor="middle" fill="#ff8a8a" font-weight="normal" font-style="normal">chirp · tone</text>
+</svg>

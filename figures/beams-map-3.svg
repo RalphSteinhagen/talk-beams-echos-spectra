@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2550 5300 8200 5600" width="820" height="560">
+  <title>the war of the beams on the map, step 3</title>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker><marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8fe3a8"/></marker><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#ff8a8a"/></marker></defs>
+  <line x1="7682" y1="9038" x2="6409" y2="7960" stroke="#8fe3a8" stroke-width="32" stroke-opacity="0.9"/>
+  <line x1="7682" y1="8882" x2="6664" y2="8020" stroke="#8fe3a8" stroke-width="23" stroke-dasharray="65 52" marker-start="url(#ag)" marker-end="url(#ag)"/>
+  <g transform="translate(6664 8176) rotate(-139.7) scale(12.5)"><path d="M 12 0 L -8 -3 L -10 -12 L -14 -12 L -12 -2 L -16 -1 L -16 1 L -12 2 L -14 12 L -10 12 L -8 3 Z" fill="#f2f2f2"/></g>
+  <path d="M 6304 8390 l -78 182 l 156 0 z" fill="#ff8a8a"/>
+  <path d="M 6200 8318 A 130 130 0 0 1 6408 8318" stroke="#ff8a8a" stroke-width="29" fill="none" stroke-linecap="round"/>
+  <path d="M 6127 8268 A 221 221 0 0 1 6480 8268" stroke="#ff8a8a" stroke-width="29" fill="none" stroke-linecap="round"/>
+  <path d="M 6054 8218 A 312 312 0 0 1 6553 8218" stroke="#ff8a8a" stroke-width="29" fill="none" stroke-linecap="round"/>
+  <line x1="6304" y1="8052" x2="6794" y2="8254" stroke="#ff8a8a" stroke-width="23" stroke-dasharray="65 52" marker-end="url(#arr)"/>
+</svg>

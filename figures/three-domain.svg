@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760" font-family="Liberation Sans, Arial, sans-serif">
+  <title>three domains around one RF and DSP core</title>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f2f2f2"/></marker><marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7cc4ff"/></marker></defs>
+  <rect x="450.0" y="45.0" width="300.0" height="100.0" rx="16" fill="#2e2e2e" stroke="#9ecbff" stroke-width="2.5"/>
+  <text x="600.0" y="87.0" font-size="30" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">PHYSICS /</text>
+  <text x="600.0" y="124.5" font-size="30" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">ACCELERATORS</text>
+  <rect x="20.0" y="550.0" width="300.0" height="100.0" rx="16" fill="#2e2e2e" stroke="#9ecbff" stroke-width="2.5"/>
+  <text x="170.0" y="592.0" font-size="30" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">RADAR /</text>
+  <text x="170.0" y="629.5" font-size="30" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">SIGINT · EW</text>
+  <rect x="880.0" y="550.0" width="300.0" height="100.0" rx="16" fill="#2e2e2e" stroke="#9ecbff" stroke-width="2.5"/>
+  <text x="1030.0" y="592.0" font-size="30" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">RADIO /</text>
+  <text x="1030.0" y="629.5" font-size="30" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">TELECOM</text>
+  <rect x="470.0" y="375.0" width="260.0" height="110.0" rx="16" fill="#4a3f1f" stroke="#ffd866" stroke-width="2.5"/>
+  <text x="600.0" y="422.0" font-size="30" text-anchor="middle" fill="#ffd866" font-weight="bold" font-style="normal">RF · DSP ·</text>
+  <text x="600.0" y="459.5" font-size="30" text-anchor="middle" fill="#ffd866" font-weight="bold" font-style="normal">SOFTWARE</text>
+  <line x1="539.6" y1="154.1" x2="210.4" y2="540.9" stroke="#7cc4ff" stroke-width="3" marker-end="url(#arrow-blue)" marker-start="url(#arrow)"/>
+  <text x="240.0" y="337.5" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">RF sources, pulsed power,</text>
+  <text x="240.0" y="362.5" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">klystron ↔ magnetron</text>
+  <line x1="660.4" y1="154.1" x2="989.6" y2="540.9" stroke="#7cc4ff" stroke-width="3" marker-end="url(#arrow-blue)" marker-start="url(#arrow)"/>
+  <text x="960.0" y="337.5" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">oscillators, resonators,</text>
+  <text x="960.0" y="362.5" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">Schottky, superhet</text>
+  <line x1="332.0" y1="610.0" x2="868.0" y2="610.0" stroke="#7cc4ff" stroke-width="3" marker-end="url(#arrow-blue)" marker-start="url(#arrow)"/>
+  <text x="600.0" y="660.0" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">mixers, IF, timing,</text>
+  <text x="600.0" y="685.0" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">navigation beams</text>
+  <line x1="600.0" y1="363.0" x2="600.0" y2="157.0" stroke="#7cc4ff" stroke-width="3" marker-end="url(#arrow-blue)" marker-start="url(#arrow)"/>
+  <text x="720.0" y="262.5" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">LLRF, diagnostics,</text>
+  <text x="720.0" y="287.5" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">feedback</text>
+  <line x1="458.8" y1="485.8" x2="307.6" y2="545.6" stroke="#7cc4ff" stroke-width="3" marker-end="url(#arrow-blue)" marker-start="url(#arrow)"/>
+  <text x="405.0" y="575.0" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">ranging, matched</text>
+  <text x="405.0" y="600.0" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">filter, arrays</text>
+  <line x1="741.2" y1="485.8" x2="892.4" y2="545.6" stroke="#7cc4ff" stroke-width="3" marker-end="url(#arrow-blue)" marker-start="url(#arrow)"/>
+  <text x="795.0" y="575.0" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">modulation, filtering,</text>
+  <text x="795.0" y="600.0" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">SDR</text>
+  <text x="600.0" y="740.0" font-size="26" text-anchor="middle" fill="#ff8a8a" font-weight="normal" font-style="italic">none of the arrows is one-way</text>
+</svg>

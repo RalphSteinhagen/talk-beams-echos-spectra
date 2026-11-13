@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+title: "Beams, Echoes and Spectra — From wartime navigation and radar to particle accelerators and software-defined radio"
+message: >
+  If you use these slides or their flow-graphs, please cite the talk using the metadata in this file.
+  Slides: CC-BY-4.0; scripts: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception; third-party pictures keep their own terms.
+# CFF knows only software and dataset as types; the work is the deck's source (slides, flow-graphs, tooling)
+type: software
+date-released: "2026-11-16"
+license: CC-BY-4.0
+repository-code: "https://github.com/RalphSteinhagen/talk-beams-echos-spectra"
+url: "https://ralphsteinhagen.github.io/talk-beams-echos-spectra/"
+keywords:
+  - history of technology
+  - radar
+  - radio navigation
+  - sound ranging
+  - particle accelerators
+  - beam diagnostics
+  - Schottky noise
+  - time-delay estimation
+  - matched filter
+  - software-defined radio
+  - signal processing
+  - GNU Radio 4.0
+  - OpenDigitizer
+authors:
+  - family-names: Steinhagen
+    given-names: Ralph J.
+    affiliation: "GSI Helmholtzzentrum für Schwerionenforschung / FAIR"
+    orcid: "https://orcid.org/0009-0009-8537-7029"
+preferred-citation:
+  type: slides
+  title: "Beams, Echoes and Spectra — From wartime navigation and radar to particle accelerators and software-defined radio"
+  authors:
+    - family-names: Steinhagen
+      given-names: Ralph J.
+      affiliation: "GSI Helmholtzzentrum für Schwerionenforschung / FAIR"
+      orcid: "https://orcid.org/0009-0009-8537-7029"
+  conference:
+    name: "European GNU Radio Days 2026"
+    city: Rennes
+    country: FR
+    date-start: "2026-11-16"
+    date-end: "2026-11-18"
+  date-published: "2026-11-16"
+  url: "https://ralphsteinhagen.github.io/talk-beams-echos-spectra/"
+  # doi: added once `scripts/zenodo_talks.py reserve` has reserved it (zenodo.yml)

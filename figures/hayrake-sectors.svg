@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" width="360" height="360" font-family="Liberation Sans, Arial, sans-serif">
+  <title>YE-ZB 'Hayrake': a Morse letter per 30-degree sector, the pilot flies the reciprocal home</title>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f2f2f2"/></marker><marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7cc4ff"/></marker></defs>
+  <path d="M 180 186 L 180.0 46.0 A 140 140 0 0 1 250.0 64.8 Z" fill="#8fe3a8" fill-opacity="0.2" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="208.0" y="91.7" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">A</text>
+  <path d="M 180 186 L 250.0 64.8 A 140 140 0 0 1 301.2 116.0 Z" fill="#8fe3a8" fill-opacity="0.08" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="256.4" y="119.6" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">N</text>
+  <path d="M 180 186 L 301.2 116.0 A 140 140 0 0 1 320.0 186.0 Z" fill="#8fe3a8" fill-opacity="0.2" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="284.3" y="168.0" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">D</text>
+  <path d="M 180 186 L 320.0 186.0 A 140 140 0 0 1 301.2 256.0 Z" fill="#8fe3a8" fill-opacity="0.08" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="284.3" y="224.0" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">U</text>
+  <path d="M 180 186 L 301.2 256.0 A 140 140 0 0 1 250.0 307.2 Z" fill="#8fe3a8" fill-opacity="0.2" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="256.4" y="272.4" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">K</text>
+  <path d="M 180 186 L 250.0 307.2 A 140 140 0 0 1 180.0 326.0 Z" fill="#8fe3a8" fill-opacity="0.08" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="208.0" y="300.3" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">G</text>
+  <path d="M 180 186 L 180.0 326.0 A 140 140 0 0 1 110.0 307.2 Z" fill="#8fe3a8" fill-opacity="0.2" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="152.0" y="300.3" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">R</text>
+  <path d="M 180 186 L 110.0 307.2 A 140 140 0 0 1 58.8 256.0 Z" fill="#8fe3a8" fill-opacity="0.08" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="103.6" y="272.4" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">M</text>
+  <path d="M 180 186 L 58.8 256.0 A 140 140 0 0 1 40.0 186.0 Z" fill="#8fe3a8" fill-opacity="0.2" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="75.7" y="224.0" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">W</text>
+  <path d="M 180 186 L 40.0 186.0 A 140 140 0 0 1 58.8 116.0 Z" fill="#8fe3a8" fill-opacity="0.08" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="75.7" y="168.0" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">O</text>
+  <path d="M 180 186 L 58.8 116.0 A 140 140 0 0 1 110.0 64.8 Z" fill="#8fe3a8" fill-opacity="0.2" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="103.6" y="119.6" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">S</text>
+  <path d="M 180 186 L 110.0 64.8 A 140 140 0 0 1 180.0 46.0 Z" fill="#8fe3a8" fill-opacity="0.08" stroke="#c4c4c4" stroke-width="1.2"/>
+  <text x="152.0" y="91.7" font-size="28" text-anchor="middle" fill="#8fe3a8" font-weight="bold" font-style="normal">I</text>
+  <text x="180.0" y="36.0" font-size="20" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">N</text>
+  <path d="M 257.0 52.6 A 154 154 0 0 1 324.7 133.3" stroke="#f2f2f2" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <text x="354.0" y="34.0" font-size="19" text-anchor="end" fill="#f2f2f2" font-weight="normal" font-style="normal">2 rpm</text>
+  <rect x="154" y="179" width="52" height="14" rx="3" fill="#c4c4c4" transform="rotate(-25 180 186)"/>
+  <circle cx="186.0" cy="182.0" r="4" fill="#f2f2f2" stroke="none" stroke-width="0"/>
+  <g transform="translate(229.5 235.5) rotate(225.0)"><path d="M 12 0 L -8 -3 L -10 -12 L -14 -12 L -12 -2 L -16 -1 L -16 1 L -12 2 L -14 12 L -10 12 L -8 3 Z" fill="#f2f2f2"/></g>
+  <line x1="218.2" y1="224.2" x2="195.6" y2="201.6" stroke="#f2f2f2" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
+</svg>

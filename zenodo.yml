@@ -1,0 +1,44 @@
+# Zenodo record of this talk, read by scripts/zenodo_talks.py (its header explains the workflow).
+# creators and keywords come from the repository's .zenodo.json unless named here; upload type, licence (cc-by-4.0),
+# language, the GSI/FAIR community and the link to the live slides are set by the script. Any other Zenodo deposit
+# field may be added.
+name: "20261116_EU_GR_Days"   # the archive's folder and the PDFs' prefix
+title: "Beams, Echoes and Spectra — From wartime navigation and radar to particle accelerators and software-defined radio"
+description: >-
+  <p>A 30-minute talk at the European GNU Radio Days 2026, Rennes.</p>
+  <p>Radar, telecommunications and particle accelerators share a surprisingly intertwined history. From Bragg's
+  sound-ranging and Widerøe's RF accelerator through the "Battle of the Beams", radar, magnetrons and klystrons,
+  ideas, people and technologies repeatedly moved between scientific and engineering domains.</p>
+  <p>This talk uses that history to explore a present-day problem: many fields still solve closely related problems —
+  timing, filtering, coherent detection, feedback, spectral estimation and control — but often with different
+  terminology and tools.</p>
+  <p>Can a more common language, shared software-defined tools such as GNU Radio 4, and stronger teaching of
+  signal-processing and control fundamentals help the next generation of scientists and engineers collaborate across
+  these boundaries rather than repeatedly reinventing the same solutions?</p>
+  <p>The record holds the slides as PDF, one page per slide and one page per step, and the gr4-present deck itself
+  (zip, with speaker notes and the GNU Radio 4 flow-graphs of its live acoustic demonstrations).</p>
+publication_date: 2026-11-16
+conference_title: European GNU Radio Days 2026
+conference_dates: 16–18 November 2026
+conference_place: Rennes, France
+conference_session: Methodology
+conference_url: https://gnuradiodays.sciencesconf.org/
+notes: >-
+  Slides: CC-BY-4.0, R. J. Steinhagen, GSI/FAIR. Third-party pictures keep their own terms (media/CREDITS.md and
+  media/portraits/PORTRAITS.md in the archive).
+
+# the gr4-present viewer the live slides open in: viewer/<commit>/VERSION, pinned by scripts/update_viewer.sh; the full
+# viewer (live GNU Radio 4 and OpenDigitizer) is too large for git, so the Pages workflow fetches it at deploy time
+viewer: "38a53ad"
+
+# on Zenodo only, not in git: scripts/talk_pdfs.sh exports them, `scripts/zenodo_talks.py upload` puts them in the draft
+files:
+  - 20261116_EU_GR_Days_slides.pdf
+  - 20261116_EU_GR_Days_steps.pdf
+
+# state, written by `scripts/zenodo_talks.py reserve`; commit it
+record_id:
+doi:
+sandbox_record_id:
+sandbox_doi:
+pdfs_from:

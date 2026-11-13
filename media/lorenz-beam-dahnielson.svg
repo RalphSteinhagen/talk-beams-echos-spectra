@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Anders Dahnielson, "Lorenz beam", Wikimedia Commons, 2010, CC BY-SA 3.0; adapted for a dark slide (background removed, lobes lightened, cropped to the drawing, the transmitter circled) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="526"
+   height="156"
+   viewBox="30 30 526 156"
+   id="svg4295">
+  <title
+     id="title6136">Lorenz beam</title>
+  <defs
+     id="defs4297">
+  </defs>
+  <g
+     transform="translate(-61.5,-71.362183)"
+     id="layer2">
+    <rect
+       width="555"
+       height="215"
+       x="61.5"
+       y="71.362183"
+       id="rect5706"
+       style="fill:none;fill-opacity:0;fill-rule:nonzero;stroke:none" />
+  </g>
+  <g
+     transform="translate(-61.5,-71.362183)"
+     id="layer1">
+    <g
+       transform="matrix(1.1895735,0,0,1.15625,-13.630332,-38.587841)"
+       id="g5192">
+      <path
+         d="m 515,167.36218 -422,14 0,-56 422,42 z"
+         id="path4330"
+         style="fill:#c8c8c8;fill-opacity:0.5;fill-rule:nonzero;stroke:none" />
+      <path
+         d="m 515,174.17299 -422,-14 0,56 422,-42 z"
+         id="path4330-1"
+         style="fill:#c8c8c8;fill-opacity:0.5;fill-rule:nonzero;stroke:none" />
+    </g>
+    <g
+       transform="matrix(0,1,-1,0,400.63386,8.07647)"
+       id="Avion">
+      <g
+         id="Avion_7_">
+        <path
+           d="m 117.194,274.045 c -1.947,0 -3.527,-1.544 -3.527,-3.448 l 0,0 c 0,-1.904 1.58,-3.446 3.527,-3.446 h 27.614 c 1.947,0 3.525,1.542 3.525,3.446 l 0,0 c 0,1.904 -1.578,3.448 -3.525,3.448 h -27.614 z"
+           id="path2745"
+           style="fill:#f90018" />
+        <ellipse
+           cx="131.00101"
+           cy="275.491"
+           rx="2.803"
+           ry="16.421"
+           id="ellipse2747"
+           style="fill:#f90018" />
+        <path
+           d="m 126.114,287.436 c -0.541,0 -0.979,-0.438 -0.979,-0.979 l 0,0 c 0,-0.539 0.438,-0.977 0.979,-0.977 h 9.774 c 0.539,0 0.979,0.438 0.979,0.977 l 0,0 c 0,0.541 -0.439,0.979 -0.979,0.979 h -9.774 z"
+           id="path2749"
+           style="fill:#f90018" />
+      </g>
+    </g>
+    <g
+       transform="matrix(0,1,-1,0,483.491,45.362183)"
+       id="Avion-0">
+      <g
+         id="Avion_7_-8">
+        <path
+           d="m 117.194,274.045 c -1.947,0 -3.527,-1.544 -3.527,-3.448 l 0,0 c 0,-1.904 1.58,-3.446 3.527,-3.446 h 27.614 c 1.947,0 3.525,1.542 3.525,3.446 l 0,0 c 0,1.904 -1.578,3.448 -3.525,3.448 h -27.614 z"
+           id="path2745-1"
+           style="fill:#f90018" />
+        <ellipse
+           cx="131.00101"
+           cy="275.491"
+           rx="2.803"
+           ry="16.421"
+           id="ellipse2747-3"
+           style="fill:#f90018" />
+        <path
+           d="m 126.114,287.436 c -0.541,0 -0.979,-0.438 -0.979,-0.979 l 0,0 c 0,-0.539 0.438,-0.977 0.979,-0.977 h 9.774 c 0.539,0 0.979,0.438 0.979,0.977 l 0,0 c 0,0.541 -0.439,0.979 -0.979,0.979 h -9.774 z"
+           id="path2749-1"
+           style="fill:#f90018" />
+      </g>
+    </g>
+    <g
+       transform="matrix(0,1,-1,0,581.491,27.362183)"
+       id="Avion-03">
+      <g
+         id="Avion_7_-4">
+        <path
+           d="m 117.194,274.045 c -1.947,0 -3.527,-1.544 -3.527,-3.448 l 0,0 c 0,-1.904 1.58,-3.446 3.527,-3.446 h 27.614 c 1.947,0 3.525,1.542 3.525,3.446 l 0,0 c 0,1.904 -1.578,3.448 -3.525,3.448 h -27.614 z"
+           id="path2745-0"
+           style="fill:#f90018" />
+        <ellipse
+           cx="131.00101"
+           cy="275.491"
+           rx="2.803"
+           ry="16.421"
+           id="ellipse2747-39"
+           style="fill:#f90018" />
+        <path
+           d="m 126.114,287.436 c -0.541,0 -0.979,-0.438 -0.979,-0.979 l 0,0 c 0,-0.539 0.438,-0.977 0.979,-0.977 h 9.774 c 0.539,0 0.979,0.438 0.979,0.977 l 0,0 c 0,0.541 -0.439,0.979 -0.979,0.979 h -9.774 z"
+           id="path2749-19"
+           style="fill:#f90018" />
+      </g>
+    </g>
+    <g
+       transform="translate(76,-26.010406)"
+       id="g6031">
+      <rect
+         width="14"
+         height="6"
+         x="200"
+         y="272.37219"
+         id="rect5805"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+      <rect
+         width="14"
+         height="6"
+         x="221"
+         y="272.37259"
+         id="rect5805-5"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+      <rect
+         width="14"
+         height="6"
+         x="242"
+         y="272.37259"
+         id="rect5805-5-2"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+      <rect
+         width="7"
+         height="6"
+         x="214"
+         y="266.36218"
+         id="rect5805-9"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+      <rect
+         width="7"
+         height="6"
+         x="235"
+         y="266.36218"
+         id="rect5805-9-0"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+      <rect
+         width="7"
+         height="6"
+         x="256"
+         y="266.36218"
+         id="rect5805-9-0-5"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+    </g>
+    <g
+       transform="translate(-16.42253,-26.010406)"
+       id="g6031-3">
+      <rect
+         width="14"
+         height="6"
+         x="200"
+         y="272.37219"
+         id="rect5805-4"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+      <rect
+         width="14"
+         height="6"
+         x="221"
+         y="272.37259"
+         id="rect5805-5-4"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+      <rect
+         width="14"
+         height="6"
+         x="242"
+         y="272.37259"
+         id="rect5805-5-2-3"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+    </g>
+    <g
+       transform="translate(-111.86723,-20)"
+       id="g6031-33">
+      <rect
+         width="7"
+         height="6"
+         x="214"
+         y="266.36218"
+         id="rect5805-9-08"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+      <rect
+         width="7"
+         height="6"
+         x="235"
+         y="266.36218"
+         id="rect5805-9-0-76"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+      <rect
+         width="7"
+         height="6"
+         x="256"
+         y="266.36218"
+         id="rect5805-9-0-5-3"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+    </g>
+  </g>
+  <circle cx="537.5" cy="87.5" r="14" fill="none" stroke="#e41e24" stroke-width="3" id="transmitter"><title>the transmitter: both lobes leave the antenna here</title></circle>
+</svg>

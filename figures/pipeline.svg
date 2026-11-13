@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 50 1486 230" width="1486" height="230" font-family="Liberation Sans, Arial, sans-serif">
+  <title>the recurring measurement and control chain</title>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f2f2f2"/></marker><marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7cc4ff"/></marker></defs>
+  <rect x="20.0" y="60.0" width="216.0" height="125.0" rx="10" fill="#2e2e2e" stroke="#9ecbff" stroke-width="2.5"/>
+  <text x="128.0" y="106.0" font-size="32" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">excite</text>
+  <text x="128.0" y="142.0" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">spark, gun, carrier,</text>
+  <text x="128.0" y="165.8" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">RF pulse, bunch</text>
+  <line x1="242.0" y1="122.5" x2="267.0" y2="122.5" stroke="#f2f2f2" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="273.0" y="60.0" width="216.0" height="125.0" rx="10" fill="#2e2e2e" stroke="#9ecbff" stroke-width="2.5"/>
+  <text x="381.0" y="106.0" font-size="32" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">propagate</text>
+  <text x="381.0" y="142.0" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">air, ether, cable,</text>
+  <text x="381.0" y="165.8" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">waveguide, beam pipe</text>
+  <line x1="495.0" y1="122.5" x2="520.0" y2="122.5" stroke="#f2f2f2" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="526.0" y="60.0" width="216.0" height="125.0" rx="10" fill="#2e2e2e" stroke="#9ecbff" stroke-width="2.5"/>
+  <text x="634.0" y="106.0" font-size="32" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">interact</text>
+  <text x="634.0" y="142.0" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">target, receiver,</text>
+  <text x="634.0" y="165.8" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">cavity, particle</text>
+  <line x1="748.0" y1="122.5" x2="773.0" y2="122.5" stroke="#f2f2f2" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="779.0" y="60.0" width="216.0" height="125.0" rx="10" fill="#2e2e2e" stroke="#9ecbff" stroke-width="2.5"/>
+  <text x="887.0" y="106.0" font-size="32" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">observe</text>
+  <text x="887.0" y="142.0" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">coherer, microphone,</text>
+  <text x="887.0" y="165.8" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">antenna, pickup, ADC</text>
+  <line x1="1001.0" y1="122.5" x2="1026.0" y2="122.5" stroke="#f2f2f2" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="1032.0" y="60.0" width="216.0" height="125.0" rx="10" fill="#2e2e2e" stroke="#9ecbff" stroke-width="2.5"/>
+  <text x="1140.0" y="106.0" font-size="32" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">infer</text>
+  <text x="1140.0" y="142.0" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">position, range,</text>
+  <text x="1140.0" y="165.8" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">spectrum, state</text>
+  <line x1="1254.0" y1="122.5" x2="1279.0" y2="122.5" stroke="#f2f2f2" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="1285.0" y="60.0" width="216.0" height="125.0" rx="10" fill="#4a3f1f" stroke="#ffd866" stroke-width="2.5"/>
+  <text x="1393.0" y="106.0" font-size="32" text-anchor="middle" fill="#9ecbff" font-weight="bold" font-style="normal">control</text>
+  <text x="1393.0" y="142.0" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">steer, jam, tune,</text>
+  <text x="1393.0" y="165.8" font-size="19" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="normal">feed back</text>
+  <path d="M 1393.0 187 L 1393.0 270 L 128.0 270 L 128.0 193" stroke="#ffd866" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" stroke-dasharray="10 8"/>
+  <text x="760.5" y="256.0" font-size="24" text-anchor="middle" fill="#ffd866" font-weight="normal" font-style="italic">measure → estimate → decide → actuate → measure again</text>
+</svg>

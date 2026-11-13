@@ -1,0 +1,5 @@
+gr4-present web viewer (full), pinned by scripts/update_viewer.sh on 2026-11-14; fetched at deploy time
+release: v0.1.0  https://github.com/RalphSteinhagen/gr4-present/releases/tag/v0.1.0
+commit:  38a53ad7dd598798f8a0244b6cc04105bafcc06e  https://github.com/RalphSteinhagen/gr4-present/commit/38a53ad7dd598798f8a0244b6cc04105bafcc06e
+archive: gr4-present-web-full-v0.1.0.tar.gz  sha256 8370d01bbe56061c5103ccfe4d68f607ef29146864349bbf2fce1d57a81721c1
+licence: GPL-3.0-or-later (LICENSES/GPL-3.0-or-later.txt), (C) R. J. Steinhagen, GSI/FAIR

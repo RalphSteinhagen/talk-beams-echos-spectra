@@ -1,0 +1,48 @@
+{
+  "title": "Beams, Echoes and Spectra — From wartime navigation and radar to particle accelerators and software-defined radio",
+  "description": "A talk on the intertwined history of radar, telecommunications and particle accelerators — from Bragg's sound-ranging and Widerøe's RF accelerator through the \"Battle of the Beams\", radar, magnetrons and klystrons — and on what it means today: many fields still solve closely related problems (timing, filtering, coherent detection, feedback, spectral estimation, control) with different terminology and tools. The deck is a gr4-present presentation whose live acoustic demonstrations run GNU Radio 4 and OpenDigitizer flow-graphs in the browser.",
+  "license": {
+    "id": "CC-BY-4.0"
+  },
+  "notes": "Slides and documentation: CC-BY-4.0. Scripts and tooling: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception; devtools/serve.mjs and the gr4-present viewer: GPL-3.0-or-later; fonts: SIL Open Font License. Third-party pictures keep their own terms (media/CREDITS.md, media/portraits/PORTRAITS.md).",
+  "upload_type": "presentation",
+  "creators": [
+    {
+      "name": "Steinhagen, Ralph J.",
+      "affiliation": "GSI Helmholtzzentrum für Schwerionenforschung / FAIR",
+      "orcid": "0009-0009-8537-7029"
+    }
+  ],
+  "keywords": [
+    "history of technology",
+    "radar",
+    "radio navigation",
+    "sound ranging",
+    "particle accelerators",
+    "beam diagnostics",
+    "Schottky noise",
+    "time-delay estimation",
+    "matched filter",
+    "software-defined radio",
+    "signal processing",
+    "GNU Radio 4.0",
+    "OpenDigitizer"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/fair-acc/gnuradio4",
+      "relation": "references",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/fair-acc/opendigitizer",
+      "relation": "references",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://github.com/RalphSteinhagen/gr4-present",
+      "relation": "isCompiledBy",
+      "scheme": "url"
+    }
+  ]
+}
