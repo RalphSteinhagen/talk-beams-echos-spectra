@@ -1,0 +1,103 @@
+name: Deploy the live slides to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "scripts/**"
+      - ".claude/**"
+      - "CLAUDE.md"
+      - "AGENTS.md"
+      - "CORE_*.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://ralphsteinhagen.github.io/talk-beams-echos-spectra
+    steps:
+      - uses: actions/checkout@v4
+
+      # the deck as default/: every tracked file but the infrastructure, as scripts/zenodo_talks.py archives it
+      - name: Add the deck
+        run: |
+          mkdir -p site/default
+          git ls-files -z -- . ':(exclude).github' ':(exclude).claude' ':(exclude)scripts' ':(exclude)viewer' \
+            ':(exclude).gitignore' ':(exclude)zenodo.yml' ':(exclude)CLAUDE.md' ':(exclude)AGENTS.md' ':(exclude)CORE_*.md' \
+            | xargs -0 cp --parents -t site/default
+          echo "$SITE/default/: $(git ls-files -- . ':(exclude).github' ':(exclude)scripts' ':(exclude)viewer' | wc -l) files, $(du -sh site/default | cut -f1)"
+
+      # every pinned viewer (viewer/<commit>/VERSION, written by scripts/update_viewer.sh) at viewer/<commit>/: the full
+      # gr4-present web viewer is too large for git (index.wasm ~190 MB), so it is fetched from the gr4-present release
+      # here and refused unless its SHA-256 is the pinned one; the page names this site as its address, as
+      # gr4-present's deck-site action does. Assembled here rather than in git, so the deck archived on Zenodo and the
+      # fingerprint of its PDFs stay as they are
+      - name: Add the pinned viewers
+        run: |
+          for pin in viewer/*/VERSION; do
+            short=$(basename "$(dirname "$pin")")
+            release=$(awk '/^release:/ {print $2}' "$pin")
+            archive=$(awk '/^archive:/ {print $2}' "$pin")
+            sha=$(awk '/^archive:/ {print $4}' "$pin")
+            curl -fsSL --retry 3 -o "$RUNNER_TEMP/$archive" \
+              "https://github.com/RalphSteinhagen/gr4-present/releases/download/$release/$archive"
+            echo "$sha  $RUNNER_TEMP/$archive" | sha256sum -c - || {
+              echo "::error::$pin: gr4-present's $release/$archive is no longer the pinned build; pin again (scripts/update_viewer.sh) or pin a tagged release"
+              exit 1
+            }
+            tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP"
+            unpacked=$RUNNER_TEMP/${archive%.tar.gz}
+            dest=site/viewer/$short
+            mkdir -p "$dest"
+            for file in index.html index.js index.wasm gr4-serviceworker.js manifest.webmanifest icon.png; do
+              cp "$unpacked/$file" "$dest/"
+            done
+            rm -rf "$unpacked" "$RUNNER_TEMP/$archive"
+            sed -i "s|<meta name=\"gr4-site\" content=\"[^\"]*\" />|<meta name=\"gr4-site\" content=\"$SITE/viewer/$short/\" />|" "$dest/index.html"
+            grep -q "content=\"$SITE/viewer/$short/\"" "$dest/index.html" || { echo "::error::$dest/index.html has no gr4-site address to replace"; exit 1; }
+            echo "$SITE/viewer/$short/: $release, $(du -sh "$dest" | cut -f1)"
+          done
+
+      # the site's address opens the talk in the viewer that `viewer:` in zenodo.yml names (the Zenodo record links
+      # the same: viewer/<viewer>/?presentation=../../default)
+      - name: Add the entry page
+        run: |
+          viewer=$(sed -n 's/^viewer:[[:space:]]*"\{0,1\}\([0-9a-f]\{7,40\}\)"\{0,1\}.*$/\1/p' zenodo.yml)
+          [ -n "$viewer" ] && [ -d "site/viewer/$viewer" ] || { echo "::error::zenodo.yml names viewer '$viewer', but viewer/$viewer/VERSION is missing"; exit 1; }
+          target="viewer/$viewer/?presentation=../../default"
+          cat >site/index.html <<EOF
+          <!doctype html>
+          <meta charset="utf-8">
+          <title>Beams, Echoes and Spectra</title>
+          <meta http-equiv="refresh" content="0; url=$target">
+          <link rel="canonical" href="$SITE/$target">
+          <p><a href="$target">Beams, Echoes and Spectra — the live slides</a></p>
+          EOF
+          touch site/.nojekyll
+          echo "$SITE/ opens $target"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

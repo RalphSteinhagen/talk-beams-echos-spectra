@@ -1,0 +1,135 @@
+# backup slide `camera`: OpenDigitizer's browser acoustic camera — the UMA16v2's four corner microphones (two browser
+# stereo sources, devtools/four-mics-browser-pairs.sh), their pairs' cross-correlations steered over the camera's
+# field of view, the acoustic power (above 0.7 of its peak) painted over the picture; the toolbar picks the camera
+# and the two pairs, or the simulation: a clicking source circling in front of the array
+blocks:
+  - id: opendigitizer::video::CameraSource
+    parameters:
+      name: camera # the browser's camera, the toolbar's `camera` picks it
+      device: ""
+      priority: requested
+      width: 1920
+      height: 1200
+      frame_rate: 30
+  - id: opendigitizer::ImPlotSink<gr::Tensor<uint32>>
+    parameters:
+      name: cameraSink
+      signal_name: camera
+  - id: gr::basic::ClockSource
+    parameters:
+      name: clock # paces the simulation
+      sample_rate: 48000
+      chunk_size: 1024
+      n_samples_max: 0
+  - id: opendigitizer::localisation::PointSourceAudio
+    parameters:
+      name: simulatedMicrophones # a clicking source circling in front of the array
+      element_positions: !!float64 [[-0.063, -0.063, 0.0], [0.063, -0.063, 0.0], [-0.063, 0.063, 0.0], [0.063, 0.063, 0.0]]
+      sample_rate: 48000
+      tag_interval: 1000000.0
+      source_position: [0.0, 0.0, 1.5]
+      source_motion: ellipse
+      motion_extent: [1.0, 0.5]
+      motion_period: 12.0
+      period: 0.04
+      pulse_width: 0.0003
+      tone_frequency: 0.0
+      amplitude: 0.5
+      noise: 0.01
+  - id: opendigitizer::video::BrowserMicrophonePairs
+    parameters:
+      name: microphones # the UMA16v2's corners, two browser stereo sources
+      pair_a: UMA16_PAIR_A
+      pair_b: UMA16_PAIR_B
+  - id: gr::basic::Switch<float32>
+    parameters:
+      name: source # simulation (group 0) or microphones (group 1)
+      n_groups: 2
+      n_channels: 4
+      group: !!uint32 1
+  - id: gr::basic::StreamsToTensor<float32>
+    parameters:
+      name: frames
+      n_ports: 4
+      size: 2048
+  - id: gr::localisation::PairCrossCorrelation<float32>
+    parameters:
+      name: correlation
+      max_lag: 32
+      f_min: 300
+      f_max: 12000
+  - id: opendigitizer::video::AcousticImage
+    parameters:
+      name: acousticImage # the steered power over the camera's field of view
+      element_positions: !!float64 [[-0.063, -0.063, 0.0], [0.063, -0.063, 0.0], [-0.063, 0.063, 0.0], [0.063, 0.063, 0.0]]
+      width: 64
+      height: 40
+      field_of_view: 120
+      threshold: 0.7
+      flip_horizontal: true
+  - id: opendigitizer::ImPlotSink<gr::Tensor<float32>>
+    parameters:
+      name: acousticSink
+      signal_name: acoustic power
+  - id: DigitizerUi::ImControlCamera
+    parameters:
+      name: cameraControl
+      label: camera
+      target_map: "camera:device"
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: input
+      label: input
+      value: UMA16_PAIR_A
+      choices: ["simulation"]
+      fallback: simulation
+      target_map: "microphones:pair_a"
+      choice_values:
+        simulation:
+          "source:group": !!uint32 0
+      device_values:
+        "source:group": !!uint32 1
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: pairB
+      label: pair B
+      target_map: "microphones:pair_b"
+connections:
+  - [ camera, 0, cameraSink, 0, 4 ]
+  - [ clock, 0, simulatedMicrophones, 0 ]
+  - [ simulatedMicrophones, [0, 0], source, [0, 0] ]
+  - [ microphones, [0, 0], source, [0, 4] ]
+  - [ source, [0, 0], frames, [1, 0] ]
+  - [ simulatedMicrophones, [0, 1], source, [0, 1] ]
+  - [ microphones, [0, 1], source, [0, 5] ]
+  - [ source, [0, 1], frames, [1, 1] ]
+  - [ simulatedMicrophones, [0, 2], source, [0, 2] ]
+  - [ microphones, [0, 2], source, [0, 6] ]
+  - [ source, [0, 2], frames, [1, 2] ]
+  - [ simulatedMicrophones, [0, 3], source, [0, 3] ]
+  - [ microphones, [0, 3], source, [0, 7] ]
+  - [ source, [0, 3], frames, [1, 3] ]
+  - [ frames, 0, correlation, 0 ]
+  - [ correlation, 0, acousticImage, 0 ]
+  - [ acousticImage, 0, acousticSink, 0, 8 ]
+dashboard:
+  layout: Free
+  windowLayout:
+    floatingWindows: { }
+    dockSpace: Acoustic camera
+  sources:
+    - name: cameraSink
+      block: cameraSink
+    - name: acousticSink
+      block: acousticSink
+  plots:
+    - name: Acoustic camera
+      type: opendigitizer::charts::ImageChart
+      parameters:
+        composition: overlay
+        reverse_colormap: false
+        layer_min: [.nan, 0.001]
+        layer_colormaps: [Jet]
+      sources:
+        - cameraSink
+        - acousticSink
