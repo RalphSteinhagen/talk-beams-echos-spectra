@@ -1,0 +1,399 @@
+# backup slide `gains`: the four pre-amplifier gains matched — the microphones bundled before one speaker, its
+# band-passed noise (the `test noise` slider), per microphone the band-pass 200 Hz - 4 kHz, the mean square over
+# 0.25 s and its level in dB FS; left the four levels, right each one's offset to microphone 1, the toolbar's
+# readouts the same numbers: turn each pre-amplifier until its offset reads 0.0 dB; the `input` simulation: the test
+# noise through four pre-amplifiers set 0, +1.5, -2.0, +0.7 dB apart
+blocks:
+  - id: opendigitizer::video::BrowserMicrophonePairs
+    parameters:
+      name: mics # four microphones from two browser stereo sources (devtools/four-mics-browser-pairs.sh)
+      pair_a: BEAMS_PAIR_A
+      pair_b: BEAMS_PAIR_B
+      sample_rate: 48000.0
+      align: once
+  - id: gr::basic::Switch<float32>
+    parameters:
+      name: source # simulation (group 0) or microphones (group 1)
+      n_groups: 2
+      n_channels: 4
+      group: !!uint32 1
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: input
+      label: input
+      value: BEAMS_PAIR_A
+      choices: ["simulation"]
+      fallback: simulation
+      target_map: "mics:pair_a"
+      choice_values:
+        simulation:
+          "source:group": !!uint32 0
+      device_values:
+        "source:group": !!uint32 1
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: pairB
+      label: pair B
+      target_map: "mics:pair_b"
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: testNoise # the common sound, from the speaker
+      signal_type: GaussianNoise
+      amplitude: 0
+      sample_rate: 48000
+      chunk_size: 480
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: testBand
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 200.0
+      f_high: 4000.0
+      sample_rate: 48000
+  - id: gr::audio::AudioSink<float32>
+    parameters:
+      name: speaker # the test noise to the room
+      req_sample_rate: 48000
+      n_inputs: 1
+  - id: DigitizerUi::ImControlNumber
+    parameters:
+      name: testLevel
+      label: test noise
+      unit: FS
+      value: 0
+      min: 0
+      max: 0.5
+      step: 0.01
+      style: slider
+      target_map: "testNoise:amplitude"
+  - id: gr::blocks::math::MultiplyConst<float32, std::multiplies<float32>>
+    parameters:
+      name: simGain0 # simulated pre-amplifier 1: +0.0 dB
+      value: 1.0
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: selfNoise0 # simulated mic 1's own noise
+      signal_type: GaussianNoise
+      amplitude: 0.0001
+      seed: !!uint64 2026
+      sample_rate: 48000
+      chunk_size: 480
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: simMic0
+      n_inputs: 2
+  - id: gr::blocks::math::MultiplyConst<float32, std::multiplies<float32>>
+    parameters:
+      name: simGain1 # simulated pre-amplifier 2: +1.5 dB
+      value: 1.188502
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: selfNoise1 # simulated mic 2's own noise
+      signal_type: GaussianNoise
+      amplitude: 0.0001
+      seed: !!uint64 2027
+      sample_rate: 48000
+      chunk_size: 480
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: simMic1
+      n_inputs: 2
+  - id: gr::blocks::math::MultiplyConst<float32, std::multiplies<float32>>
+    parameters:
+      name: simGain2 # simulated pre-amplifier 3: -2.0 dB
+      value: 0.794328
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: selfNoise2 # simulated mic 3's own noise
+      signal_type: GaussianNoise
+      amplitude: 0.0001
+      seed: !!uint64 2028
+      sample_rate: 48000
+      chunk_size: 480
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: simMic2
+      n_inputs: 2
+  - id: gr::blocks::math::MultiplyConst<float32, std::multiplies<float32>>
+    parameters:
+      name: simGain3 # simulated pre-amplifier 4: +0.7 dB
+      value: 1.083927
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: selfNoise3 # simulated mic 4's own noise
+      signal_type: GaussianNoise
+      amplitude: 0.0001
+      seed: !!uint64 2029
+      sample_rate: 48000
+      chunk_size: 480
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: simMic3
+      n_inputs: 2
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp0
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 200.0
+      f_high: 4000.0
+      sample_rate: 48000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp1
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 200.0
+      f_high: 4000.0
+      sample_rate: 48000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp2
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 200.0
+      f_high: 4000.0
+      sample_rate: 48000
+  - id: gr::filter::BasicFilterProto<float32, gr::Resampling<1, 1, false>>
+    parameters:
+      name: bp3
+      filter_type: IIR
+      filter_response: BANDPASS
+      iir_design_method: BUTTERWORTH
+      filter_order: 4
+      f_low: 200.0
+      f_high: 4000.0
+      sample_rate: 48000
+  - id: gr::filter::MovingMeanSquare<float32, gr::filter::Statistic::meanSquare, false>
+    parameters:
+      name: power0 # mic 1's mean square, 0.25 s, integrated and dumped
+      n_frames: 12000
+      decimation: 12000
+  - id: gr::blocks::math::ExpressionSISO<float32>
+    parameters:
+      name: level0 # mic 1 in dB FS
+      expr_string: "10 * log10(max(x, 1e-12))"
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: lvl1
+      signal_name: mic 1
+      color: 15921906
+  - id: gr::filter::MovingMeanSquare<float32, gr::filter::Statistic::meanSquare, false>
+    parameters:
+      name: power1 # mic 2's mean square, 0.25 s, integrated and dumped
+      n_frames: 12000
+      decimation: 12000
+  - id: gr::blocks::math::ExpressionSISO<float32>
+    parameters:
+      name: level1 # mic 2 in dB FS
+      expr_string: "10 * log10(max(x, 1e-12))"
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: lvl2
+      signal_name: mic 2
+      color: 16626498
+  - id: gr::filter::MovingMeanSquare<float32, gr::filter::Statistic::meanSquare, false>
+    parameters:
+      name: power2 # mic 3's mean square, 0.25 s, integrated and dumped
+      n_frames: 12000
+      decimation: 12000
+  - id: gr::blocks::math::ExpressionSISO<float32>
+    parameters:
+      name: level2 # mic 3 in dB FS
+      expr_string: "10 * log10(max(x, 1e-12))"
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: lvl3
+      signal_name: mic 3
+      color: 2526162
+  - id: gr::filter::MovingMeanSquare<float32, gr::filter::Statistic::meanSquare, false>
+    parameters:
+      name: power3 # mic 4's mean square, 0.25 s, integrated and dumped
+      n_frames: 12000
+      decimation: 12000
+  - id: gr::blocks::math::ExpressionSISO<float32>
+    parameters:
+      name: level3 # mic 4 in dB FS
+      expr_string: "10 * log10(max(x, 1e-12))"
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: lvl4
+      signal_name: mic 4
+      color: 8755456
+  - id: opendigitizer::ImControlValue<float32>
+    parameters:
+      name: level1Readout
+      label: mic 1
+      unit: dB FS
+      width: 6
+      precision: 1
+  - id: gr::blocks::math::Subtract<float32, std::minus<float32>>
+    parameters:
+      name: offset1 # mic 2 − mic 1, dB
+      n_inputs: 2
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: off2
+      signal_name: mic 2 - mic 1
+      color: 16626498
+  - id: opendigitizer::ImControlValue<float32>
+    parameters:
+      name: offset2Readout
+      label: 2-1
+      unit: dB
+      width: 5
+      precision: 1
+  - id: gr::blocks::math::Subtract<float32, std::minus<float32>>
+    parameters:
+      name: offset2 # mic 3 − mic 1, dB
+      n_inputs: 2
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: off3
+      signal_name: mic 3 - mic 1
+      color: 2526162
+  - id: opendigitizer::ImControlValue<float32>
+    parameters:
+      name: offset3Readout
+      label: 3-1
+      unit: dB
+      width: 5
+      precision: 1
+  - id: gr::blocks::math::Subtract<float32, std::minus<float32>>
+    parameters:
+      name: offset3 # mic 4 − mic 1, dB
+      n_inputs: 2
+  - id: opendigitizer::ImPlotSink<float32>
+    parameters:
+      name: off4
+      signal_name: mic 4 - mic 1
+      color: 8755456
+  - id: opendigitizer::ImControlValue<float32>
+    parameters:
+      name: offset4Readout
+      label: 4-1
+      unit: dB
+      width: 5
+      precision: 1
+connections:
+  - [ testNoise, 0, testBand, 0 ]
+  - [ testBand, 0, speaker, 0 ]
+  - [ testBand, 0, simGain0, 0 ]
+  - [ simGain0, 0, simMic0, [0, 0] ]
+  - [ selfNoise0, 0, simMic0, [0, 1] ]
+  - [ simMic0, 0, source, [0, 0] ]
+  - [ mics, [0, 0], source, [0, 4] ]
+  - [ testBand, 0, simGain1, 0 ]
+  - [ simGain1, 0, simMic1, [0, 0] ]
+  - [ selfNoise1, 0, simMic1, [0, 1] ]
+  - [ simMic1, 0, source, [0, 1] ]
+  - [ mics, [0, 1], source, [0, 5] ]
+  - [ testBand, 0, simGain2, 0 ]
+  - [ simGain2, 0, simMic2, [0, 0] ]
+  - [ selfNoise2, 0, simMic2, [0, 1] ]
+  - [ simMic2, 0, source, [0, 2] ]
+  - [ mics, [0, 2], source, [0, 6] ]
+  - [ testBand, 0, simGain3, 0 ]
+  - [ simGain3, 0, simMic3, [0, 0] ]
+  - [ selfNoise3, 0, simMic3, [0, 1] ]
+  - [ simMic3, 0, source, [0, 3] ]
+  - [ mics, [0, 3], source, [0, 7] ]
+  - [ source, [0, 0], bp0, 0 ]
+  - [ source, [0, 1], bp1, 0 ]
+  - [ source, [0, 2], bp2, 0 ]
+  - [ source, [0, 3], bp3, 0 ]
+  - [ bp0, 0, power0, in ]
+  - [ power0, out, level0, in ]
+  - [ level0, out, lvl1, in ]
+  - [ bp1, 0, power1, in ]
+  - [ power1, out, level1, in ]
+  - [ level1, out, lvl2, in ]
+  - [ bp2, 0, power2, in ]
+  - [ power2, out, level2, in ]
+  - [ level2, out, lvl3, in ]
+  - [ bp3, 0, power3, in ]
+  - [ power3, out, level3, in ]
+  - [ level3, out, lvl4, in ]
+  - [ level0, out, level1Readout, in ]
+  - [ level1, out, offset1, [0, 0] ]
+  - [ level0, out, offset1, [0, 1] ]
+  - [ offset1, out, off2, in ]
+  - [ offset1, out, offset2Readout, in ]
+  - [ level2, out, offset2, [0, 0] ]
+  - [ level0, out, offset2, [0, 1] ]
+  - [ offset2, out, off3, in ]
+  - [ offset2, out, offset3Readout, in ]
+  - [ level3, out, offset3, [0, 0] ]
+  - [ level0, out, offset3, [0, 1] ]
+  - [ offset3, out, off4, in ]
+  - [ offset3, out, offset4Readout, in ]
+dashboard:
+  layout: Free
+  windowLayout:
+    floatingWindows: { }
+    dockSpace:
+      hsplit:
+        first: "Levels, dB FS"
+        second: "Offset to mic 1, dB"
+        ratio: !!float32 0.5
+  sources:
+    - name: lvl1
+      block: lvl1
+    - name: lvl2
+      block: lvl2
+    - name: lvl3
+      block: lvl3
+    - name: lvl4
+      block: lvl4
+    - name: off2
+      block: off2
+    - name: off3
+      block: off3
+    - name: off4
+      block: off4
+  plots:
+    - name: Levels, dB FS
+      type: XYChart
+      parameters:
+        show_legend: false
+        show_tags: false
+        n_history: 80
+        max_history_count: 1
+      axes:
+        - axis: X
+          min: NaN
+          max: NaN
+        - axis: Y
+          min: -90
+          max: 0
+      sources:
+        - lvl1
+        - lvl2
+        - lvl3
+        - lvl4
+    - name: Offset to mic 1, dB
+      type: XYChart
+      parameters:
+        show_legend: false
+        show_tags: false
+        n_history: 80
+        max_history_count: 1
+      axes:
+        - axis: X
+          min: NaN
+          max: NaN
+        - axis: Y
+          min: -6
+          max: 6
+      sources:
+        - off2
+        - off3
+        - off4

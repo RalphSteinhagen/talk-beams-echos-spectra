@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 700" width="880" height="700" font-family="Liberation Sans, Arial, sans-serif">
+  <title>radar and accelerators: what they traded</title>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f2f2f2"/></marker><marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7cc4ff"/></marker></defs>
+  <text x="374.0" y="34.0" font-size="29" text-anchor="end" fill="#ff8a8a" font-weight="bold" font-style="normal">radar · space</text>
+  <text x="518.0" y="34.0" font-size="29" text-anchor="start" fill="#8fe3a8" font-weight="bold" font-style="normal">accelerators</text>
+  <defs><marker id="arrow-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#ffc94d"/></marker></defs>
+  <text x="370.0" y="84.0" font-size="20" text-anchor="end" fill="#f2f2f2" font-weight="normal" font-style="normal">1918 superhet receiver</text>
+  <text x="522.0" y="84.0" font-size="20" text-anchor="start" fill="#f2f2f2" font-weight="normal" font-style="normal">BPM and LLRF receivers</text>
+  <line x1="380" y1="77" x2="512" y2="77" stroke="#f2f2f2" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow)"/>
+  <text x="446.0" y="71.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">C</text>
+  <text x="370.0" y="130.0" font-size="20" text-anchor="end" fill="#ffc94d" font-weight="normal" font-style="normal">1938 radar oscillator</text>
+  <text x="522.0" y="130.0" font-size="20" text-anchor="start" fill="#ffc94d" font-weight="normal" font-style="normal">Hansen's accelerator cavity</text>
+  <line x1="512" y1="123" x2="380" y2="123" stroke="#ffc94d" stroke-width="2.5" marker-end="url(#arrow-gold)"/>
+  <text x="446.0" y="117.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="176.0" font-size="20" text-anchor="end" fill="#ffc94d" font-weight="normal" font-style="normal">1940 cavity magnetron</text>
+  <text x="522.0" y="176.0" font-size="20" text-anchor="start" fill="#ffc94d" font-weight="normal" font-style="normal">Oliphant's cyclotron lab</text>
+  <line x1="512" y1="169" x2="380" y2="169" stroke="#ffc94d" stroke-width="2.5" marker-end="url(#arrow-gold)"/>
+  <text x="446.0" y="163.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="222.0" font-size="20" text-anchor="end" fill="#ffc94d" font-weight="normal" font-style="normal">1940 the Rad Lab</text>
+  <text x="522.0" y="222.0" font-size="20" text-anchor="start" fill="#ffc94d" font-weight="normal" font-style="normal">Lawrence's cyclotroneers</text>
+  <line x1="512" y1="215" x2="380" y2="215" stroke="#ffc94d" stroke-width="2.5" marker-end="url(#arrow-gold)"/>
+  <text x="446.0" y="209.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="268.0" font-size="20" text-anchor="end" fill="#f2f2f2" font-weight="normal" font-style="normal">1943 monopulse Σ/Δ</text>
+  <text x="522.0" y="268.0" font-size="20" text-anchor="start" fill="#f2f2f2" font-weight="normal" font-style="normal">1981 BPM Σ/Δ processors</text>
+  <line x1="380" y1="261" x2="512" y2="261" stroke="#f2f2f2" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="446.0" y="255.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="314.0" font-size="20" text-anchor="end" fill="#f2f2f2" font-weight="normal" font-style="normal">wartime magnetron</text>
+  <text x="522.0" y="314.0" font-size="20" text-anchor="start" fill="#f2f2f2" font-weight="normal" font-style="normal">1946 S-band · 1953 medical linac</text>
+  <line x1="380" y1="307" x2="512" y2="307" stroke="#f2f2f2" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="446.0" y="301.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="360.0" font-size="20" text-anchor="end" fill="#f2f2f2" font-weight="normal" font-style="normal">1946 surplus SCR-268s</text>
+  <text x="522.0" y="360.0" font-size="20" text-anchor="start" fill="#f2f2f2" font-weight="normal" font-style="normal">1947 Alvarez linac</text>
+  <line x1="380" y1="353" x2="512" y2="353" stroke="#f2f2f2" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="446.0" y="347.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="406.0" font-size="20" text-anchor="end" fill="#f2f2f2" font-weight="normal" font-style="normal">1948 Rad Lab pulsers, thyratrons</text>
+  <text x="522.0" y="406.0" font-size="20" text-anchor="start" fill="#f2f2f2" font-weight="normal" font-style="normal">1963 SLAC modulators</text>
+  <line x1="380" y1="399" x2="512" y2="399" stroke="#f2f2f2" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="446.0" y="393.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="452.0" font-size="20" text-anchor="end" fill="#ffc94d" font-weight="normal" font-style="normal">1959 BMEWS, Goldstone radars</text>
+  <text x="522.0" y="452.0" font-size="20" text-anchor="start" fill="#ffc94d" font-weight="normal" font-style="normal">linac klystrons</text>
+  <line x1="512" y1="445" x2="380" y2="445" stroke="#ffc94d" stroke-width="2.5" marker-end="url(#arrow-gold)"/>
+  <text x="446.0" y="439.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="498.0" font-size="20" text-anchor="end" fill="#f2f2f2" font-weight="normal" font-style="normal">radar test-set analyser</text>
+  <text x="522.0" y="498.0" font-size="20" text-anchor="start" fill="#f2f2f2" font-weight="normal" font-style="normal">1972 ISR: Schottky noise</text>
+  <line x1="380" y1="491" x2="512" y2="491" stroke="#f2f2f2" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow)"/>
+  <text x="446.0" y="485.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">C</text>
+  <text x="370.0" y="544.0" font-size="20" text-anchor="end" fill="#f2f2f2" font-weight="normal" font-style="normal">2003 radar receiver boards</text>
+  <text x="522.0" y="544.0" font-size="20" text-anchor="start" fill="#f2f2f2" font-weight="normal" font-style="normal">Tevatron BPMs</text>
+  <line x1="380" y1="537" x2="512" y2="537" stroke="#f2f2f2" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="446.0" y="531.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="590.0" font-size="20" text-anchor="end" fill="#ffc94d" font-weight="normal" font-style="normal">2008 Fermi gamma-ray telescope</text>
+  <text x="522.0" y="590.0" font-size="20" text-anchor="start" fill="#ffc94d" font-weight="normal" font-style="normal">collider trackers</text>
+  <line x1="512" y1="583" x2="380" y2="583" stroke="#ffc94d" stroke-width="2.5" marker-end="url(#arrow-gold)"/>
+  <text x="446.0" y="577.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="636.0" font-size="20" text-anchor="end" fill="#ffc94d" font-weight="normal" font-style="normal">2012 ISS radiation monitors</text>
+  <text x="522.0" y="636.0" font-size="20" text-anchor="start" fill="#ffc94d" font-weight="normal" font-style="normal">CERN pixel chips</text>
+  <line x1="512" y1="629" x2="380" y2="629" stroke="#ffc94d" stroke-width="2.5" marker-end="url(#arrow-gold)"/>
+  <text x="446.0" y="623.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+  <text x="370.0" y="682.0" font-size="20" text-anchor="end" fill="#ffc94d" font-weight="normal" font-style="normal">2022 EISCAT_3D radar sync</text>
+  <text x="522.0" y="682.0" font-size="20" text-anchor="start" fill="#ffc94d" font-weight="normal" font-style="normal">White Rabbit timing</text>
+  <line x1="512" y1="675" x2="380" y2="675" stroke="#ffc94d" stroke-width="2.5" marker-end="url(#arrow-gold)"/>
+  <text x="446.0" y="669.0" font-size="14" text-anchor="middle" fill="#c4c4c4" font-weight="normal" font-style="italic">T</text>
+</svg>

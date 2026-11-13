@@ -1,0 +1,30 @@
+format: gr4-presentation/1
+title: Beams, Echoes and Spectra
+entry: talk.md
+
+sizes: { title: 30pt, subtitle: 22pt, body: 20pt, caption: 13pt, floor: 11pt }
+colours: { text: { light: "#f2f2f2", dark: "#f2f2f2" } }   # chalk on the blackboard masters, whatever the system scheme
+fonts:
+  body: fonts/PatrickHand-Regular.ttf        # hand-written, SIL OFL
+  title: fonts/PatrickHand-Regular.ttf
+  bold: fonts/PatrickHandSC-Regular.ttf      # no bold face exists: emphasis is small caps
+  italic: fonts/PatrickHand-Regular.ttf
+  hand: fonts/PatrickHand-Regular.ttf
+steps: { in: fade, dur: 0.3s }                                    # every `:::step` and pause fades in
+
+# every slide takes `default` unless its heading says `{master=double}` (needs a viewer with the `masters:` key)
+masters:
+  default: figures/master-main.svg
+  double: figures/master-double.svg
+  figure: figures/master-figure.svg
+  blank: figures/master-blank.svg
+  title: figures/master-title.svg
+  title-logo: figures/master-title-logo.svg
+  people: figures/master-people.svg
+
+live: { legend: none }   # no shared legend bar under a live region: each microphone keeps one colour, the map's (make-workflows.py)
+
+export: { dpi: 150 }   # PDF export: pictures down-sampled to at most 150 dpi on the page (scripts/talk_pdfs.sh)
+
+viewer:
+  minimumVersion: "0.1"
