@@ -162,8 +162,8 @@ schemes). The only unused file left in `media/` is `portraits/van-der-meer.webp`
 | --- | --- | --- | --- | --- |
 | `exp1-claps-recorded.wav` | synthesised by `devtools/make-demo-data.py`: two claps from two places reaching the four microphones of the set-up | the author | CC-BY-4.0, as the slides | `standby:` of `workflows/exp1-claps.grc`, slide `#exp1` |
 | `exp2-noise-tone-recorded.wav` | synthesised: four claps under rising noise, then a 440 Hz tone, from the source position | the author | CC-BY-4.0 | `standby:` of `workflows/exp2-noise-tone.grc`, slide `#exp2` |
-| `exp6-chirps-recorded.wav` | synthesised: a 1–8 kHz, 20 ms chirp once a second in room noise | the author | CC-BY-4.0 | `standby:` of `workflows/exp6-chirps.grc`, slide `#exp6` |
-| `chirp-1-8khz.wav` | synthesised: the emitted chirp, one per second (mono) | the author | CC-BY-4.0 | played through the speaker by `workflows/exp6-chirps.grc`; the reference of `demo/exp4-chirp-matched-filter.grc` |
+| `exp6-chirps-recorded.wav` | synthesised: a 1–8 kHz, 20 ms chirp once a second in room noise | the author | CC-BY-4.0 | the recorded take of `workflows/exp6-chirps.grc`, slide `#exp6` |
+| `chirp-1-8khz.wav` | synthesised: the emitted chirp, one per second (mono) | the author | CC-BY-4.0 | the live ping of `workflows/exp6-chirps.grc` and its matched filter's reference |
 
 Replace the three takes by recordings of the set-up (same names, 4 channels, 48 kS/s) once it is built.
 

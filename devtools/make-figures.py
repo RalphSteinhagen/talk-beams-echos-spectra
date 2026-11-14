@@ -250,6 +250,21 @@ def braid():
         xl += 80 + int(8.2 * len(txt)) + 36
     s.write("braid.svg")   # shown whole (round 55); its two click states, braid-0/braid-links, are no longer made (round 56)
 
+def crossing_tags():
+    """One small tag per kind of crossing, in the braid's own line styles and legend words, for the slides where a
+    crossing happens (widero, betatron, navigation, mim, loop), so that the braid's legend is known before the braid."""
+    for kind, txt, name in (("T", "transfer, documented", "crossing-transfer.svg"),
+                            ("C", "co-evolution: found independently", "crossing-coevolution.svg"),
+                            ("P", "parallel: the same maths", "crossing-parallel.svg")):
+        w = 80 + int(8.6 * len(txt)) + 6
+        s = SVG(w, 30, f"the braid's {txt}")
+        dash = {"T": "", "C": ' stroke-dasharray="9 6"', "P": ' stroke-dasharray="2 7" stroke-linecap="round"'}[kind]
+        marker = ' marker-end="url(#arrow)"' if kind == "T" else ""
+        s.add(f'<line x1="3" y1="15" x2="66" y2="15" stroke="{INK}" stroke-width="3"{dash}{marker}/>')
+        s.text(80, 21, txt, 16, anchor="start", colour=GREY)
+        s.write(name)
+
+
 SP_CYAN, SP_MID, SP_GOLD, RADIO = "#45e3f0", "#eef2e4", "#ffc94d", "#8f9cff"   # the instruments strand: hardware (cyan) → software (gold)
 LABEL_FONT = "/usr/share/fonts/truetype/LiberationSans-Regular.ttf"   # only to measure label widths for the placement
 
@@ -1360,7 +1375,7 @@ def tempest_spikes():
     s.write("tempest-spikes.svg")
 
 
-for fn in (pipeline, three_domain, escalation, braid, setup, tdoa_map, inference_ladder, bragg_law, split_band, cochlea, pulse_compression, hayrake_sectors, race_clock, beams_map_overlays, time_frequency, schottky, people_lines, radar_loop, tempest_spikes, stochastic_cooling, radar_trades):
+for fn in (pipeline, three_domain, escalation, braid, setup, tdoa_map, inference_ladder, bragg_law, split_band, cochlea, pulse_compression, hayrake_sectors, race_clock, beams_map_overlays, time_frequency, schottky, people_lines, radar_loop, tempest_spikes, stochastic_cooling, radar_trades, crossing_tags):
     fn()
 strands(1918, 2, "braid-1918.svg", compact=True, here=False,  # a strip under the chain (author, 2026-11-12)
         recall=(1887, 1895.5, 1912.5))                         # Hertz, Röntgen, Laue by name (author, 2026-11-13)

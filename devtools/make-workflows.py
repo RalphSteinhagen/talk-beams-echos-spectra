@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The live `:::gr4` workflows of the experiment slides: workflows/exp1-claps.grc, exp1b-lowpass.grc, exp2-noise-tone.grc
-(OpenDigitizer's simulation or the microphones, 96 kS/s) and exp6-chirps(-recorded).grc (media/exp6-chirps-recorded.wav,
-from make-demo-data.py).
+(OpenDigitizer's simulation or the microphones, 96 kS/s) and exp6-chirps.grc (the recorded take
+media/exp6-chirps-recorded.wav from make-demo-data.py, or the live ping and its echoes).
 Re-run after a change: python3 devtools/make-workflows.py
 
 They use only the blocks today's gr4-present viewer registers (src/app/LiveGraph.cpp); what is still missing in GR4,
@@ -91,8 +91,10 @@ def sink(name, label, dataset=False, **extra):
 
 
 class Graph:
-    def __init__(self, recorded, take=None, sim=None, live=False, shaken=None):
-        """recorded: a take played at the wall clock (experiment 4); sim: PointSourceAudio settings — a simulated source
+    def __init__(self, recorded, take=None, sim=None, live=False, shaken=None, ping=False):
+        """recorded: a take played at the wall clock (experiment 4); `ping`: with it, an `input` control that switches
+        the four channels to the microphones and the speaker from the take's microphone 1 to the live ping (the
+        `speakerSource` switch, group 1, fed by the caller); sim: PointSourceAudio settings — a simulated source
         on the line of microphones, continuously, and an `input` control that switches the four channels to the
         microphones (two browser stereo sources, devtools/four-mics-browser-pairs.sh), as OpenDigitizer's
         XtraLocalisationLine sample does (author, round 55: no standby, no restart, the positions shift); `live`: start on
@@ -101,6 +103,7 @@ class Graph:
         sine for all four (author, round 56: slide 8, 500 Hz – 8 kHz), added to the simulated channels only"""
         self.blocks, self.connections, self.sources = [], [], []
         self.recorded = recorded
+        self.ping = ping
         self.sim = sim is not None
         if sim is not None:
             names = Raw("[" + ", ".join(f'"mic {k + 1}"' for k in range(MICS)) + "]")
@@ -155,13 +158,34 @@ class Graph:
                 block(f"gr::blocks::fileio::WavSource<{F32}>", "recording", "its start tag dates the take for the trigger",
                       uri=take, repeat=True, trigger_name="TAKE_START"),
                 block(f"gr::present::blocks::Deinterleave<{F32}>", "channels", n_channels=MICS),
-                block(f"gr::audio::AudioSink<{F32}>", "speaker", "microphone 1 to the room", req_sample_rate=FS, n_inputs=1),
+                block(f"gr::audio::AudioSink<{F32}>", "speaker", "the live ping or the take's microphone 1 to the room" if ping
+                      else "microphone 1 to the room", req_sample_rate=FS, n_inputs=1),
             ]
-            self.connections += ["[ recording, 0, channels, 0 ]", "[ channels, [0, 0], speaker, 0 ]"]
+            self.connections.append("[ recording, 0, channels, 0 ]")
+            if ping:   # one list switches both: the four channels (take or microphones) and what the speaker plays
+                self.blocks += [
+                    block("opendigitizer::video::BrowserMicrophonePairs", "soundcard",
+                          "four microphones from two browser stereo sources (devtools/four-mics-browser-pairs.sh)",
+                          pair_a="BEAMS_PAIR_A", pair_b="BEAMS_PAIR_B", sample_rate=float(FS), align="once"),
+                    block("gr::basic::Switch<float32>", "source", "the take (group 0) or the microphones (group 1)",
+                          n_groups=2, n_channels=MICS, group=Raw("!!uint32 0")),
+                    block("gr::basic::Switch<float32>", "speakerSource", "the take's microphone 1 (group 0) or the live ping (group 1)",
+                          n_groups=2, n_channels=1, group=Raw("!!uint32 0")),
+                    "  - id: DigitizerUi::ImControlDevice\n    parameters:\n      name: input\n      label: input\n"
+                    "      value: recorded\n      choices: [\"recorded\"]\n      target_map: \"soundcard:pair_a\"\n      choice_values:\n"
+                    "        recorded:\n          \"source,speakerSource:group\": !!uint32 0\n      device_values:\n"
+                    "        \"source,speakerSource:group\": !!uint32 1",
+                    "  - id: DigitizerUi::ImControlDevice\n    parameters:\n      name: pairB\n      label: pair B\n      target_map: \"soundcard:pair_b\"",
+                ]
+                self.connections += ["[ channels, [0, 0], speakerSource, [0, 0] ]", "[ speakerSource, [0, 0], speaker, 0 ]"]
+            else:
+                self.connections.append("[ channels, [0, 0], speaker, 0 ]")
             # every channel paced alike: the same tags, so the four triggers date their events on one time base
             for k in range(MICS):
                 self.blocks.append(block(f"gr::blocks::math::Add<{F32}, std::plus<{F32}>>", f"paced{k}", n_inputs=2))
                 self.connections += [f"[ channels, [0, {k}], paced{k}, [0, 0] ]", f"[ wallClock, 0, paced{k}, [0, 1] ]"]
+                if ping:
+                    self.connections += [f"[ paced{k}, 0, source, [0, {k}] ]", f"[ soundcard, [0, {k}], source, [0, {k + MICS}] ]"]
         else:   # Chrome captures two channels per source: devtools/four-mics-browser-pairs.sh splits the interface into
                 # two stereo sources, OpenDigitizer's BrowserMicrophonePairs re-aligns them into four (author, 2026-11-13); `align: once` (OpenDigitizer b44a908, gr4-present v0.1.0) holds
                 # the first agreed shift: at 1 m spacing the first microphones of the two pairs are 2 m apart, beyond what the
@@ -216,7 +240,7 @@ class Graph:
 
     def raw(self, k):
         """Microphone k's stream before the trigger: simulated or live (the switch), recorded from the paced file."""
-        if self.sim:
+        if self.sim or self.ping:
             return f"source, [0, {k}]"
         if self.recorded:
             return f"paced{k}, 0"
@@ -803,19 +827,20 @@ def chirp_reference():
 
 FS = 48000   # experiment 4 replays 48 kHz files (the chirp, the take)
 REFERENCE = Raw("!!float32 [" + ", ".join(f"{v:.6g}" for v in chirp_reference()) + "]")
-for recorded in (False, True):
-    g = Graph(recorded, "media/exp6-chirps-recorded.wav")
-    if not recorded:
-        g.blocks += [
-            block(f"gr::blocks::fileio::WavSource<{F32}>", "chirp", "the known waveform, 1-8 kHz in 20 ms, once a second",
-                  uri="media/chirp-1-8khz.wav", repeat=True, trigger_name=""),
-            block(f"gr::basic::SignalGenerator<{F32}>", "noise", "broadband, from the speaker: bury the chirp", signal_type="GaussianNoise",
-                  amplitude=0, sample_rate=FS, chunk_size=480),
-            block(f"gr::blocks::math::Add<{F32}, std::plus<{F32}>>", "mix", n_inputs=2),
-            block(f"gr::audio::AudioSink<{F32}>", "speaker", req_sample_rate=FS, n_inputs=1),
-            control("noiseLevel", "noise", "FS", 0, 0, 0.5, 0.01, "noise:amplitude"),
-        ]
-        g.connections += ["[ chirp, 0, mix, [0, 0] ]", "[ noise, 0, mix, [0, 1] ]", "[ mix, 0, speaker, 0 ]"]
+# one graph (author, 2026-11-14): the rehearsal take by default; on the microphones the speaker pings the chirp into the
+# room, and the matched filter's trace, triggered on the direct path, shows every echo after it — a radar's A-scope,
+# ~5.8 ms per metre to a reflector and back, whatever the browser's output-to-input latency
+if True:
+    g = Graph(True, "media/exp6-chirps-recorded.wav", ping=True)
+    g.blocks += [
+        block(f"gr::blocks::fileio::WavSource<{F32}>", "chirp", "the known waveform, 1-8 kHz in 20 ms, once a second",
+              uri="media/chirp-1-8khz.wav", repeat=True, trigger_name=""),
+        block(f"gr::basic::SignalGenerator<{F32}>", "noise", "broadband, from the speaker: bury the chirp", signal_type="GaussianNoise",
+              amplitude=0, sample_rate=FS, chunk_size=480),
+        block(f"gr::blocks::math::Add<{F32}, std::plus<{F32}>>", "mix", n_inputs=2),
+        control("noiseLevel", "noise", "FS", 0, 0, 0.5, 0.01, "noise:amplitude"),
+    ]
+    g.connections += ["[ chirp, 0, mix, [0, 0] ]", "[ noise, 0, mix, [0, 1] ]", "[ mix, 0, speakerSource, [0, 1] ]"]
     g.blocks += [
         block(f"gr::filter::Correlator<{F32}>", "matched", "microphone 1 against the emitted chirp: the matched filter",
               reference=REFERENCE, lags=480),
@@ -827,10 +852,11 @@ for recorded in (False, True):
     tagged = g.triggered(threshold=0.2, n_pre=480, n_post=1440, holdoff=24000, offsets=OFFSETS, trigger_on="matched, out")
     g.ranging(threshold=0.15, holdoff=24000)
     g.spectrum(g.raw(0))
-    g.write("exp6-chirps-recorded.grc" if recorded else "exp6-chirps.grc",
-            (RECORDED + "standby of exp6-chirps.grc: the chirp once a second, the room noise rising until the chirp is gone from the traces\n"
-             if recorded else
-             "experiment 4 (slide `exp6`): the speaker plays a known chirp, 1-8 kHz in 20 ms, once a second; a noise slider buries it\n")
+    g.write("exp6-chirps.grc",
+            "experiment 4 (slide `exp6`), by default the " + RECORDED + "\n"
+            "chirp once a second, the room noise rising until the chirp is gone from the traces; on the microphones (the input\n"
+            "switch) the speaker pings the same chirp, a noise slider buries it, and the matched filter's trace shows the direct\n"
+            "path, then each echo (~5.8 ms per metre)\n"
             + "the matched filter (gr::filter::Correlator against the emitted chirp) compresses microphone 1's chirp to one\n"
               "0.15 ms peak; the trigger watches that peak, so the snapshots keep coming when the chirp has vanished\n"
               "in the noise; the ranging left, the four snapshots, the matched filter's output and the waterfall right",

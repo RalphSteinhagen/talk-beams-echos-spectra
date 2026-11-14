@@ -72,7 +72,7 @@ devtools/four-mics-browser-pairs.sh revert   # afterwards: back to the default s
 | `figures/` | the chalkboard masters (`devtools/make-masters.py`, from tables in cm, the board texture `chalk-*.jpg` embedded), the diagrams (`devtools/make-figures.py`) and the title panorama (`devtools/make-montage.py`) |
 | `media/` | photographs, drawings, the Armistice clip and the portraits (`media/portraits/`), each with its source and licence in `media/CREDITS.md` or `media/portraits/PORTRAITS.md`; on a slide a picture carries only its reference number |
 | `fonts/`, `effects/` | Patrick Hand and Patrick Hand SC (SIL Open Font License); the GREMLIN slide's wave-packet background |
-| `workflows/*.grc` | the live `:::gr4` regions, from `devtools/make-workflows.py`: `exp1-claps`, `exp1b-lowpass`, `exp2-noise-tone` (the simulation or the microphones, 96 kS/s), `exp6-chirps`, `exp6-chirps-recorded` (the matched filter, 48 kS/s; its audio from `devtools/make-demo-data.py`) |
+| `workflows/*.grc` | the live `:::gr4` regions, from `devtools/make-workflows.py`: `exp1-claps`, `exp1b-lowpass`, `exp2-noise-tone` (the simulation or the microphones, 96 kS/s), `exp6-chirps` (the matched filter, 48 kS/s: the recorded take from `devtools/make-demo-data.py`, or the live ping and its echoes) |
 | `devtools/` | the generators above, `serve.mjs` (gr4-present's server), `shoot.mjs` (screenshots at 1600×900), `check-workflows.py` (every workflow parameter against its block's settings, since GR4 drops an unknown one silently), `four-mics-browser-pairs.sh` |
 | `zenodo.yml`, `scripts/`, `viewer/` | the Zenodo record of the talk and its tools; the viewer pin of the live slides (below) |
 | `.github/workflows/` | `pages.yml` (the live slides), `zenodo-talks.yml` (the Zenodo record) |

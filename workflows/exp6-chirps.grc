@@ -1,15 +1,85 @@
-# experiment 4 (slide `exp6`): the speaker plays a known chirp, 1-8 kHz in 20 ms, once a second; a noise slider buries it
+# experiment 4 (slide `exp6`), by default the recorded take, synthetic until the set-up is recorded (devtools/make-demo-data.py), played as the 
+# chirp once a second, the room noise rising until the chirp is gone from the traces; on the microphones (the input
+# switch) the speaker pings the same chirp, a noise slider buries it, and the matched filter's trace shows the direct
+# path, then each echo (~5.8 ms per metre)
 # the matched filter (gr::filter::Correlator against the emitted chirp) compresses microphone 1's chirp to one
 # 0.15 ms peak; the trigger watches that peak, so the snapshots keep coming when the chirp has vanished
 # in the noise; the ranging left, the four snapshots, the matched filter's output and the waterfall right
 blocks:
+  - id: gr::basic::SignalGenerator<float32>
+    parameters:
+      name: wallClock # silent, paces the file at the wall clock
+      signal_type: Const
+      amplitude: 0
+      sample_rate: 48000
+      chunk_size: 480
+  - id: gr::blocks::fileio::WavSource<float32>
+    parameters:
+      name: recording # its start tag dates the take for the trigger
+      uri: media/exp6-chirps-recorded.wav
+      repeat: true
+      trigger_name: TAKE_START
+  - id: gr::present::blocks::Deinterleave<float32>
+    parameters:
+      name: channels
+      n_channels: 4
+  - id: gr::audio::AudioSink<float32>
+    parameters:
+      name: speaker # the live ping or the take's microphone 1 to the room
+      req_sample_rate: 48000
+      n_inputs: 1
   - id: opendigitizer::video::BrowserMicrophonePairs
     parameters:
-      name: mics # four microphones from two browser stereo sources (devtools/four-mics-browser-pairs.sh)
+      name: soundcard # four microphones from two browser stereo sources (devtools/four-mics-browser-pairs.sh)
       pair_a: BEAMS_PAIR_A
       pair_b: BEAMS_PAIR_B
       sample_rate: 48000.0
       align: once
+  - id: gr::basic::Switch<float32>
+    parameters:
+      name: source # the take (group 0) or the microphones (group 1)
+      n_groups: 2
+      n_channels: 4
+      group: !!uint32 0
+  - id: gr::basic::Switch<float32>
+    parameters:
+      name: speakerSource # the take's microphone 1 (group 0) or the live ping (group 1)
+      n_groups: 2
+      n_channels: 1
+      group: !!uint32 0
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: input
+      label: input
+      value: recorded
+      choices: ["recorded"]
+      target_map: "soundcard:pair_a"
+      choice_values:
+        recorded:
+          "source,speakerSource:group": !!uint32 0
+      device_values:
+        "source,speakerSource:group": !!uint32 1
+  - id: DigitizerUi::ImControlDevice
+    parameters:
+      name: pairB
+      label: pair B
+      target_map: "soundcard:pair_b"
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: paced0
+      n_inputs: 2
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: paced1
+      n_inputs: 2
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: paced2
+      n_inputs: 2
+  - id: gr::blocks::math::Add<float32, std::plus<float32>>
+    parameters:
+      name: paced3
+      n_inputs: 2
   - id: gr::blocks::fileio::WavSource<float32>
     parameters:
       name: chirp # the known waveform, 1-8 kHz in 20 ms, once a second
@@ -27,11 +97,6 @@ blocks:
     parameters:
       name: mix
       n_inputs: 2
-  - id: gr::audio::AudioSink<float32>
-    parameters:
-      name: speaker
-      req_sample_rate: 48000
-      n_inputs: 1
   - id: DigitizerUi::ImControlNumber
     parameters:
       name: noiseLevel
@@ -72,10 +137,10 @@ blocks:
       dead_time: 24000
       trigger_name_rising: RISING
       sample_rate: 48000
-  - id: opendigitizer::Arithmetic<float32>
+  - id: gr::blocks::math::Multiply<float32, std::multiplies<float32>>
     parameters:
       name: tagOnly # zero, carrying the trigger tag
-      operation: "-"
+      n_inputs: 2
   - id: gr::blocks::math::Add<float32, std::plus<float32>>
     parameters:
       name: tagged0
@@ -272,22 +337,41 @@ blocks:
       signal_quantity: magnitude
       signal_unit: dB
 connections:
+  - [ recording, 0, channels, 0 ]
+  - [ channels, [0, 0], speakerSource, [0, 0] ]
+  - [ speakerSource, [0, 0], speaker, 0 ]
+  - [ channels, [0, 0], paced0, [0, 0] ]
+  - [ wallClock, 0, paced0, [0, 1] ]
+  - [ paced0, 0, source, [0, 0] ]
+  - [ soundcard, [0, 0], source, [0, 4] ]
+  - [ channels, [0, 1], paced1, [0, 0] ]
+  - [ wallClock, 0, paced1, [0, 1] ]
+  - [ paced1, 0, source, [0, 1] ]
+  - [ soundcard, [0, 1], source, [0, 5] ]
+  - [ channels, [0, 2], paced2, [0, 0] ]
+  - [ wallClock, 0, paced2, [0, 1] ]
+  - [ paced2, 0, source, [0, 2] ]
+  - [ soundcard, [0, 2], source, [0, 6] ]
+  - [ channels, [0, 3], paced3, [0, 0] ]
+  - [ wallClock, 0, paced3, [0, 1] ]
+  - [ paced3, 0, source, [0, 3] ]
+  - [ soundcard, [0, 3], source, [0, 7] ]
   - [ chirp, 0, mix, [0, 0] ]
   - [ noise, 0, mix, [0, 1] ]
-  - [ mix, 0, speaker, 0 ]
-  - [ mics, [0, 0], matched, in ]
+  - [ mix, 0, speakerSource, [0, 1] ]
+  - [ source, [0, 0], matched, in ]
   - [ trigger, out, mfSnapshot, in ]
   - [ mfSnapshot, out, mf, in ]
   - [ matched, out, trigger, in ]
-  - [ trigger, out, tagOnly, 0 ]
-  - [ matched, out, tagOnly, 1 ]
-  - [ mics, [0, 0], tagged0, [0, 0] ]
+  - [ trigger, out, tagOnly, [0, 0] ]
+  - [ wallClock, 0, tagOnly, [0, 1] ]
+  - [ source, [0, 0], tagged0, [0, 0] ]
   - [ tagOnly, 0, tagged0, [0, 1] ]
-  - [ mics, [0, 1], tagged1, [0, 0] ]
+  - [ source, [0, 1], tagged1, [0, 0] ]
   - [ tagOnly, 0, tagged1, [0, 1] ]
-  - [ mics, [0, 2], tagged2, [0, 0] ]
+  - [ source, [0, 2], tagged2, [0, 0] ]
   - [ tagOnly, 0, tagged2, [0, 1] ]
-  - [ mics, [0, 3], tagged3, [0, 0] ]
+  - [ source, [0, 3], tagged3, [0, 0] ]
   - [ tagOnly, 0, tagged3, [0, 1] ]
   - [ tagged0, 0, lifted0, 0 ]
   - [ tagged1, 0, lifted1, 0 ]
@@ -301,18 +385,18 @@ connections:
   - [ snapshot2, out, mic3, in ]
   - [ lifted3, 0, snapshot3, in ]
   - [ snapshot3, out, mic4, in ]
-  - [ mics, [0, 0], onset0, 0 ]
+  - [ source, [0, 0], onset0, 0 ]
   - [ onset0, 0, window, 0 ]
-  - [ mics, [0, 0], window, [1, 0] ]
-  - [ mics, [0, 1], onset1, 0 ]
+  - [ source, [0, 0], window, [1, 0] ]
+  - [ source, [0, 1], onset1, 0 ]
   - [ onset1, 0, window, 0 ]
-  - [ mics, [0, 1], window, [1, 1] ]
-  - [ mics, [0, 2], onset2, 0 ]
+  - [ source, [0, 1], window, [1, 1] ]
+  - [ source, [0, 2], onset2, 0 ]
   - [ onset2, 0, window, 0 ]
-  - [ mics, [0, 2], window, [1, 2] ]
-  - [ mics, [0, 3], onset3, 0 ]
+  - [ source, [0, 2], window, [1, 2] ]
+  - [ source, [0, 3], onset3, 0 ]
   - [ onset3, 0, window, 0 ]
-  - [ mics, [0, 3], window, [1, 3] ]
+  - [ source, [0, 3], window, [1, 3] ]
   - [ window, 1, frames, 0 ]
   - [ frames, 0, correlation, 0 ]
   - [ correlation, 0, delays, 0 ]
@@ -320,7 +404,7 @@ connections:
   - [ arrivals, 0, locator, 0 ]
   - [ arrivals, 0, ranged, 0 ]
   - [ locator, 0, ranged, 0 ]
-  - [ mics, [0, 0], FFT, 0 ]
+  - [ source, [0, 0], FFT, 0 ]
   - [ FFT, 0, spectrum, 0 ]
 dashboard:
   layout: Free

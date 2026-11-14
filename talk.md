@@ -34,10 +34,13 @@ logo: media/gnuradiodays-2026-banner-cutout.webp
 :::
 
 :::notes
-- the thesis: different fields keep solving the same problems under different names — the ideas echo, cross over and come back; this talk follows those echoes
-- the three words change meaning as we go: beams (navigation, radar, particles), echoes (radar, ideas, history), spectra (carriers, noise, the beam's own)
-- the panorama turns from grey to colour, 1912 to today[^ph-panorama]
-- bridge: "it starts on paper, in 1865 — with a wave nobody had seen"
+- (40 s, off by 00:40)
+- lead-in: Hello, I'm Ralph Steinhagen, from GSI/FAIR in Darmstadt.
+- What do an ammunition box from 1916, GPS and the LHC have in common?
+- They all solve the same few problems: where is it, when did it happen, and is there a signal in this noise?
+- Different fields solved them again and again, under different names. Sometimes an idea was carried over, sometimes it was found twice, independently, and sometimes it is just the same maths.
+- [optional] The pictures behind me run from 1912 to today, from grey to colour.[^ph-panorama]
+- bridge: But it starts on paper, in 1865.
 :::
 
 # The Birth of RF<br>Maxwell predicts, Hertz measures — a wave becomes an instrument {#hertz master=people}
@@ -128,13 +131,16 @@ battery, coil, spark gap, mirrors, prism, resonator[^ph-spl] — and the apparat
 [^hertz]: H. Hertz, *Electric Waves: Being Researches on the Propagation of Electric Action with Finite Velocity Through Space*, transl. D. E. Jones. London: Macmillan, 1893.
 
 :::notes
-- the first pair: Maxwell predicts on paper (1865); Hertz makes the wave (1887) and measures it like light — Maxwell never saw the wave, Hertz never saw the use
-- the quote, as the story goes [verify: quotation and source] — ten years later Marconi and Tesla make it wireless telegraphy
-- the four verbs of every later system are already here: generate · propagate · detect · resonate
-- bridge: "twenty-five years later the same wave physics reads a crystal — with X-rays"
+- (50 s, off by 01:30)
+- lead-in: In 1865 Maxwell predicted electromagnetic waves, on paper.
+- Twenty years later, in Karlsruhe, Hertz made them. He saw sparks jump across the room and measured the waves like light: reflection, refraction, polarisation.
+- If you look at his bench, the whole RF chain is already there: generate, propagate, detect, resonate.
+- (click) And his conclusion, as the story goes: it's of no use whatsoever.
+- (click) Ten years later, Marconi and Tesla thought otherwise.
+- bridge: Twenty-five years on, the same wave physics was used to read a crystal.
 :::
 
-# Laue Sees Spots, the Father Measures, the Son Interprets<br>X-rays and crystals, Munich, Leeds and Cambridge, 1912–1915 {#xrays master=people}
+# Laue Sees Spots, the Son Interprets, the Father Measures<br>X-rays and crystals, Munich, Leeds and Cambridge, 1912–1915 {#xrays master=people}
 
 :::place
 h1: 0.0357 0.1250 0.2063 0.0450
@@ -142,15 +148,15 @@ laueimg: 0.0357 0.1700 0.1763 0.3160
 laueapp: 0.0357 0.4900 0.1763 0.4030
 l1: 0.0357 0.8760 0.2063 0.0560
 p1: 0.8607 0.0190 0.1143 0.2850
-h2: 0.2544 0.1250 0.2881 0.0450
-spectro: 0.2544 0.1700 0.2431 0.4550
-measure: 0.2544 0.6089 0.2431 0.2711
-c2: 0.2544 0.8700 0.2881 0.0350
-p2: 0.8607 0.3080 0.1143 0.2850
-h3: 0.5550 0.1250 0.2881 0.0450
-schematic: 0.5550 0.1700 0.2881 0.3667
-l3: 0.5550 0.5400 0.3000 0.2400
-p3: 0.8607 0.5970 0.1143 0.2850
+h2: 0.5550 0.1250 0.2881 0.0450
+spectro: 0.5550 0.1700 0.2431 0.4550
+measure: 0.5550 0.6089 0.2431 0.2711
+c2: 0.5550 0.8700 0.2881 0.0350
+p2: 0.8607 0.5970 0.1143 0.2850
+h3: 0.2544 0.1250 0.2881 0.0450
+schematic: 0.2544 0.1700 0.2881 0.3667
+l3: 0.2544 0.5400 0.3000 0.2400
+p3: 0.8607 0.3080 0.1143 0.2850
 nobel: 0.0357 0.9350 0.8072 0.0550
 m1: 0.9538 0.2322 0.0350 0.0622
 m2: 0.9538 0.5211 0.0350 0.0622
@@ -181,6 +187,28 @@ Munich[^ph-laueapp]: von Laue sees a regular pattern of spots<br>→ X-rays are 
 
 :::step
 
+:::p3 {notes=off size=40% fit}
+![William Lawrence Bragg](media/bragg-wl-nobel-1915.webp)
+
+[**William Lawrence Bragg**]{size=205%}<br>[1890–1971]{size=205%}
+:::
+
+:::h3 {notes=off size=110%}
+**1912, Cambridge: the son interprets**
+:::
+
+:::schematic {notes=off fit}
+![Bragg's law: two reflections from planes d apart leave in phase when 2d sin θ is a whole number of wavelengths](figures/bragg-law.svg)
+:::
+
+:::l3 {notes=off size=125%}
+- reflections from **planes of atoms**
+- in phase when $n\lambda = 2d\sin\theta$
+- **path difference, phase, interference**
+:::
+
+:::step
+
 :::p2 {notes=off size=40% fit}
 ![William Henry Bragg](media/portraits/bragg-wh.webp)
 
@@ -205,28 +233,6 @@ ionisation spectrometer[^ph-rigb] and measurement[^bragg1913]
 
 :::step
 
-:::p3 {notes=off size=40% fit}
-![William Lawrence Bragg](media/bragg-wl-nobel-1915.webp)
-
-[**William Lawrence Bragg**]{size=205%}<br>[1890–1971]{size=205%}
-:::
-
-:::h3 {notes=off size=110%}
-**1912, Cambridge: the son interprets**
-:::
-
-:::schematic {notes=off fit}
-![Bragg's law: two reflections from planes d apart leave in phase when 2d sin θ is a whole number of wavelengths](figures/bragg-law.svg)
-:::
-
-:::l3 {notes=off size=125%}
-- reflections from **planes of atoms**
-- in phase when $n\lambda = 2d\sin\theta$
-- **path difference, phase, interference**
-:::
-
-:::step
-
 :::nobel {notes=off size=110%}
 **1914 & 1915 Nobel Prizes:** making the invisible visible — a crystal lattice read from its echoes — the talk's first **inverse problem**
 :::
@@ -246,11 +252,13 @@ ionisation spectrometer[^ph-rigb] and measurement[^bragg1913]
 [^bragg1913]: W. H. Bragg and W. L. Bragg, "The reflection of X-rays by crystals," *Proc. R. Soc. Lond. A*, vol. 88, no. 605, pp. 428–438, 1913.
 
 :::notes
-- Laue asks, the father measures, the son interprets (the slide follows the roles; the son's law came first, November 1912)
-- Laue's spots: X-rays are waves, a crystal is a grating; the father's spectrometer is a swept, narrowband receiver — a spectrum analyser for X-rays; the son reads planes of atoms, in phase when 2d sin θ = nλ
-- click 3: Nobel 1914 and 1915; the son, 25, hears of it at the front
-- what the son carries into the war: path difference, phase, interference
-- bridge: "three years later the wave is a gun's report at 20 Hz — first, the war"
+- (65 s, off by 02:35)
+- lead-in: 1912, Munich: von Laue sent X-rays through a crystal and got these spots: X-rays are waves, and the crystal is a grating.
+- (click) The son, Lawrence Bragg, still a student in Cambridge, explained the spots the same year: reflections from planes of atoms, and they add up when the path difference is a whole number of wavelengths.
+- (click) The father, William Henry Bragg, measured them in Leeds with this spectrometer: for us, a swept, narrow-band receiver.
+- (click) [optional] Reading a lattice from its echoes is the first inverse problem in this talk.
+- The son was twenty-five when he heard of his Nobel Prize, at the front.
+- bridge: And that brings us to the war.
 :::
 
 # 1914–1918: Europe Thrown into Chaos<br>From Flanders to the Somme: remembrance — and an engineering problem {#flanders}
@@ -279,9 +287,13 @@ text: 0.0357 0.7750 0.9286 0.1200
 :::
 
 :::notes
-- 30 seconds, said calmly, then move on:
-- "Last Wednesday was the 108th anniversary of the Armistice. In 1914, Europe was thrown into chaos. History doesn't repeat itself, but it often rhymes — and its echoes reach us still. Let us remember all who served and all who died, on every side."
-- the poppies are at Thiepval, on the Somme; the same war, some 90 km north: Lawrence Bragg sets up the first British sound-ranging section near Ypres, in Flanders, in late 1915
+- (40 s, off by 03:15)
+- lead-in (calmly): Last Wednesday was the 108th anniversary of the Armistice.
+- In 1914 Europe was thrown into chaos. History doesn't repeat itself, but it often rhymes, and its echoes still reach us today.
+- Let us remember all who served and all who died, on every side.
+- (do: pause, two seconds)
+- These poppies are at Thiepval, on the Somme. Bragg's first sound-ranging section worked near Ypres, from late 1915.
+- bridge: For the engineers, that war also posed a very concrete problem.
 :::
 
 # A New Type of War: Shelled from out of Sight … Where Is That Gun?<br>sound ranging works on a quiet range and fails at the front {#problem}
@@ -342,13 +354,14 @@ a sound-ranging base, after J. R. Hinman, 1919[^ph-hinman]; sound ranging film, 
 [^coda]: Coda to Coda, "IWM – WW1 Armistice Interpretation (Sound Installation)," 1 min, released 6 Nov. 2018, all rights reserved. [Online]. Available: https://codatocoda.bandcamp.com/album/iwm-ww1-armistice-interpretation-sound-installation
 
 :::notes
-- said once: we can learn from this past twice — as citizens, so that it never happens again, and as engineers: the problems solved under fire are the ones we still solve
-- a new kind of war: guns firing from out of sight; the eye (balloons, flash spotting) fails in fog and at night, the ear and a stopwatch are too coarse — the geometry needs milliseconds
-- click 1, the French idea: Nordmann (an astronomer) and Bull (galvanometers from cardiography): time the report at several microphones; November 1914, near Saint-Cloud, a gun located to ~40 m — on a quiet range
-- at the front it fails: three sounds per shot, and the microphones answer the shell's crack, the bursts and the rifles; wind and temperature bend the sound
-- P on the film: Coda to Coda's interpretation of the Armistice record, ~20 s across 11:00 — careful: "a modern sonification of the 1918 record", never "the actual sound"
-- click 2: the circles — six microphones on a 7 km arc
-- bridge: "let's try it ourselves — a drum, four microphones, and you"
+- (70 s, off by 04:25)
+- lead-in: It was a new type of war: most casualties came from artillery, fired from kilometres away by guns nobody saw.
+- At night or in fog the eye doesn't help, and an ear with a stopwatch is far too coarse. You need milliseconds.
+- (click) In November 1914 two Frenchmen, Nordmann and Bull, put microphones on a surveyed base and timed the delays. On a quiet range near Paris they placed a gun to forty metres.
+- At the front, it failed. Every shot makes three sounds: the shell's supersonic crack, the burst, and the gun. Add wind and rifles.
+- (click) The bases that worked used six microphones on a seven-kilometre arc. Here is the record from the morning of the Armistice, as a modern sonification: guns, then silence.
+- (do: play only the last seconds of the clip, not the full minute)
+- bridge: So let's try it ourselves: a drum, four microphones, and you.
 :::
 
 # Experiment 1: a Drum, Four Microphones — and Shakers<br>Nordmann and Bull's sound-ranging experiment, and why it failed at the front {#exp1}
@@ -396,14 +409,17 @@ Tucker, Bull, Bragg, Paris and colleagues, c. 1916[^ph-srgroup]
 :::
 
 :::notes
-- before the talk: `devtools/four-mics-browser-pairs.sh setup`; `input` on the microphones (simulation as the fallback); once the viewer carries `align: once`, the first clap straight in front of mic 2
-- the set-up in one breath: four microphones on a line, 1 m apart — a sound-ranging base in miniature — an audio interface, a laptop, one flow-graph inside the slides
-- hit the drum: the hits step down the stacked traces — mic 1 chalk, orange, blue, olive; read one delay aloud (sound covers 34 cm per ms); each delay is a hyperbola, they cross at the drum
-- hand out the shakers: the trigger fires on the hiss, the chart loses the drum — "this is the front in 1916: the microphones hear everything except the gun"
-- click: the people who solved it together — the French and British sound rangers at one table (Bull seated, bearded; Bragg in the peaked cap; Tucker standing left); 1917: ~25 m, reported within 10 minutes
-- 1917 → today: the film became an ADC, the ruler a least-squares fit
-- plant the echo: "keep these hyperbolae in mind — they come back in navigation"
-- bridge, shakers still going: "how do you hear the gun and not the crack? Tucker lay in a hut with holes in it …"
+- (130 s, off by 06:35)
+- before the talk: `devtools/four-mics-browser-pairs.sh setup`; `input` on the microphones, simulation as the fallback; first clap straight in front of mic 2, `align: once`
+- lead-in: Here is a sound-ranging base in miniature: four microphones, one metre apart.
+- (do: hit the drum)
+- Each microphone hears it a little later than the one before. Sound travels about thirty-four centimetres per millisecond.
+- Each delay puts the drum on a hyperbola, and where the hyperbolas cross, there is the drum.
+- Now, could I ask a few of you to shake these? (do: hand out the shakers)
+- Now the trigger fires on the hiss. That was the front in 1916.
+- (click) And these are the sound rangers at one table: Bull seated, Bragg in the peaked cap, Tucker standing on the left. By 1917 they placed a gun to about twenty-five metres.
+- Keep the hyperbolas in mind; they come back.
+- bridge: So how did they hear the gun, and not the crack?
 :::
 
 # Experiment 2: 1916 — Tucker's Microphone<br>then: a hot wire in an ammunition box (Helmholtz resonator); today: a digital band-/low-pass {#lowpass}
@@ -446,43 +462,14 @@ Tucker's hot wire, 1916[^ph-tuckermic] — the gun's slow puff cools it, the she
 [^iwm]: Imperial War Museums, "Sound Ranging Explained." [Online]. Available: https://www.iwm.org.uk/history/first-world-war/western-front/sound-ranging-explained
 
 :::notes
-- two people, two kinds of knowledge: Tucker the experimentalist (hot wires), Bragg the wave physicist (phase, interference)
-- as Bragg told it (1971): Tucker felt cold air puffing through the holes of his hut each time a heavy gun fired — a wire across the hole of an ammunition box: the shell's crack "hardly made the galvanometer quiver", the gun "gave an enormous kick"
-- why: the box is a Helmholtz resonator, a band-pass filter in brass and air, tuned to the gun's 10–25 Hz
-- live, shakers still going: drag the band's upper edge down onto the drum — the hiss leaves the traces, the trigger fires on the drum again, the chart finds it again
-- the price: the narrower the band, the slower the edges — time resolution against noise, the trade-off that runs through the rest of the talk
-- the 1916 fix, relived in software: re-doing it is how it is understood, not just known
-- click (after dragging — the pop-up covers the charts): the engineered microphone, a tuned brass resonator
-- bridge: "basic science, a real problem, engineering, better instruments — and the same pattern in every field: one problem, many disguises"
-:::
-
-# One Problem, Many Disguises<br>basic science → a real problem → engineering → better instruments {#chain}
-
-:::place
-chain: 0.0357 0.1150 0.9286 0.2690
-questions: 0.0357 0.3900 0.9286 0.2550
-braid: 0.0357 0.6550 0.9286 0.3360
-:::
-
-:::chain {notes=off fit}
-![the recurring chain: excite → propagate → interact → observe → infer → control, and the loop back from control to excite](figures/pipeline.svg)
-:::
-
-:::questions {notes=off striped size=90%}
-| 1887 Hertz | 1900s radio | 1912 the Braggs | 1915 Bragg, Tucker | 1920s RF acceleration | 1930s navigation | 1935 radar | 1940 SIGINT | 1970s beam diagnostics | today LLRF, feedback |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| *does the wave exist?* | *what did you say?* | *where are the atoms?* | *where is that gun?* | *when do I push?* | *where am I?* | *where are you?* | *what are you doing?* | *what is the beam doing?* | *can I hold it there?* |
-:::
-
-:::braid {notes=off fit}
-![the braid of four strands up to 1918, the future dimmed: Hertz, Röntgen and Laue by name; sound ranging on the radar strand; Bull's galvanometer film and Tucker's hot wire on the instruments strand](figures/braid-1918.svg)
-:::
-
-:::notes
-- read the chain once: excite → propagate → interact → observe → infer → control; under each box the same thing in different fields' words — spark, gun, carrier, RF pulse, bunch; coherer, microphone, antenna, pickup, ADC
-- read four of the questions, not all ten: where is that gun? · where am I? · where are you? · what is the beam doing? — one chain, many disguises, many vocabularies
-- the strip beneath: the braid to 1918 — the first crossing (wave physics into acoustics); the instruments strand still cyan — today these are blocks
-- bridge: "Rutherford wanted faster projectiles — one goal, two routes"
+- (80 s, off by 07:55)
+- lead-in: Tucker, in his hut, noticed a puff of cold air at each heavy gun, but not at the crack.
+- His microphone was a hot wire across the hole of an ammunition box. For us, a Helmholtz resonator: a band-pass at ten to twenty-five hertz.
+- Let me do the same in software. (do: drag the band's upper edge down)
+- The hiss goes away, and we find the drum again.
+- There is a price, though: the narrower the band, the slower the edges, and the less precise the timing.
+- (click) And this is the engineered version, in brass.
+- bridge: So far we timed sound to the millisecond. After the war, the question was how to time a push to a particle.
 :::
 
 # One Big Push, or Many Small Timed Ones? — RF "accelerates" Particles<br>Lord Rutherford wanted faster projectiles — two routes, 1924–1932 {#widero master=people}
@@ -499,6 +486,11 @@ cascade: 0.5125 0.1700 0.2063 0.5022
 t2: 0.5125 0.6750 0.3306 0.1800
 waltonline: 0.0357 0.8700 0.8072 0.0500
 people: 0.8607 0.0190 0.1143 0.8667
+tag: 0.2750 0.7420 0.1940 0.0400
+:::
+
+:::tag {notes=off fit}
+![the braid's solid arrow: transfer, documented](figures/crossing-transfer.svg)
 :::
 
 :::h1 {notes=off size=110%}
@@ -565,11 +557,12 @@ Walton had tried Widerøe's route first — the ray-transformer on his own, the 
 [^waloschek]: P. Waloschek, *The Infancy of Particle Accelerators: Life and Work of Rolf Wideröe*. Braunschweig: Vieweg, 1994. [Online]. Available: https://www-library.desy.de/elbook.html
 
 :::notes
-- Rutherford wanted energetic projectiles to probe nuclei — and had started in radio himself (his detector of Hertzian waves, 1894); a static voltage is limited by breakdown: one big push, or many small pushes timed by radio?
-- the timed route: Ising proposes (1924), Widerøe builds it (1928): RF hands energy to ions, in phase with their flight — radio technology crosses into accelerator physics; Lawrence "skipped the German text and read the diagrams" → the cyclotron (1931)
-- the static route: Cockcroft and Walton, 14 April 1932, lithium split at ~125 kV — first to the milestone; RF went further, static machines live on as injectors
-- careful: the two routes are a fork, not a crossing
-- the footer: Walton had tried Widerøe's route first — both failed; bridge: "the idea that failed twice"
+- (60 s, off by 08:55)
+- lead-in: Rutherford wanted faster projectiles, to break up nuclei.
+- There were two ways to get there: one big push, or many small pushes, each timed by a radio wave.
+- Ising proposed the small pushes in 1924, and Widerøe built them in 1928. Lawrence read his diagrams and built the cyclotron in 1931: an idea carried over, and documented.
+- The big push came first: Cockcroft and Walton split lithium in 1932. But in the long run, RF went much further.
+- bridge: Widerøe had another idea too, and it failed twice.
 :::
 
 # The Betatron Widerøe Could Have Built<br>an idea from 1922 — lost to isolation and a bare glass wall, made to work by Kerst in 1940 {#betatron}
@@ -578,6 +571,11 @@ Walton had tried Widerøe's route first — the ray-transformer on his own, the 
 fig: 0.0357 0.1250 0.4800 0.3722
 text: 0.0357 0.5100 0.4800 0.4000
 photo: 0.5500 0.1250 0.3294 0.7300
+tag: 0.2200 0.7110 0.2770 0.0400
+:::
+
+:::tag {notes=off fit}
+![the braid's dashed line: co-evolution, found independently](figures/crossing-coevolution.svg)
 :::
 
 :::fig {notes=off size=caption fit}
@@ -603,13 +601,14 @@ Widerøe's ray-transformer, 1928 (Bild 11)[^ph-wideroe]
 [^betatron]: J. D. Cockcroft and E. T. S. Walton, "Disintegration of lithium by swift protons," *Nature*, vol. 129, p. 649, 1932; E. T. S. Walton, "The production of high speed electrons by indirect means," *Proc. Camb. Phil. Soc.*, vol. 25, pp. 469–481, 1929; D. W. Kerst, "The acceleration of electrons by magnetic induction," *Phys. Rev.*, vol. 60, pp. 47–53, 1941; D. W. Kerst and R. Serber, "Electronic orbits in the induction accelerator," *Phys. Rev.*, vol. 60, pp. 53–58, 1941.
 
 :::notes
-- the idea is old: 1922, Widerøe's student notebook — electrons accelerated by a changing flux, the beam as a transformer's secondary, the 2:1 condition; Slepian (1922), Breit and Tuve (1927), Walton (1928) and Steenbeck had pieces of it too — none knew of the others: NOBODY COMPARES NOTES
-- in Aachen the electrons ran ~1½ turns: charge on the bare glass wall, no orbit theory, a professor who would not give a doctorate for "something that did not function"
-- 1940, Kerst: a grounded silver film on the glass, Serber's orbit theory — it works, citing Widerøe and Walton; the beam's wobble is still called "betatron oscillation"
-- 1941, occupied Oslo: one smuggled copy of Physical Review — Widerøe in the audience: "like a thunderbolt"
-- the speaker's view, said as such: a brief exchange in the late 1920s could have given us these machines a decade earlier; then the war caught Widerøe in between — he built a betatron in Hamburg (1943–45), was not trusted in Germany, was penalised for collaboration in Norway and kept at arm's length abroad — his own account in Waloschek's biography[^waloschek] (also Sørheim 2020)
-- careful: wall charging, not "resistive-wall instability"; the coating is Kerst's, not AdA's
-- bridge: "back to radio — and again two routes to one goal: how does an aircraft find its way without sight?"
+- (80 s, off by 10:15)
+- lead-in: In 1922, a student's notebook already contained the betatron: Widerøe's ray-transformer.
+- In Aachen it made about one and a half turns: the electrons charged up the bare glass wall, and his professor refused him a doctorate for it.
+- Walton tried it in 1928 and failed; Steenbeck built one in 1935 and kept it secret. Nobody compared notes, so it was found again and again, independently.
+- In 1940 Kerst added a thin silver film and a focusing field, and it worked. When his paper reached occupied Norway, it hit Widerøe like a thunderbolt.
+- [optional] One word from this stayed with us: the beam wobbles around its orbit at its own frequency, the betatron oscillation, and we call that frequency the tune.
+- Personally, I think one exchange in the late 1920s would have given us these machines ten years earlier.
+- bridge: Back to radio, where again two routes led to one goal.
 :::
 
 # Transmit the Direction, or Measure the Delays?<br>two routes to the same goal — on approach today, both {#navigation}
@@ -627,9 +626,10 @@ h2: 0.5100 0.0250 0.4543 0.0450
 loran: 0.5100 0.0700 0.4543 0.4800
 lorcap: 0.6300 0.5300 0.3300 0.0700
 quote: 0.5100 0.6100 0.4543 0.1000
-t3: 0.5100 0.7150 0.3400 0.1500
+t3: 0.5100 0.7500 0.3400 0.1000
 wrline: 0.5100 0.8750 0.2700 0.0500
 wrlogo: 0.7850 0.8550 0.0600 0.0850
+tag: 0.5100 0.6850 0.2040 0.0380
 :::
 
 :::h1 {notes=off size=110%}
@@ -665,10 +665,7 @@ YE–ZB "Hayrake", NRL 1937: a Morse letter per 30° sector — home to a moving
 :::
 
 :::today {notes=off size=90%}
-today:
-- **ILS** — Instrument Landing System
-- **VOR** — VHF Omnidirectional Range
-- **TACAN** — Tactical Air Navigation
+today: **ILS**, VOR
 :::
 
 :::step
@@ -685,15 +682,16 @@ today:
 Gee 1942–43, LORAN (Rad Lab)<br>Decca, OMEGA: the same but phase
 :::
 
+:::tag {notes=off fit}
+![the braid's dotted line: parallel, the same maths](figures/crossing-parallel.svg)
+:::
+
 :::quote {notes=off}
 "similar in principle … with reversal of the direction of travel of the signals" — the Rad Lab's *Loran* volume, 1948, on WWI sound ranging[^nav]
 :::
 
 :::t3 {notes=off size=90%}
-today:
-- **GNSS** — Global Navigation Satellite Systems
-- **DME** — Distance Measuring Equipment
-- multilateration
+today: **GNSS**, multilateration
 :::
 
 :::wrline {notes=off size=90%}
@@ -707,13 +705,56 @@ down the line: precision time-keeping → **White Rabbit**
 [^nav]: Smithsonian National Air and Space Museum, "Time and Navigation." [Online]. Available: https://timeandnavigation.si.edu/; J. A. Pierce, A. A. McKenzie and R. H. Woodward, Eds., *Loran*, MIT Radiation Laboratory Series, vol. 4. New York: McGraw-Hill, 1948, §1-4, p. 10; L. A. Gebhard, *Evolution of Naval Radio-Electronics and Contributions of the Naval Research Laboratory*, NRL Report 8300, 1979, pp. 272–274.
 
 :::notes
-- the fork: guide or locate an aircraft without sight — transmit the direction, or measure the delays; neither was wrong, an airliner on approach today uses both
-- direction: Lorenz (1932) — fly the equisignal; click 1, Hayrake (US Navy, 1937): the home airfield moves, a rotating beacon keys a letter into each 30° sector; click 2, today ILS, VOR, TACAN — successors, not descendants
-- careful: Hayrake is a parallel route to the same goal, not a counter to Knickebein; the Royal Navy's Type 72 is co-evolution
-- click 3, delays: Gee and LORAN (proposed 1940, in service 1942–43) — each time difference a hyperbola, two cross at the aircraft: experiment 1's hyperbolae with the roles reversed — the echo we planted
-- the quote: the Rad Lab's own book makes the comparison with WWI sound ranging — a link in the explanation, not a documented line of invention
-- today: GNSS — the fit of experiment 1, plus a clock term; and White Rabbit, the accelerators' sub-nanosecond timing, now on the ground beside GNSS
-- bridge: "a navigation beam is a transmitter whose receiver may be on the other side's aircraft"
+- (80 s, off by 11:35)
+- lead-in: How do you guide an aircraft: do you transmit the direction, or do you measure delays?
+- In 1932, Lorenz: you fly along the equisignal, where dots and dashes merge into one steady tone.
+- (click) [optional] In 1937, Hayrake: one Morse letter per sector, so a pilot could home in on a moving carrier.
+- (click) Today, that is the ILS on every runway.
+- (click) Gee and LORAN, 1942 and 43, measured delays instead. Each delay is a hyperbola: experiment one in reverse. The Rad Lab said so itself: the same maths as sound ranging, run backwards.
+- And radar? You send the pulse yourself and time its echo. Several countries found that independently in the mid-1930s, and we will do it at the end of this part.
+- And down the line, precise timing became White Rabbit, which came out of CERN and which we use at GSI.
+- An airliner on approach today uses both routes.
+- bridge: Decca did the same with phase instead of delays. Let's see what that buys you, and what it costs.
+:::
+
+# Experiment 3: Detection by Phase<br>no edge to time, one line to find{#exp2}
+
+:::place
+live: 0.0357 0.1250 0.9286 0.7250
+toolbar: 0.3500 0.8550 0.6143 0.0900
+card: 0.0250 0.5200 0.3325 0.3600
+decca: 0.0357 0.5280 0.3150 0.4300
+:::
+
+:::gr4
+id: exp2
+region: live
+workflow: workflows/exp2-noise-tone.grc
+lifecycle: run-while-visible
+toolbar: toolbar
+:::
+
+:::card {notes=off fit layer=above}
+![a piece of the chalkboard over the live region's placeholder pane](figures/chalk-patch-left.webp)
+:::
+
+:::decca {notes=off size=caption fit layer=above}
+![a Decca Navigator Mk 12 receiver: a chain selector and three dials, the decometers, in red, green and purple, each counting lanes and the fraction of a lane](media/decca-navigator-mk12.webp)
+
+Decca, from 1944: its dials count the lanes the phase cannot[^ph-decca]
+:::
+
+[^ph-decca]: Decca Navigator Mk 12, photo: Stahlkocher, CC BY-SA 3.0, via Wikimedia Commons.
+
+:::notes
+- (80 s, off by 12:55)
+- `input`: simulation at 160 Hz, or the microphones; `tone` → 440 Hz, the fork
+- lead-in: A click contains every frequency; a tone contains just one.
+- (do: strike the fork) One line in the waterfall.
+- The four traces are shifted sine waves. But which crest belongs to which?
+- The correlation peaks repeat one period apart, and at 440 hertz they turn into ghosts. The phase tells you where you are within a period, but not which period.
+- Decca's dials counted the lanes the phase couldn't. A PLL calls it a cycle slip. Two names, one problem.
+- bridge: Back to the beams: a beam that guides your aircraft can also be heard by the other side.
 :::
 
 # A Different "Battle of the Beams"<br>electronic warfare grows up — intercept, jam, spoof {#beams master=people}
@@ -758,7 +799,6 @@ Knickebein, 1940: two beams cross over Derby
 [**Reginald V. Jones**]{size=205%}<br>[1911–1997]{size=205%}
 :::
 
-:::step
 
 :::ov1 {notes=off fit}
 ![ASPIRIN: a British jammer in the Midlands, and the extra dots it lays on the beam](figures/beams-map-1.svg)
@@ -800,7 +840,6 @@ Knickebein, 1940: two beams cross over Derby
 DOMINO's transmitter: Alexandra Palace[^ph-allybbc][^ph-ally]
 :::
 
-:::step
 
 :::close {notes=off}
 radio navigation, **not radar** — the first fully fought electronic war[^jones]
@@ -809,14 +848,14 @@ radio navigation, **not radar** — the first fully fought electronic war[^jones
 [^jones]: R. V. Jones, *Most Secret War: British Scientific Intelligence 1939–1945*. London: Hamish Hamilton, 1978.
 
 :::notes
-- the map and the race clock, four clicks: German guidance in green, the British counter in red — move and counter-move in weeks, not years
-- June 1940, Knickebein: a Lorenz-type beam from Kleve, a second from Stollberg crossing it over the target — a civil blind-landing aid turned bombing aid (T); R. V. Jones finds it (the Anson flight of 21 June 1940)
-- Aug–Oct 1940, ASPIRIN: listen, identify the modulation, add dots so the pilot hears a confused course; say "not bent — misread": the indication was falsified, the beam was not bent (the Germans believed it was)
-- Nov 1940, X-Gerät / BROMIDE: receivers filtered at 2000 Hz; the first jammers modulated at 1500 Hz and missed the filter; the right frequency came from the He 111 that landed at West Bay on 6 November; corrected after Coventry (14 Nov, a bright moonlit night — careful: do not claim Bromide would have saved it), effective at Birmingham (19 Nov) — the number that mattered was the receiver's filter, not the transmitter's power: experiment 2 again
-- Feb 1941, Y-Gerät / DOMINO: ranging by re-radiation; DOMINO re-radiates the return from the BBC's dormant television transmitter at Alexandra Palace (45 MHz) with a shifted phase — broadcasting turned electronic warfare (T); the photos on the right: the BBC's tower at Alexandra Palace, home of the first regular high-definition television service (1936), and its mast — today and in 1975
-- the close: radio navigation, not radar — the first fully fought electronic war; the cycle intercept → understand the receiver → jam, spoof → counter is figures/escalation.svg, for questions
-- sources: Jones, Most Secret War (1978), pp. 127–129, 151, 164, 175–177; Price, Instruments of Darkness (1977), pp. 44–49
-- bridge: "listen to the other side long enough and you hear signals nobody meant to send"
+- (90 s, off by 14:25)
+- lead-in: Three moves, a few months apart. German guidance is in green, the British counter in red.
+- June 1940, Knickebein: two beams from Kleve and Stollberg crossed over the target. R. V. Jones found them, and ASPIRIN keyed its own Morse into the beam. The beam wasn't bent; the pilots misread it.
+- (click) November, X-Gerät: its receivers filtered at 2000 hertz, and the first BROMIDE jammers sent 1500. The receiver's filter decided, which is experiment two again.
+- (click) February 1941, Y-Gerät ranged by an echo. DOMINO answered from the BBC's TV transmitter at Alexandra Palace and re-radiated the ranging signal with a phase shift. Broadcasting turned into electronic warfare.
+- This was radio navigation, not radar, and it was the first fully fought electronic war.
+- sources: Jones (1978), pp. 127–129, 151, 164, 175–177; Price (1977), pp. 44–49
+- bridge: And if you listen long enough, you hear signals nobody meant to send.
 :::
 
 # Signals You Didn't Mean to Send<br>communications → radar → SIGINT → TEMPEST → passive diagnostics {#unintended}
@@ -867,11 +906,11 @@ cap85: 0.6209 0.9080 0.2300 0.0600
 [^kuhn]: W. van Eck, "Electromagnetic radiation from video display units: An eavesdropping risk?" *Computers & Security*, vol. 4, no. 4, pp. 269–286, 1985; M. G. Kuhn, "Compromising emanations: eavesdropping risks of computer displays," Univ. of Cambridge, Tech. Rep. UCAM-CL-TR-577, 2003, Fig. 4.3 (not cleared, talk only).
 
 :::notes
-- the ladder, read top to bottom: communications (I send so you recover it) → radar (I send and read the echo) → SIGINT (I read what you sent, more than you meant) → TEMPEST (your machine sends what it never meant to) → passive diagnostics (a system radiates its state) — the same inverse problem, ever less intent at the emitter; different ethics, the same mathematics
-- click 1, 1943: a Bell engineer sees a spike on a distant oscilloscope each time a teletype cipher machine steps — the plain text can be read from the spikes (NSA, "TEMPEST: A Signal Problem", 1972)
-- click 2: 1985, van Eck reads a screen with modified TV equipment; Kuhn 2003, through three walls — the end of the secret, the start of a public field
-- careful: TEMPEST is the programme's name; the phenomenon is compromising emanations
-- bridge: "turn it around — a complex system's signals tell more about its state than it was built to report"
+- (50 s, off by 15:15)
+- lead-in: Look at this ladder: at every step the emitter means less of what it sends, but the maths stays the same.
+- (click) 1943: a Bell Labs engineer saw spikes on an oscilloscope across the lab, and read a cipher machine's plain text from them.
+- (click) 1985: van Eck read a computer screen with a TV set. In 2003, Kuhn read one through three walls.
+- bridge: So a system's signals tell you more about its state than the system reports.
 :::
 
 # {#gremlin master=title-logo}
@@ -899,174 +938,10 @@ link: 0.1897 0.7233 0.6000 0.1200
 :::
 
 :::notes
-- 30 s, a flash: the ladder's last rung, today — GREMLIN: one sensor on a facility's mains feed → which devices run, which drift, which are about to fail
-- the same philosophy, scaled from one sensor to a distributed system: the next talk in this session, 15:10
-- bridge: "how do we look at a signal at all? two ways — and for a century engineers have reasoned in both"
-:::
-
-# Pulses or Spectra?<br>two ways of seeing the same signal — and for a century engineers have reasoned in both {#duality master=people}
-
-:::place
-fig: 0.0357 0.1250 0.8000 0.4770
-braid: 0.0357 0.6350 0.8000 0.3360
-people: 0.8607 0.0190 0.1143 0.8667
-:::
-
-:::fig {notes=off fit}
-![the same three signals in time and in frequency: a click is a flat wide spectrum, a steady tone one sharp line, a train of bunches a comb of lines under the bunch's envelope; time tells when, frequency which tone](figures/time-frequency.svg)
-:::
-
-:::braid {notes=off fit}
-![the braid to 1950 with its milestones sorted by view: in gold above, frequency — the superheterodyne, the Lorenz beam's modulation, the klystron's resonance; in white below, time — sound ranging's arrival times, radar's pulse ranging, the delays of Gee and LORAN](figures/braid-duality.svg)
-:::
-
-:::people {notes=off size=40% fit}
-![Carl Friedrich Gauss](media/portraits/gauss.webp)
-
-[**Carl Friedrich Gauss**]{size=205%}<br>[1777–1855]{size=205%}
-
-![Joseph Fourier](media/portraits/fourier.webp)
-
-[**Joseph Fourier**]{size=205%}<br>[1768–1830]{size=205%}
-
-![James Cooley and John Tukey](media/portraits/cooley-tukey.webp)
-
-[**Cooley, Tukey**]{size=205%}<br>[the FFT, 1965]{size=205%}
-:::
-
-:::notes
-- the picture does it, no Fourier lecture: a click is every frequency at once, a steady tone is one line, a train of bunches is a comb — Schottky and the MIM come back to the comb
-- the portraits: Gauss found the fast algorithm in 1805 and left it unpublished; Cooley and Tukey reinvented it in 1965 — an idea that had to be found twice
-- the strip: the same history sorted by view — time (sound ranging, radar pulses, LORAN) and frequency (superheterodyne, modulation, resonance); accelerators inherit both
-- bridge: "next, the tuning fork — the same delay, measured the other way, and where that way breaks"
-:::
-
-
-# Experiment 3: Detection by Phase<br>no edge to time, one line to find{#exp2}
-
-:::place
-live: 0.0357 0.1250 0.9286 0.7250
-toolbar: 0.3500 0.8550 0.6143 0.0900
-card: 0.0250 0.5200 0.3325 0.3600
-decca: 0.0357 0.5280 0.3150 0.4300
-:::
-
-:::gr4
-id: exp2
-region: live
-workflow: workflows/exp2-noise-tone.grc
-lifecycle: run-while-visible
-toolbar: toolbar
-:::
-
-:::card {notes=off fit layer=above}
-![a piece of the chalkboard over the live region's placeholder pane](figures/chalk-patch-left.webp)
-:::
-
-:::decca {notes=off size=caption fit layer=above}
-![a Decca Navigator Mk 12 receiver: a chain selector and three dials, the decometers, in red, green and purple, each counting lanes and the fraction of a lane](media/decca-navigator-mk12.webp)
-
-Decca, from 1944: its dials count the lanes the phase cannot[^ph-decca]
-:::
-
-[^ph-decca]: Decca Navigator Mk 12, photo: Stahlkocher, CC BY-SA 3.0, via Wikimedia Commons.
-
-:::notes
-- the message: a steady tone has no edge to time, but it has a phase — finer than any edge, but it loses count of the cycles; the spectra way, and where it breaks
-- `input`: simulation (a 160 Hz tone, struck once a second, the source circling) or the microphones; the `tone` choice switches to 440 Hz, the fork
-- three beats, no clicks:
-  1. strike the fork: one bright line in the waterfall at once — a weak tone invisible in a trace is still one line in the spectrum (keep that: on `schottky` a beam is found the same way)
-  2. the traces: four shifted copies of one sine — the shift is the delay, but which crest belongs to which?
-  3. the correlation: the drum's was one sharp peak; a tone's is a cosine, peaks one period apart — the phase says where within a period, not which period; at 160 Hz the gold estimate follows the source, at 440 Hz the hyperbolae jump to ghosts
-- optional, dragging the band onto the line: the noise goes, the ghost stays — a filter cannot find the lost cycle
-- bottom left, the same lesson at sea: Decca's dials count the lanes the phase cannot — and every phase-locked loop counts its cycle slips: two fields, two names — lanes and cycle slips — for one problem
-- Δt = Δφ / 2πf₀, modulo one period; the cure is bandwidth (experiment 4)
-- bridge: "holding a phase to a fraction of a cycle is what every accelerator cavity does — and the tubes that drive them went to war first"
-:::
-
-# The Klystron Goes to War and Comes Home<br>an accelerator's cavity turned RF source — radar gave back receivers and pulsers, the accelerators tubes, timing and detectors {#loop}
-
-:::place
-fig: 0.0357 0.1250 0.4800 0.7000
-credits: 0.0357 0.8300 0.4800 0.0900
-trades: 0.5300 0.1250 0.4343 0.7300
-tcap: 0.5300 0.8550 0.4343 0.0650
-:::
-
-:::fig {notes=off fit}
-![one loop of photographs, clockwise: 1937 the klystron at Stanford (Hansen's cavity, the Varians' tube) goes into radar (the people at the tubes, 1940–45), comes home to the linacs (the Stanford Mark III, 1950) and is driven beyond radar's needs (SLAC's 245 klystrons, 1966); in the centre, Berkeley 1947: surplus SCR-268 radars set the Alvarez linac's 200 MHz](figures/radar-loop.svg)
-:::
-
-:::credits {notes=off size=85%}
-the klystron's loop: Stanford's linacs[^slac7731], [^slac2mile]; Berkeley's surplus SCR-268s[^slac3221] · photos[^ph-loop]
-:::
-
-:::step
-
-:::trades {notes=off fit}
-![what radar and the accelerators traded besides the klystron's loop: radar to accelerators — the superhet receiver in BPM and LLRF electronics (C), monopulse Σ/Δ to the 1981 BPM processors, Rad Lab pulsers to SLAC's modulators, the wartime magnetron to the S-band and medical linacs, surplus SCR-268s to the Alvarez linac, radar's spectrum analyser to the ISR's Schottky noise (C), radar receiver boards to the Tevatron BPMs; and back, in gold — Hansen's accelerator cavity to the radar oscillator (1938), Oliphant's cyclotron lab to the cavity magnetron (1940), Lawrence's cyclotroneers to the Rad Lab, linac klystrons to the BMEWS and Goldstone radars (1959), collider trackers to the Fermi gamma-ray telescope (2008), CERN pixel chips to the ISS radiation monitors (2012), White Rabbit timing to the EISCAT_3D radar (2022)](figures/radar-trades.svg)
-:::
-
-:::tcap {notes=off size=125%}
-same problem — different domains[^trades], [^back]
-:::
-
-[^slac7731]: G. Caryotakis, "The Klystron: A Microwave Source of Surprising Range and Endurance," SLAC-PUB-7731, 1998. [Online]. Available: https://www.slac.stanford.edu/pubs/slacpubs/7500/slac-pub-7731.pdf
-[^slac3221]: SLAC-PUB-3221, "Elementary Principles of Linear Accelerators," 1983. [Online]. Available: https://www.slac.stanford.edu/pubs/slacpubs/3000/slac-pub-3221.pdf
-[^slac2mile]: R. B. Neal (ed.), *The Stanford Two-Mile Accelerator*, ch. 1–3. New York: Benjamin, 1968. [Online]. Available: https://ahro.slac.stanford.edu/sites/default/files/2024-08/Chapters_1_3.pdf
-[^back]: G. Caryotakis, SLAC-PUB-7731, 1998 (the cavity, the Mark III klystrons in BMEWS); A. E. Siegman, "Edward L. Ginzton," NAS Biographical Memoirs; W. B. Atwood et al., "The Large Area Telescope on the Fermi Gamma-ray Space Telescope," *Astrophys. J.*, vol. 697, p. 1071, 2009; L. Pinsky et al., Timepix-based radiation environment monitors on the ISS, *J. Radiat. Res.*, vol. 55, 2014; EISCAT_3D synchronisation tender, 2022 (White Rabbit, CERN WR switch v3).
-[^ph-loop]: Photos, via Wikimedia Commons, public domain: "Prototype klystron cutaway," *Electronics*, vol. 13, 1940; Flt Lt Goodchild, RAF, "WAAF radar operator Denise Miley, Bawdsey, May 1945," IWM CH 15332; US Army Signal Corps, "Radar" (an SCR-268), Casablanca, 1943, NARA 531325; US Office of Naval Research, "Mark III linear electron accelerator," Stanford, early 1950s; US Department of Energy, "SLAC klystron gallery," c. 1968.
-[^trades]: R. E. Shafer, "Beam position monitoring," *AIP Conf. Proc.*, vol. 249, p. 601, 1992; S. P. Jachim, R. C. Webber and R. E. Shafer, "An RF beam position measurement module for the Fermilab energy doubler," *IEEE Trans. Nucl. Sci.*, vol. NS-28, p. 2323, 1981; R. B. Neal (ed.), *The Stanford Two-Mile Accelerator*, 1968, modulator chapter, ref. 1: G. N. Glasoe and J. V. Lebacqz, *Pulse Generators*, MIT Radiation Laboratory Series, vol. 5, 1948; C. W. Miller, "An 8-MeV linear accelerator for X-ray therapy," *Proc. IEE*, vol. 101, 1954; M. Chodorow et al., *Proc. IRE*, vol. 47, p. 20, 1959; J. Borer et al., HEACC 1974; the Tevatron BPM upgrade, *JINST* 6 T11005, 2011.
-
-:::notes
-- the message: ping-pong, not one-way — Hansen's cavity, conceived to accelerate electrons, became the klystron; it went to war in radar, came home to the linacs, and the linacs drove it far beyond what radar needed
-- the loop, clockwise: 1937 Stanford, the klystron → radar, the people at the tubes → 1947–50 the Mark I–III linacs → 1966 SLAC, 245 klystrons on one phase reference: the tuning fork's phase, held along two miles
-- the centre: war-surplus SCR-268s set the Alvarez linac's 200 MHz (Alvarez, LINAC'86: the sets' power supplies, not their oscillators)
-- careful: the magnetron is a cousin of the cyclotron, not its child (Hull, 1921)
-- click: what else crossed, by year — read three rows, not all: the superhet in beam-position monitors; radar's monopulse Σ/Δ in a 1981 Fermilab BPM (citing Skolnik); and back, White Rabbit timing in the EISCAT_3D radar (2022) — same problem, different domains, different words
-- bridge: "the arrows on this picture are people — and people are the next slide"
-:::
-
-# The People Cross the Boundaries<br>knowledge moved because people moved — and many of the moves were driven by war {#people}
-
-:::place
-l0: 0.0100 0.1050 0.9800 0.8850
-l1: 0.0100 0.1050 0.9800 0.8850
-:::
-
-:::l0 {notes=off fit}
-![careers drawn like a transit map between six fields, 1905–1965, a portrait at each line's start and the name at its end: W. L. Bragg from X-rays to sound ranging and back to crystals; John Randall from phosphors to the cavity magnetron and to King's College, DNA by X-rays; Hansen and the Varians and Luis Alvarez from accelerators to radar and back](figures/people-lines-0.svg)
-:::
-
-:::step
-
-:::l1 {notes=off fit}
-![twenty-three more lines over the same lanes, almost all bending in a war — Hertz and Rutherford from radio; the sonar people Boyle, A. B. Wood, Fessenden, G. W. Pierce, Barkhausen; Jansky's radio astronomy; W. H. Bragg to anti-submarine acoustics; the French connection — Nordmann and Esclangon from the Paris Observatory to sound ranging and back, Langevin's ultrasonic sonar, Rocard from radio to radar to radio astronomy; Tuve, Bowen, Lovell, Oliphant, McMillan, Cockcroft, Touschek, Blumlein, Reeves, Kompfner](figures/people-lines-1.svg)
-:::
-
-:::notes
-- the picture says it without words: nearly every line bends inside a war band — war moved people; almost none starts there — war accelerated, it did not invent
-- the four with medallions, one clause each: Bragg (crystals → sound ranging → crystals); Randall (phosphors → the magnetron → the biophysics unit where DNA's X-ray pictures were taken); Hansen and the Varians (the cavity → the klystron → radar → the linac); Alvarez (cyclotron → Rad Lab → the surplus-radar linac)
-- click: twenty-three more — texture, ten seconds; name three as the lines arrive: Esclangon and Nordmann, two astronomers with the same idea in autumn 1914; Fessenden, radio pioneer, whose oscillator heard an iceberg's echo (1914); Kompfner, an architect who invented radar's travelling-wave tube, which flew in Telstar
-- careful: "Watson-Watt invented radar" — radar was developed independently in several countries; Randall and Boot's magnetron was the one that worked at kilowatts and crossed the Atlantic, not the first
-- the line to end on: "the arrows of the braid are people"
-:::
-
-# The Braid So Far: to 1950<br>radio, radar and accelerators trade parts and people — the instruments are still valves {#strands1950}
-
-:::place
-fig: 0.0357 0.1300 0.9286 0.7500
-:::
-
-:::fig {notes=off fit}
-![the braid up to 1950: the superheterodyne, Ising and Widerøe, Cockcroft–Walton, the Lorenz beam, the klystron, the magnetron and Knickebein, the betatron, Gee and LORAN, the Alvarez linac](figures/braid-1950.svg)
-:::
-
-:::notes
-- 20 s: thirty years of radio, radar and accelerators trading parts and people — the labels are the act just told
-- the WWII band holds many of the crossings, not all: the cyclotron and the klystron came before it
-- the instruments strand is still cyan — valves, film, cathode-ray tubes; the superhet's mixer and filter are a multiply and a filter in a software radio today
-- next: noise that is information
+- (20 s, off by 15:35)
+- lead-in: That is GREMLIN: one sensor on the mains feed tells you which devices run, drift or fail.
+- The details are in my next talk, at 15:10.
+- bridge: Listening to noise is older than GREMLIN: accelerators have lived on it for fifty years.
 :::
 
 # Schottky: Somebody's Noise is Somebody Else's Signal<br>Hear Particle Beams without touching — then act on it: Antiprotons, the W and Z — and single Ions today {#schottky master=people}
@@ -1129,15 +1004,14 @@ medal: 0.9577 0.5954 0.0350 0.0622
 [^vdm]: S. van der Meer, "Stochastic damping of betatron oscillations in the ISR," CERN, Geneva, Switzerland, Rep. CERN/ISR-PO/72-31, 1972.
 
 :::notes
-- the message: noise is information — a ring hears its own beam without touching it, and once you can hear it you can act on it; somebody's noise is somebody else's signal
-- Schottky, 1918: shot noise tells about the discrete carriers — the same year he patents the superheterodyne, invented three times, independently (Lévy, Armstrong, Schottky: co-evolution)
-- top strip: one particle passing a pickup is a comb; many with a momentum spread make bands; the sidebands are the tune — read without touching the beam (the word comes from Kerst's betatron)
-- **hear**: the ISR, 1972 — the first Schottky scans of a beam, with Schottky's formula applied by name (T)
-- click 1, **act**: van der Meer — measure the noise here, kick it away there: stochastic cooling is feedback; dense antiprotons → the W and Z (1983) → Nobel 1984
-- careful: the ISR signals did not *cause* the idea (van der Meer had it in 1968); Widrow's adaptive noise cancelling (1975) is the parallel invention outside the field (P)
-- click 2, **count**, our machine: in GSI's storage ring every ion draws its own line — a single ion's decay seen as one line ending and another appearing; careful: the 2008 "GSI oscillations" were not confirmed
-- careful: Schottky spectra and passive RF/SIGINT share the maths, not a lineage — "parallel"
-- bridge: "the sidebands show the slow motion of the whole beam; inside one bunch it is fast — and to see it we split the band before the ADC"
+- (75 s, off by 16:50)
+- lead-in: One of my favourite sayings from instrumentation: somebody's noise is somebody else's signal.
+- In 1918 Schottky explained shot noise.
+- In a ring, each particle passes the pick-up once per turn, so each one gives a line, and all of them together a comb. The width of each band tells you the momentum spread.
+- In 1972 the ISR made the first Schottky scans: hearing the beam without touching it.
+- (click) Then van der Meer acted on that noise with feedback. Stochastic cooling gave dense antiprotons, then the W and the Z, and a Nobel Prize in 1984.
+- (click) And today, in GSI's storage ring, the decay of one single ion is one line that ends.
+- bridge: That was many particles. Inside a single bunch, things get fast.
 :::
 
 # Same Answer, Twice: Split the Band Before the ADC<br>radio does it in software, the MIM in copper — found independently {#mim}
@@ -1150,6 +1024,11 @@ ear: 0.0357 0.5800 0.3600 0.3850
 fig: 0.4375 0.0553 0.5268 0.4930
 proto: 0.5060 0.5409 0.2240 0.2854
 pcb: 0.7400 0.5409 0.2240 0.2854
+tag: 0.5200 0.8350 0.2770 0.0400
+:::
+
+:::tag {notes=off fit}
+![the braid's dashed line: co-evolution, found independently](figures/crossing-coevolution.svg)
 :::
 
 :::ht0 {notes=off fit}
@@ -1190,15 +1069,13 @@ the ear splits the band first; the cochlear radio copies it[^cochlea]
 [^cochlea]: S. Mandal et al., *IEEE J. Solid-State Circuits* 44(6), 2009; D. F. Albuquerque et al., *Proc. IEEE IMWS*, 2010; OFDM: R. W. Chang, *Bell Syst. Tech. J.* 45(10), 1966; S. B. Weinstein and P. M. Ebert, *IEEE Trans. Commun. Technol.* 19(5), 1971.
 
 :::notes
-- co-evolution is not only a story about famous people a century ago — it happens now
-- the wall: the head and tail of a 1 ns LHC bunch move differently; seeing that in time needs 6–12 GHz, and no ADC that fast has the bits — waiting for a better ADC does not help
-- the radio answer: OFDM — many overlapping, orthogonal sub-carriers, split after one ADC by an FFT; every Wi-Fi and LTE receiver in this room does it
-- the MIM answer: a short bunch's spectrum is fixed by a few narrow bands at multiples of the RF — split them first, in copper, before any ADC, then slow 24-bit ADCs: nanometre motion at the onset of an instability
-- the ear did it first: the cochlea is a filter bank before any "ADC"; the RF "cochlear radio" found the same answer
-- the acoustic thread: Tucker's microphone was one tuned resonator; the cochlea a bank of them; the MIM sixteen of them in copper
-- careful: with OFDM say "the same idea" (P); the cochlear radio is co-evolution (C) — "independently studied", says the 2013 paper; never draw an arrow from either to the MIM
-- only after the comparison, understated: "there is a reason I picked this example — this was our MIM development at CERN"
-- bridge: "so far we only listened; the last experiment sends its own signal — a chirp, and a receiver that knows it"
+- (55 s, off by 17:45)
+- lead-in: Inside one particle bunch, right now, the beam moves head against tail.
+- A one-nanosecond bunch needs six to twelve gigahertz, and no ADC that fast has enough bits.
+- So you split the band before the ADC. Radio does the same after the ADC, in software, and calls it OFDM; the ear does it first, in the cochlea.
+- We found the same answer independently, in copper. (understated) This was our MIM development at CERN.
+- [optional] On the LHC that's a one-kilovolt carrier, modulated at a part per million.
+- bridge: The last experiment sends its own signal.
 :::
 
 # Experiment 4: Finding a Signal Below the Noise<br>known chirp in the noise — trick behind LoRa, GPS and long-range radar {#exp6}
@@ -1214,7 +1091,7 @@ pccap: 0.0357 0.8650 0.3150 0.0700
 :::gr4
 id: exp6
 region: live
-workflow: workflows/exp6-chirps-recorded.grc
+workflow: workflows/exp6-chirps.grc
 lifecycle: run-while-visible
 toolbar: toolbar
 :::
@@ -1234,12 +1111,88 @@ radar's answer: a long pulse with the resolution of a short one — pulse compre
 [^north]: D. O. North, "An analysis of the factors which determine signal/noise discrimination in pulsed-carrier systems," RCA Laboratories, Rep. PTR-6C, June 1943; reprinted in *Proc. IEEE*, vol. 51, no. 7, pp. 1016–1027, 1963.
 
 :::notes
-- said first: a GPS signal arrives some 20 dB below the receiver's noise — it works only because the receiver knows the code it is looking for and correlates; this slide shows it with sound
-- the rehearsal take (recorded — say so): a known chirp, 1–8 kHz in 20 ms, once a second; the noise rises until the chirp is gone from the four traces — the matched filter's peak stays, the ranging keeps working: "the shakers again — and this time the receiver knows what it is looking for"
-- stop listening, start asking: Bragg waited for the gun; radar chooses its probe — the bandwidth gives back the delay the tuning fork lost, the correlation gives the gain (20 ms × 7 kHz = 140, ~21 dB)
-- the echo, said slowly — one receiver, many names: radar's matched filter (North 1943) and pulse compression; the GNSS code correlator; Wi-Fi's preamble search; sonar; the accelerator's swept-excitation measurement [verify: a GSI/CERN example to cite] — the same principle, not a lineage
-- careful: chirp radars came later than North's matched filter [verify: Klauder et al., Bell Syst. Tech. J. 39, 1960]
-- bridge: "nothing on this laptop is new: Tucker's band-pass, Bull's trigger, Bragg's and LORAN's fit, North's matched filter, Gauss's FFT — put the 140 years on one picture"
+- (110 s, off by 19:35)
+- lead-in: Send a known pulse, find it again, and the delay gives you the range. That is radar, and sonar.
+- (default, `input` recorded; say so) This is a recording from the rehearsal. The chirp sinks into the noise, but the matched filter's peak stays.
+- (or `input` on the microphones, only before 18:30) Now the speaker pings. The first peak is the direct path, every later one is an echo. (do: move a board 1–2 m behind mic 1) Its peak moves about six milliseconds per metre, while the room's clutter stays put.
+- The gain is the time-bandwidth product: twenty milliseconds times seven kilohertz, about a hundred and forty, or twenty-one dB.
+- It's one receiver with many names: radar, sonar, GPS, which arrives twenty dB below the noise, Wi-Fi, and the swept excitation in accelerators.
+- If asked: chirp radars came after North's filter (Klauder et al., 1960).
+- bridge: So how did all this cross between fields? One tube shows it.
+:::
+
+# The Klystron Goes to War and Comes Home<br>an accelerator's cavity turned RF source — radar gave back receivers and pulsers, the accelerators tubes, timing and detectors {#loop}
+
+:::place
+fig: 0.0357 0.1250 0.4800 0.7000
+credits: 0.0357 0.8300 0.4800 0.0900
+trades: 0.5300 0.1250 0.4343 0.7300
+tcap: 0.5300 0.8550 0.4343 0.0650
+tag: 0.5600 0.8000 0.1940 0.0400
+:::
+
+:::tag {notes=off fit}
+![the braid's solid arrow: transfer, documented](figures/crossing-transfer.svg)
+:::
+
+:::fig {notes=off fit}
+![one loop of photographs, clockwise: 1937 the klystron at Stanford (Hansen's cavity, the Varians' tube) goes into radar (the people at the tubes, 1940–45), comes home to the linacs (the Stanford Mark III, 1950) and is driven beyond radar's needs (SLAC's 245 klystrons, 1966); in the centre, Berkeley 1947: surplus SCR-268 radars set the Alvarez linac's 200 MHz](figures/radar-loop.svg)
+:::
+
+:::credits {notes=off size=85%}
+the klystron's loop: Stanford's linacs[^slac7731], [^slac2mile]; Berkeley's surplus SCR-268s[^slac3221] · photos[^ph-loop]
+:::
+
+:::step
+
+:::trades {notes=off fit}
+![what radar and the accelerators traded besides the klystron's loop: radar to accelerators — the superhet receiver in BPM and LLRF electronics (C), monopulse Σ/Δ to the 1981 BPM processors, Rad Lab pulsers to SLAC's modulators, the wartime magnetron to the S-band and medical linacs, surplus SCR-268s to the Alvarez linac, radar's spectrum analyser to the ISR's Schottky noise (C), radar receiver boards to the Tevatron BPMs; and back, in gold — Hansen's accelerator cavity to the radar oscillator (1938), Oliphant's cyclotron lab to the cavity magnetron (1940), Lawrence's cyclotroneers to the Rad Lab, linac klystrons to the BMEWS and Goldstone radars (1959), collider trackers to the Fermi gamma-ray telescope (2008), CERN pixel chips to the ISS radiation monitors (2012), White Rabbit timing to the EISCAT_3D radar (2022)](figures/radar-trades.svg)
+:::
+
+:::tcap {notes=off size=125%}
+same problem — different domains[^trades], [^back]
+:::
+
+[^slac7731]: G. Caryotakis, "The Klystron: A Microwave Source of Surprising Range and Endurance," SLAC-PUB-7731, 1998. [Online]. Available: https://www.slac.stanford.edu/pubs/slacpubs/7500/slac-pub-7731.pdf
+[^slac3221]: SLAC-PUB-3221, "Elementary Principles of Linear Accelerators," 1983. [Online]. Available: https://www.slac.stanford.edu/pubs/slacpubs/3000/slac-pub-3221.pdf
+[^slac2mile]: R. B. Neal (ed.), *The Stanford Two-Mile Accelerator*, ch. 1–3. New York: Benjamin, 1968. [Online]. Available: https://ahro.slac.stanford.edu/sites/default/files/2024-08/Chapters_1_3.pdf
+[^back]: G. Caryotakis, SLAC-PUB-7731, 1998 (the cavity, the Mark III klystrons in BMEWS); A. E. Siegman, "Edward L. Ginzton," NAS Biographical Memoirs; W. B. Atwood et al., "The Large Area Telescope on the Fermi Gamma-ray Space Telescope," *Astrophys. J.*, vol. 697, p. 1071, 2009; L. Pinsky et al., Timepix-based radiation environment monitors on the ISS, *J. Radiat. Res.*, vol. 55, 2014; EISCAT_3D synchronisation tender, 2022 (White Rabbit, CERN WR switch v3).
+[^ph-loop]: Photos, via Wikimedia Commons, public domain: "Prototype klystron cutaway," *Electronics*, vol. 13, 1940; Flt Lt Goodchild, RAF, "WAAF radar operator Denise Miley, Bawdsey, May 1945," IWM CH 15332; US Army Signal Corps, "Radar" (an SCR-268), Casablanca, 1943, NARA 531325; US Office of Naval Research, "Mark III linear electron accelerator," Stanford, early 1950s; US Department of Energy, "SLAC klystron gallery," c. 1968.
+[^trades]: R. E. Shafer, "Beam position monitoring," *AIP Conf. Proc.*, vol. 249, p. 601, 1992; S. P. Jachim, R. C. Webber and R. E. Shafer, "An RF beam position measurement module for the Fermilab energy doubler," *IEEE Trans. Nucl. Sci.*, vol. NS-28, p. 2323, 1981; R. B. Neal (ed.), *The Stanford Two-Mile Accelerator*, 1968, modulator chapter, ref. 1: G. N. Glasoe and J. V. Lebacqz, *Pulse Generators*, MIT Radiation Laboratory Series, vol. 5, 1948; C. W. Miller, "An 8-MeV linear accelerator for X-ray therapy," *Proc. IEE*, vol. 101, 1954; M. Chodorow et al., *Proc. IRE*, vol. 47, p. 20, 1959; J. Borer et al., HEACC 1974; the Tevatron BPM upgrade, *JINST* 6 T11005, 2011.
+
+:::notes
+- (60 s, off by 20:35)
+- lead-in: At Stanford, Hansen built a resonant cavity for an accelerator, and the Varian brothers turned it into the klystron: an amplifier tube where electrons bunch up in one cavity and give their energy to the next.
+- The klystron was carried over twice: into radar, then home to the linacs, which soon wanted more power than radar had ever asked for.
+- [optional] In the centre: war-surplus SCR-268 radars set the 200 megahertz of Alvarez's linac at Berkeley. If asked: through their power supplies, not their oscillators.
+- (click) Radar and accelerators traded much more than that; let me read just three rows.
+- bridge: The tube crossed because people carried it.
+:::
+
+# The People Cross the Boundaries<br>knowledge moved because people moved — and many of the moves were driven by war {#people}
+
+:::place
+l0: 0.0100 0.1050 0.9800 0.8850
+l1: 0.0100 0.1050 0.9800 0.8850
+:::
+
+:::l0 {notes=off fit}
+![careers drawn like a transit map between six fields, 1905–1965, a portrait at each line's start and the name at its end: W. L. Bragg from X-rays to sound ranging and back to crystals; John Randall from phosphors to the cavity magnetron and to King's College, DNA by X-rays; Hansen and the Varians and Luis Alvarez from accelerators to radar and back](figures/people-lines-0.svg)
+:::
+
+:::step
+
+:::l1 {notes=off fit}
+![twenty-three more lines over the same lanes, almost all bending in a war — Hertz and Rutherford from radio; the sonar people Boyle, A. B. Wood, Fessenden, G. W. Pierce, Barkhausen; Jansky's radio astronomy; W. H. Bragg to anti-submarine acoustics; the French connection — Nordmann and Esclangon from the Paris Observatory to sound ranging and back, Langevin's ultrasonic sonar, Rocard from radio to radar to radio astronomy; Tuve, Bowen, Lovell, Oliphant, McMillan, Cockcroft, Touschek, Blumlein, Reeves, Kompfner](figures/people-lines-1.svg)
+:::
+
+:::notes
+- (45 s, off by 21:20)
+- lead-in: Knowledge moved because people moved.
+- Lawrence Bragg went from X-rays to sound ranging and back to crystals. Randall went from phosphors to the cavity magnetron, and later to DNA by X-rays at King's College. Hansen, the Varians and Alvarez went from accelerators to radar and back.
+- Nearly every line bends inside a war: the war moved people, it didn't invent for them.
+- (click) Here are twenty-three more. (do: let it stand for a few seconds, no names)
+- bridge: And when you draw all these crossings together, you get the next picture.
 :::
 
 # Not a Tree — a Braid<br>140 years, three kinds of crossing: transfer, co-evolution, parallel invention — most arrows are people {#braid}
@@ -1258,11 +1211,11 @@ line: 0.0357 0.9250 0.8000 0.0500
 :::
 
 :::notes
-- let the picture speak; say three things, not every arrow:
-- not a tree, a braid: ideas crossed, co-evolved and ping-ponged between the fields — three kinds of crossing: transferred (solid — most are a person packing a suitcase), co-evolved (dashed — Widerøe ‖ Walton, the MIM ‖ the cochlear radio), parallel (dotted — the hyperbolae of sound ranging and LORAN: "the dotted ones we must not over-claim")
-- the forks: one goal, two routes — the first to succeed was not always the one that scaled, and both usually survive
-- the bottom strand turns from cyan to gold: wire, brass, film and valves became software — everything on this laptop today is its gold end
-- read the line at the bottom once, then the close
+- (45 s, off by 22:05)
+- lead-in: It's not a tree, it's a braid.
+- Three kinds of crossing, the ones you have seen along the way: solid where an idea was carried over and it's documented, dashed where it was found twice, independently, dotted where it's just the same maths. The dotted ones we must not over-claim.
+- The instruments strand turns gold, and gold is software: today's four experiments ran as GNU Radio 4 blocks in this browser.
+- bridge (the bottom line, slowly): The waves have not changed. What changed is where we put the intelligence.
 :::
 
 # Echoes from the Past into the Future …<br>…learn from it twice {#learn master=title-logo}
@@ -1317,12 +1270,13 @@ logo: media/gnuradiodays-2026-banner-cutout.webp
 :::
 
 :::notes
-- the title's echoes once more: the bracket `flanders` and `problem` opened closes — the same poppies, and a LEP cavity, the klystron's lineage (my own photo)
-- as citizens: remember, keep the memory alive — the war accelerated the crossings, it did not invent them
-- as engineers and scientists: the same problems recur in every field under different names; specialisation is necessary, isolation is expensive — shared language, shared tools and the fundamentals taught let good ideas cross before we reinvent them; Widerøe, alone and cut off, is the counter-example
-- relive it to understand it: some experiments must be re-done by every generation — Tucker's band-pass, Bull's trigger, North's matched filter ran again in this room — to be understood, not just known; know why an idea failed, and with today's tools it may deserve a second look: the ray-transformer failed twice, then worked; the MIM went back to analogue filter banks
-- said last (unattributed): "Everybody makes mistakes … the wise learn from the mistakes of others. So let's share our experience, our ideas, our aspirations — and our wisdom."
-- the question: ask three communities in the room to name the matched filter, the TDOA solver and the feedback loop in their own words
+- (55 s, off by 23:00)
+- lead-in: So what do we learn from these echoes? I think we learn twice.
+- As citizens: remember, and keep the memory alive, so that it never happens again.
+- As engineers and scientists: share the language and the tools, and teach the fundamentals, so that good ideas cross before we reinvent them.
+- And understand why an idea failed. Widerøe's betatron failed on a bare glass wall; with today's tools, an old idea may deserve a second look.
+- bridge (last words): So, my question to you: what do you call this in your field?
+- (alternative ending, instead of the question, not in addition: "Everybody makes mistakes … the wise learn from the mistakes of others. So let's share our experience, our ideas, our aspirations, and our wisdom.")
 :::
 
 # References {#references master=blank}
@@ -1411,6 +1365,69 @@ grid: [(text)]
 - the quotation, unattributed on purpose: the earliest known form is Theodor Reik, 1965 ("… it merely rhymes"); "said Mark Twain" first appears in 1970 (J. R. Colombo), sixty years after his death; Twain and Warner only wrote "History never repeats itself" (*The Gilded Age*, 1874) — Quote Investigator, 2014
 - claim discipline as on `braid`: transfer, co-evolution, parallel invention per row — most transfers are a person moving (`people`); the parallel rows share the maths, not a lineage: say "rhymes", never "descends from"
 - background, not said — rows to slides (T transfer, C co-evolution, P parallel): Hertz `hertz`/`chain` T · sound ranging `problem`/`exp1`/`lowpass` P (Bragg's X-ray phase → acoustics T) · Schottky `schottky` T · Ising/Widerøe/Kerst `widero`/`betatron` T · navigation `navigation` C · Knickebein `beams` T · klystron `loop`/`people` T (superhet BPMs C) · North `exp6` P · Bell Labs `unintended`/`gremlin` P · MIM `mim` C (advisor, round 56)
+:::
+
+
+# Backup — One Problem, Many Disguises<br>basic science → a real problem → engineering → better instruments {#chain}
+
+:::place
+chain: 0.0357 0.1150 0.9286 0.2690
+questions: 0.0357 0.3900 0.9286 0.2550
+braid: 0.0357 0.6550 0.9286 0.3360
+:::
+
+:::chain {notes=off fit}
+![the recurring chain: excite → propagate → interact → observe → infer → control, and the loop back from control to excite](figures/pipeline.svg)
+:::
+
+:::questions {notes=off striped size=90%}
+| 1887 Hertz | 1900s radio | 1912 the Braggs | 1915 Bragg, Tucker | 1920s RF acceleration | 1930s navigation | 1935 radar | 1940 SIGINT | 1970s beam diagnostics | today LLRF, feedback |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| *does the wave exist?* | *what did you say?* | *where are the atoms?* | *where is that gun?* | *when do I push?* | *where am I?* | *where are you?* | *what are you doing?* | *what is the beam doing?* | *can I hold it there?* |
+:::
+
+:::braid {notes=off fit}
+![the braid of four strands up to 1918, the future dimmed: Hertz, Röntgen and Laue by name; sound ranging on the radar strand; Bull's galvanometer film and Tucker's hot wire on the instruments strand](figures/braid-1918.svg)
+:::
+
+# Backup — Pulses or Spectra?<br>two ways of seeing the same signal — and for a century engineers have reasoned in both {#duality master=people}
+
+:::place
+fig: 0.0357 0.1250 0.8000 0.4770
+braid: 0.0357 0.6350 0.8000 0.3360
+people: 0.8607 0.0190 0.1143 0.8667
+:::
+
+:::fig {notes=off fit}
+![the same three signals in time and in frequency: a click is a flat wide spectrum, a steady tone one sharp line, a train of bunches a comb of lines under the bunch's envelope; time tells when, frequency which tone](figures/time-frequency.svg)
+:::
+
+:::braid {notes=off fit}
+![the braid to 1950 with its milestones sorted by view: in gold above, frequency — the superheterodyne, the Lorenz beam's modulation, the klystron's resonance; in white below, time — sound ranging's arrival times, radar's pulse ranging, the delays of Gee and LORAN](figures/braid-duality.svg)
+:::
+
+:::people {notes=off size=40% fit}
+![Carl Friedrich Gauss](media/portraits/gauss.webp)
+
+[**Carl Friedrich Gauss**]{size=205%}<br>[1777–1855]{size=205%}
+
+![Joseph Fourier](media/portraits/fourier.webp)
+
+[**Joseph Fourier**]{size=205%}<br>[1768–1830]{size=205%}
+
+![James Cooley and John Tukey](media/portraits/cooley-tukey.webp)
+
+[**Cooley, Tukey**]{size=205%}<br>[the FFT, 1965]{size=205%}
+:::
+
+# Backup — The Braid So Far: to 1950<br>radio, radar and accelerators trade parts and people — the instruments are still valves {#strands1950}
+
+:::place
+fig: 0.0357 0.1300 0.9286 0.7500
+:::
+
+:::fig {notes=off fit}
+![the braid up to 1950: the superheterodyne, Ising and Widerøe, Cockcroft–Walton, the Lorenz beam, the klystron, the magnetron and Knickebein, the betatron, Gee and LORAN, the Alvarez linac](figures/braid-1950.svg)
 :::
 
 [^ph-sr]: K.u.k. Kriegspressequartier, "Schallmess-Hauptstelle von Artillerie-Messzug 506," photograph, Österreichische Nationalbibliothek, via Wikimedia Commons, public domain.
